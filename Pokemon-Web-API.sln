@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon-Web-API", "Pokemon-Web-API\Pokemon-Web-API.csproj", "{76910536-547E-4439-8A7B-659E418F2329}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{A1A6A65D-D21E-4E34-9EAA-E1D34FECE0A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{0665E4FC-D143-4EF1-A4D6-BD41F55F65B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{76910536-547E-4439-8A7B-659E418F2329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76910536-547E-4439-8A7B-659E418F2329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76910536-547E-4439-8A7B-659E418F2329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1A6A65D-D21E-4E34-9EAA-E1D34FECE0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1A6A65D-D21E-4E34-9EAA-E1D34FECE0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1A6A65D-D21E-4E34-9EAA-E1D34FECE0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1A6A65D-D21E-4E34-9EAA-E1D34FECE0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0665E4FC-D143-4EF1-A4D6-BD41F55F65B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0665E4FC-D143-4EF1-A4D6-BD41F55F65B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0665E4FC-D143-4EF1-A4D6-BD41F55F65B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0665E4FC-D143-4EF1-A4D6-BD41F55F65B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
