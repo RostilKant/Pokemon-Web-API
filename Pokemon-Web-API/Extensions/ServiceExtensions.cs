@@ -1,4 +1,8 @@
+using System;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
 
 namespace Pokemon_Web_API.Extensions
 {
@@ -13,7 +17,20 @@ namespace Pokemon_Web_API.Extensions
                         .AllowAnyMethod()
                         .AllowAnyHeader()); 
             });
-        
-    
+
+        public static IServiceCollection ConfigureSerilogger(this IServiceCollection services)
+        {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft",LogEventLevel.Warning)
+                .WriteTo.File(new RenderedCompactJsonFormatter(),"log.json")
+                .CreateLogger();
+
+            AppDomain.CurrentDomain.ProcessExit += (s, e) => Log.CloseAndFlush();
+
+            return services.AddSingleton(Log.Logger);
+
+        }
+
     }
 }

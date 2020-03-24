@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Pokemon_Web_API.Extensions;
+using Serilog;
 
 namespace Pokemon_Web_API
 {
@@ -28,7 +29,8 @@ namespace Pokemon_Web_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureCors();
-            
+            services.ConfigureSerilogger();
+            services.AddLogging(builder => builder.AddSerilog());
             services.AddControllers();
         }
 
