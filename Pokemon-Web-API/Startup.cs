@@ -32,6 +32,9 @@ namespace Pokemon_Web_API
             services.ConfigureSerilogger();
             services.AddLogging(builder => builder.AddSerilog());
             services.AddControllers();
+
+            services.ConfigureSqlContext(Configuration);
+            services.ConfigureRepositoryManager();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

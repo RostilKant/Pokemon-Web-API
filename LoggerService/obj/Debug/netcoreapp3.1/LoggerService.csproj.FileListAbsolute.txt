@@ -4,7 +4,6 @@
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/LoggerService/bin/Debug/netcoreapp3.1/Contracts.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/LoggerService/bin/Debug/netcoreapp3.1/Contracts.pdb
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/LoggerService/obj/Debug/netcoreapp3.1/LoggerService.csprojAssemblyReference.cache
-/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/LoggerService/obj/Debug/netcoreapp3.1/LoggerService.csproj.CoreCompileInputs.cache
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/LoggerService/obj/Debug/netcoreapp3.1/LoggerService.AssemblyInfoInputs.cache
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/LoggerService/obj/Debug/netcoreapp3.1/LoggerService.AssemblyInfo.cs
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/LoggerService/obj/Debug/netcoreapp3.1/LoggerService.csproj.CopyComplete

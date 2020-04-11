@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2019.3/system/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2019.3/system/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_Pokemon-Web-API.1919377077.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Contracts" t="IncludeRecursive">
         <e p="Contracts.csproj" t="IncludeRecursive" />
+        <e p="IPokemonRepository.cs" t="Include" />
+        <e p="IRepositoryBase&lt;T&gt;.cs" t="Include" />
+        <e p="IRepositoryManager.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Contracts.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Entities" t="IncludeRecursive">
+        <e p="Entities.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="EncountersArea.cs" t="Include" />
+          <e p="Pokemon.cs" t="Include" />
+          <e p="Type.cs" t="Include" />
+        </e>
+        <e p="RepositoryContext.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Entities.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -33,6 +55,11 @@
         <e p="Extensions" t="Include">
           <e p="ServiceExtensions.cs" t="Include" />
         </e>
+        <e p="Migrations" t="Include">
+          <e p="20200410132536_InitialCreate.Designer.cs" t="Include" />
+          <e p="20200410132536_InitialCreate.cs" t="Include" />
+          <e p="RepositoryContextModelSnapshot.cs" t="Include" />
+        </e>
         <e p="Pokemon-Web-API.csproj" t="IncludeRecursive" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
@@ -53,6 +80,20 @@
         </e>
       </e>
       <e p="Pokemon-Web-API.sln" t="IncludeFlat" />
+      <e p="Repository" t="IncludeRecursive">
+        <e p="PokemonRepository.cs" t="Include" />
+        <e p="Repository.csproj" t="IncludeRecursive" />
+        <e p="RepositoryBase.cs" t="Include" />
+        <e p="RepositoryManager.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Repository.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>

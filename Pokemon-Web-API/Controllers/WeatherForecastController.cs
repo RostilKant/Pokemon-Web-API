@@ -32,6 +32,7 @@ namespace Pokemon_Web_API.Controllers
             _logger.LogError("Here is an error message from our values controller.");
 
             var rng = new Random();
+            
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     Date = DateTime.Now.AddDays(index),
@@ -39,6 +40,7 @@ namespace Pokemon_Web_API.Controllers
                     Summary = Summaries[rng.Next(Summaries.Length)]
                 })
                 .ToArray();
+            
         }
     }
 }
