@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using HttpServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -13,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Pokemon_Web_API.Extensions;
 using Serilog;
-
+using RestSharp;
 namespace Pokemon_Web_API
 {
     public class Startup
@@ -31,10 +33,15 @@ namespace Pokemon_Web_API
             services.ConfigureCors();
             services.ConfigureSerilogger();
             services.AddLogging(builder => builder.AddSerilog());
-            services.AddControllers();
-
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddHttpClient();
+            services.AddSingleton<PokeApiRestClient>();
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
+            services.AddAutoMapper(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

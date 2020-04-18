@@ -22,6 +22,13 @@
       </e>
       <e p="Entities" t="IncludeRecursive">
         <e p="Entities.csproj" t="IncludeRecursive" />
+        <e p="JsonModels" t="Include">
+          <e p="NResult.cs" t="Include" />
+          <e p="NewRootObject.cs" t="Include" />
+          <e p="Pokemon.cs" t="Include" />
+          <e p="Result.cs" t="Include" />
+          <e p="RootObject.cs" t="Include" />
+        </e>
         <e p="Models" t="Include">
           <e p="EncountersArea.cs" t="Include" />
           <e p="Pokemon.cs" t="Include" />
@@ -37,24 +44,26 @@
           </e>
         </e>
       </e>
-      <e p="LoggerService" t="IncludeRecursive">
-        <e p="LoggerService.csproj" t="IncludeRecursive" />
+      <e p="HttpServices" t="IncludeRecursive">
+        <e p="HttpServices.csproj" t="IncludeRecursive" />
+        <e p="PokeApiRestClient.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="LoggerService.AssemblyInfo.cs" t="Include" />
+              <e p="HttpServices.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
       </e>
       <e p="Pokemon-Web-API" t="IncludeRecursive">
         <e p="Controllers" t="Include">
-          <e p="WeatherForecastController.cs" t="Include" />
+          <e p="PokemonsController.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">
           <e p="ServiceExtensions.cs" t="Include" />
         </e>
+        <e p="MappingProfile.cs" t="Include" />
         <e p="Migrations" t="Include">
           <e p="20200410132536_InitialCreate.Designer.cs" t="Include" />
           <e p="20200410132536_InitialCreate.cs" t="Include" />
@@ -66,7 +75,6 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
-        <e p="WeatherForecast.cs" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />

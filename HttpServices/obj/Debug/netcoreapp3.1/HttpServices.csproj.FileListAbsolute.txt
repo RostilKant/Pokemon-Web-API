@@ -1,0 +1,11 @@
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/bin/Debug/netcoreapp3.1/HttpServices.deps.json
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/bin/Debug/netcoreapp3.1/HttpServices.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/bin/Debug/netcoreapp3.1/HttpServices.pdb
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/bin/Debug/netcoreapp3.1/Entities.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/bin/Debug/netcoreapp3.1/Entities.pdb
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/obj/Debug/netcoreapp3.1/HttpServices.csprojAssemblyReference.cache
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/obj/Debug/netcoreapp3.1/HttpServices.AssemblyInfoInputs.cache
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/obj/Debug/netcoreapp3.1/HttpServices.AssemblyInfo.cs
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/obj/Debug/netcoreapp3.1/HttpServices.csproj.CopyComplete
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/obj/Debug/netcoreapp3.1/HttpServices.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/obj/Debug/netcoreapp3.1/HttpServices.pdb

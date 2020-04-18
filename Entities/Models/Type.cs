@@ -4,11 +4,6 @@ namespace Entities.Models
 {
     public class Type
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        
-        [ForeignKey(nameof(Pokemon))]
-        public int PokemonId { get; set; }
-        public Pokemon Pokemon { get; set; }
+        public string type { get; set; }
     }
 }

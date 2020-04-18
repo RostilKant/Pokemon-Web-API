@@ -1,0 +1,71 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj",
+    "projectName": "HttpServices",
+    "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj",
+    "outputPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/obj/",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp3.1"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "projectReferences": {
+          "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Entities/Entities.csproj": {
+            "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Entities/Entities.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp3.1": {
+      "dependencies": {
+        "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+          "target": "Package",
+          "version": "[3.1.3, )"
+        },
+        "Newtonsoft.Json": {
+          "target": "Package",
+          "version": "[12.0.3, )"
+        },
+        "RestSharp": {
+          "target": "Package",
+          "version": "[106.10.1, )"
+        },
+        "RestSharp.Serializers.NewtonsoftJson": {
+          "target": "Package",
+          "version": "[106.10.1, )"
+        }
+      },
+      "imports": [
+        "net461",
+        "net462",
+        "net47",
+        "net471",
+        "net472",
+        "net48"
+      ],
+      "assetTargetFallback": true,
+      "warn": true,
+      "frameworkReferences": {
+        "Microsoft.AspNetCore.App": {
+          "privateAssets": "none"
+        },
+        "Microsoft.NETCore.App": {
+          "privateAssets": "all"
+        }
+      },
+      "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
+    }
+  }
+}

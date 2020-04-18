@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Entities.Models
 {
@@ -17,8 +18,8 @@ namespace Entities.Models
         [Required(ErrorMessage = "Weight name is a required field.")]
         public int Weight { get; set; }
         
-        public ICollection<Type> Types { get; set; }
         
+        public ICollection<Type> Types { get; set; }
         public ICollection<EncountersArea> EncountersAreas { get; set; }
 
     }
