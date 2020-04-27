@@ -4,6 +4,6 @@ namespace Entities.Models
 {
     public class Type
     {
-        public string type { get; set; }
+        public string Name { get; set; }
     }
 }

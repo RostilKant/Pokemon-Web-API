@@ -20,7 +20,5 @@ namespace Entities.Models
         
         
         public ICollection<Type> Types { get; set; }
-        public ICollection<EncountersArea> EncountersAreas { get; set; }
-
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entities.JsonModels;
 using RestSharp;
-using Pokemon = Entities.Models.Pokemon;
+using Pokemon = Entities.GetPokemonModels.Pokemon;
 
 namespace HttpServices
 {
@@ -18,15 +18,23 @@ namespace HttpServices
             RestClient = new RestClient(BaseUrl);
         }
 
-        public RootObject GetPokemons()
+        public RootObject GetPokes()
         {
             var request = new RestRequest("pokemon?limit=965",DataFormat.Json);
             return RestClient.Get<RootObject>(request).Data;
         }
 
-       // public IEnumerable<Pokemon> GetPokemon()
+        public Pokemon GetPoke(string pokeId)
+        {
+            var request = new RestRequest($"pokemon/{pokeId}",DataFormat.Json);
+            return RestClient.Get<Pokemon>(request).Data;
+        }
+        //public Entities.GetPokemonModels.Pokemon GetPoke(string poke)
        // {
-            
-        //}
+       //     var request = new RestRequest($"pokemon/{poke}",DataFormat.Json);
+       //     return RestClient.Get<Entities.GetPokemonModels.Pokemon>(request).Data;
+       // }
+        
+        
     }
 }

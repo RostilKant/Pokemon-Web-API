@@ -8,7 +8,7 @@ namespace Contracts
 {
     public interface IPokemonRepository
     {
-        RootObject GetAllPoke();
-        IEnumerable<Pokemon> GetPoke();
+        //RootObject GetAllPoke();
+        //Entities.GetPokemonModels.Pokemon GetPoke(int pokeId);
     }
 }

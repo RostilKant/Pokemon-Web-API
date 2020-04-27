@@ -16,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using Pokemon_Web_API.Extensions;
 using Serilog;
 using RestSharp;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
+
 namespace Pokemon_Web_API
 {
     public class Startup
@@ -37,7 +39,7 @@ namespace Pokemon_Web_API
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddHttpClient();
-            services.AddSingleton<PokeApiRestClient>();
+            services.AddTransient<PokeApiRestClient>();
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(typeof(Startup));
@@ -45,13 +47,13 @@ namespace Pokemon_Web_API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.ConfigureExceptionHandler(logger);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

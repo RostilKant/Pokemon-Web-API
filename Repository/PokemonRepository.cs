@@ -2,29 +2,22 @@ using System.Collections.Generic;
 using System.Linq;
 using Contracts;
 using Entities;
-using Entities.JsonModels;
+using Entities.Models;
 using HttpServices;
 using RestSharp;
-using Pokemon = Entities.Models.Pokemon;
 
 namespace Repository
 {
     public class PokemonRepository : RepositoryBase<Pokemon>, IPokemonRepository
     {
-        private readonly PokeApiRestClient _client;
-        public PokemonRepository(RepositoryContext repositoryContext, PokeApiRestClient client) : base(repositoryContext)
+       // private readonly PokeApiRestClient _client;
+        public PokemonRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
-            _client = client;
+            //_client = client;
         }
 
-        public RootObject GetAllPoke()
-        {
-            return _client.GetPokemons();
-        }
+        //public Entities.JsonModels.RootObject GetAllPoke() => _client.GetPokemons();
 
-        public IEnumerable<Pokemon> GetPoke()
-        {
-            throw new System.NotImplementedException();
-        }
+        //public Entities.GetPokemonModels.Pokemon GetPoke(int pokeId) => _client.GetPokemon(pokeId);
     }
 }

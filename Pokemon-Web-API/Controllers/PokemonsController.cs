@@ -38,19 +38,43 @@ namespace Pokemon_Web_API.Controllers
         [HttpGet]
         public IActionResult GetPokemons()
         {
-            try
-            {
-                var pokemons = _repositoryManager.Pokemon.GetAllPoke();
-                var pokemons1 = _mapper.Map<NewRootObject>(pokemons);
+            
+                var poke = _client.GetPokes();
+                var pokemons = _mapper.Map<NewRootObject>(poke);
+                
+                return Ok(poke);
+        }
 
-                return Ok(pokemons1);
-            }
-            catch (Exception ex)
+        [HttpGet("{pokeId}")]
+        public IActionResult GetPokemon(string pokeId)
+        {
+            var poke = _client.GetPoke(pokeId);
+
+            if (poke == null)
             {
-                _logger.LogError($"Something went wrong in the {nameof(GetPokemons)} action {ex}");
-                return StatusCode(500, "Internal Server Error");
+                _logger.LogInformation($"Pokemon with id: {pokeId} doesn't exist on the poke.api.");
+                return NotFound();
+
             }
+
+            return Ok(poke);
         }
         
+        //[HttpGet("{name}")]
+       /* public IActionResult GetPokemon(string name)
+        {
+            var poke = _client.GetPoke(name);
+
+            if (poke == null)
+            {
+                _logger.LogInformation($"Pokemon with id: {name} doesn't exist on the poke.api.");
+                return NotFound();
+
+            }
+
+            return Ok(poke);
+        }
+        */
+
     }
 }
