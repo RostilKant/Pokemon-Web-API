@@ -41,8 +41,8 @@ namespace Pokemon_Web_API.Controllers
             
                 var poke = _client.GetPokes();
                 var pokemons = _mapper.Map<NewRootObject>(poke);
-                
-                return Ok(poke);
+                throw new Exception("Exception");
+                return Ok(pokemons);
         }
 
         [HttpGet("{pokeId}")]
@@ -60,21 +60,6 @@ namespace Pokemon_Web_API.Controllers
             return Ok(poke);
         }
         
-        //[HttpGet("{name}")]
-       /* public IActionResult GetPokemon(string name)
-        {
-            var poke = _client.GetPoke(name);
-
-            if (poke == null)
-            {
-                _logger.LogInformation($"Pokemon with id: {name} doesn't exist on the poke.api.");
-                return NotFound();
-
-            }
-
-            return Ok(poke);
-        }
-        */
-
+        
     }
 }

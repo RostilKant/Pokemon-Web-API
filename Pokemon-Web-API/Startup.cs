@@ -35,9 +35,16 @@ namespace Pokemon_Web_API
             services.ConfigureCors();
             services.ConfigureSerilogger();
             services.AddLogging(builder => builder.AddSerilog());
-            services.AddControllers()
+            services.AddControllers(config =>
+                {
+                    config.RespectBrowserAcceptHeader = true;
+                    config.ReturnHttpNotAcceptable = true;
+                })
                 .AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddXmlDataContractSerializerFormatters()
+                .AddCustomCsvFormatter();
+            
             services.AddHttpClient();
             services.AddTransient<PokeApiRestClient>();
             services.ConfigureSqlContext(Configuration);
