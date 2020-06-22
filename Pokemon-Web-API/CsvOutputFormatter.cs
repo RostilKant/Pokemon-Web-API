@@ -37,7 +37,7 @@ namespace Pokemon_Web_API
 
             if (context.Object is NewRootObject)
             {
-                foreach (var result in (List<NResult>) context.Object)
+                foreach (var result in (List<NResult>) context?.Object)
                 {
                     FormatCsv(buffer, result);
                 }

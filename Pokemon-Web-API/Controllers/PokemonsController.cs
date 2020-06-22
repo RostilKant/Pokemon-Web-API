@@ -41,7 +41,6 @@ namespace Pokemon_Web_API.Controllers
             
                 var poke = _client.GetPokes();
                 var pokemons = _mapper.Map<NewRootObject>(poke);
-                throw new Exception("Exception");
                 return Ok(pokemons);
         }
 
