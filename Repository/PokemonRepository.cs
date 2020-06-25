@@ -10,14 +10,16 @@ namespace Repository
 {
     public class PokemonRepository : RepositoryBase<Pokemon>, IPokemonRepository
     {
-       // private readonly PokeApiRestClient _client;
         public PokemonRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
-            //_client = client;
         }
 
         //public Entities.JsonModels.RootObject GetAllPoke() => _client.GetPokemons();
 
         //public Entities.GetPokemonModels.Pokemon GetPoke(int pokeId) => _client.GetPokemon(pokeId);
+        public IEnumerable<Pokemon> GetAllPokemons(bool trackChanges) =>
+            FindAll(trackChanges)
+                .OrderBy(p => p.Name)
+                .ToList();
     }
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace Entities.Models
 {
     public class Pokemon
     {
+        [Column("PokemonId")]
         public int Id { get; set; }
         
         [Required(ErrorMessage = "Name is a required field.")]
@@ -17,7 +19,6 @@ namespace Entities.Models
         
         [Required(ErrorMessage = "Weight name is a required field.")]
         public int Weight { get; set; }
-        
         
         public ICollection<Type> Types { get; set; }
     }

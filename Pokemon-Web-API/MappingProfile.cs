@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using AutoMapper;
 using Entities.JsonModels;
+using Entities.Models;
 using Microsoft.AspNetCore.Http.Connections;
 using RestSharp;
 
@@ -19,10 +20,9 @@ namespace Pokemon_Web_API
                 .ForMember(c=> c.Name,
                     opt 
                     => opt.MapFrom(x => x.Name));
-            
+            CreateMap<Pokemon, PokemonDto>();
         }
     }
-
     public class CustomResolver : IValueResolver<RootObject, NewRootObject, List<Result>>
     {
         public List<Result> Resolve(RootObject source, NewRootObject destination, List<Result> destMember, ResolutionContext context)

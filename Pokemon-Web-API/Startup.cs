@@ -45,10 +45,12 @@ namespace Pokemon_Web_API
                 .AddXmlDataContractSerializerFormatters()
                 .AddCustomCsvFormatter();
             
-            services.AddHttpClient();
-            services.AddTransient<PokeApiRestClient>();
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
+            
+            //services.AddHttpClient();
+            services.AddTransient<PokeApiRestClient>();
+            
             services.AddAutoMapper(typeof(Startup));
 
         }

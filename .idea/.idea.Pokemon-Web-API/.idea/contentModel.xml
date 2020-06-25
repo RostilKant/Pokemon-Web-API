@@ -38,7 +38,11 @@
         </e>
         <e p="Models" t="Include">
           <e p="Pokemon.cs" t="Include" />
+          <e p="PokemonConfiguration.cs" t="Include" />
+          <e p="PokemonDto.cs" t="Include" />
+          <e p="PokemonType.cs" t="Include" />
           <e p="Type.cs" t="Include" />
+          <e p="TypeConfiguration.cs" t="Include" />
         </e>
         <e p="RepositoryContext.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
@@ -75,6 +79,34 @@
         <e p="Migrations" t="Include">
           <e p="20200410132536_InitialCreate.Designer.cs" t="Include" />
           <e p="20200410132536_InitialCreate.cs" t="Include" />
+          <e p="20200623184353_Initial.Designer.cs" t="Include" />
+          <e p="20200623184353_Initial.cs" t="Include" />
+          <e p="20200623190240_Initial1.Designer.cs" t="Include" />
+          <e p="20200623190240_Initial1.cs" t="Include" />
+          <e p="20200623190533_Initial12.Designer.cs" t="Include" />
+          <e p="20200623190533_Initial12.cs" t="Include" />
+          <e p="20200623190815_Initial123.Designer.cs" t="Include" />
+          <e p="20200623190815_Initial123.cs" t="Include" />
+          <e p="20200623191020_Initial0.Designer.cs" t="Include" />
+          <e p="20200623191020_Initial0.cs" t="Include" />
+          <e p="20200623191209_Initial01.Designer.cs" t="Include" />
+          <e p="20200623191209_Initial01.cs" t="Include" />
+          <e p="20200623191317_Initial6.Designer.cs" t="Include" />
+          <e p="20200623191317_Initial6.cs" t="Include" />
+          <e p="20200624082642_Initial001.Designer.cs" t="Include" />
+          <e p="20200624082642_Initial001.cs" t="Include" />
+          <e p="20200624082958_Initial002.Designer.cs" t="Include" />
+          <e p="20200624082958_Initial002.cs" t="Include" />
+          <e p="20200624085334_InitialM2M001.Designer.cs" t="Include" />
+          <e p="20200624085334_InitialM2M001.cs" t="Include" />
+          <e p="20200624090443_Initial003.Designer.cs" t="Include" />
+          <e p="20200624090443_Initial003.cs" t="Include" />
+          <e p="20200624092900_Initial004.Designer.cs" t="Include" />
+          <e p="20200624092900_Initial004.cs" t="Include" />
+          <e p="20200624093018_InitialData004.Designer.cs" t="Include" />
+          <e p="20200624093018_InitialData004.cs" t="Include" />
+          <e p="20200624093222_InitialData005.Designer.cs" t="Include" />
+          <e p="20200624093222_InitialData005.cs" t="Include" />
           <e p="RepositoryContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Pokemon-Web-API.csproj" t="IncludeRecursive" />

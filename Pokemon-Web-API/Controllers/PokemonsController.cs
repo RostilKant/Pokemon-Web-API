@@ -7,6 +7,7 @@ using System.Xml;
 using AutoMapper;
 using Contracts;
 using Entities.JsonModels;
+using Entities.Models;
 using HttpServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,11 +19,11 @@ using Pokemon = Entities.Models.Pokemon;
 
 namespace Pokemon_Web_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class PokemonsController : ControllerBase
     {
-        readonly PokeApiRestClient _client;
+        private readonly PokeApiRestClient _client;
         private readonly IRepositoryManager _repositoryManager;
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
@@ -34,18 +35,17 @@ namespace Pokemon_Web_API.Controllers
             _logger = logger;
             _mapper = mapper;
         }
-
+        [Route("pokeApi")]
         [HttpGet]
-        public IActionResult GetPokemons()
+        public IActionResult GetPokeApimons()
         {
-            
-                var poke = _client.GetPokes();
+            var poke = _client.GetPokes();
                 var pokemons = _mapper.Map<NewRootObject>(poke);
                 return Ok(pokemons);
         }
 
-        [HttpGet("{pokeId}")]
-        public IActionResult GetPokemon(string pokeId)
+        [HttpGet("pokeApi/{pokeId}")]
+        public IActionResult GetPokeApimon(string pokeId)
         {
             var poke = _client.GetPoke(pokeId);
 
@@ -58,7 +58,14 @@ namespace Pokemon_Web_API.Controllers
 
             return Ok(poke);
         }
-        
+        [Route("pokemons")]
+        [HttpGet]
+        public IActionResult GetPokemons()
+        {
+            var pokemons = _repositoryManager.Pokemon.GetAllPokemons(false);
+            var pokemonsDto = _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
+            return Ok(pokemonsDto);
+        }
         
     }
 }

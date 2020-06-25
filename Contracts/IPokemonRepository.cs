@@ -10,5 +10,6 @@ namespace Contracts
     {
         //RootObject GetAllPoke();
         //Entities.GetPokemonModels.Pokemon GetPoke(int pokeId);
+        IEnumerable<Pokemon> GetAllPokemons(bool trackChanges);
     }
 }

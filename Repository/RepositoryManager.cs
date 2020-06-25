@@ -7,11 +7,9 @@ namespace Repository
     public class RepositoryManager : IRepositoryManager
     {
         private RepositoryContext RepositoryContext { get; }
-        //private PokeApiRestClient RestClient { get; }
         public RepositoryManager(RepositoryContext repositoryContext)
         {
             RepositoryContext = repositoryContext;
-            //RestClient = restClient;
         }
 
         private IPokemonRepository _pokemonRepository;
