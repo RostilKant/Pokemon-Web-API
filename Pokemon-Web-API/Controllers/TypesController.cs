@@ -5,38 +5,26 @@ using Contracts;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Services;
 
 namespace Pokemon_Web_API.Controllers
 {
     [Route("api/pokemons/{pokemonId}/types")]
     public class TypesController : ControllerBase
     {
-        private readonly IRepositoryManager _repositoryManager;
-        private readonly ILogger _logger;
-        private readonly IMapper _mapper;
+        private readonly ITypeService _typeService;
 
-        public TypesController(IRepositoryManager repositoryManager, ILogger<PokemonsController> logger, IMapper mapper)
+        public TypesController(ITypeService typeService)
         {
-            _repositoryManager = repositoryManager;
-            _logger = logger;
-            _mapper = mapper;
+            _typeService = typeService;
         }
 
         [HttpGet]
         public IActionResult GetTypes(int pokemonId)
         {
-            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
-            if (pokemon == null)
-            {
-                _logger.LogInformation($"Pokemon with Id {pokemonId} doesn't exists in DB.");
-                return NotFound();
-            }
-            else
-            {
-                var types = _repositoryManager.Type.GetAllTypes(pokemonId, false);
-                var typesDto = _mapper.Map<IEnumerable<TypeDto>>(types);
-                return Ok(typesDto);
-            }
+            var types = _typeService.GetTypesOfPokemon(pokemonId);
+            if (types == null) return NotFound();
+            return Ok(types);
         }
         
     }

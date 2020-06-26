@@ -13,6 +13,7 @@
         <e p="IRepositoryBase&lt;T&gt;.cs" t="Include" />
         <e p="IRepositoryManager.cs" t="Include" />
         <e p="ITypeRepository.cs" t="Include" />
+        <e p="ITypeService.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -146,6 +147,7 @@
       <e p="Services" t="IncludeRecursive">
         <e p="PokemonService.cs" t="Include" />
         <e p="Services.csproj" t="IncludeRecursive" />
+        <e p="TypeService.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

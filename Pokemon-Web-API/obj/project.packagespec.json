@@ -15,9 +15,6 @@
     "frameworks": {
       "netcoreapp3.1": {
         "projectReferences": {
-          "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj": {
-            "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj"
-          },
           "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/Repository.csproj": {
             "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/Repository.csproj"
           },

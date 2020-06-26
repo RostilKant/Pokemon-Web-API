@@ -16,7 +16,7 @@ namespace Pokemon_Web_API.Controllers
     [ApiController]
     public class PokemonsController : ControllerBase
     {
-        private IPokemonService _pokemonService;
+        private readonly IPokemonService _pokemonService;
         public PokemonsController(IPokemonService pokemonService)
         {
             _pokemonService = pokemonService;
@@ -38,14 +38,16 @@ namespace Pokemon_Web_API.Controllers
         public IActionResult GetPokemons()
         {
             var pokemons = _pokemonService.FindAllPokemons();
-            return pokemons == null ? (IActionResult) NotFound() : Ok(pokemons);
+            if (pokemons == null) return NotFound();
+            return Ok(pokemons);
         }
         
         [HttpGet("{pokemonId}")]
         public IActionResult GetPokemonById(int pokemonId)
         {
             var pokemon = _pokemonService.FindPokemonById(pokemonId);
-            return pokemon == null ? (IActionResult) NotFound() : Ok(pokemon);
+            if (pokemon == null) return NotFound();
+            return Ok(pokemon);
         }
     }
 }

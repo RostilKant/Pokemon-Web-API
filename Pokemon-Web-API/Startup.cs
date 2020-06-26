@@ -47,7 +47,8 @@ namespace Pokemon_Web_API
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
             services.ConfigurePokemonService();
-            //services.AddHttpClient();
+            services.ConfigureTypeService();
+            
             services.AddTransient<PokeApiRestClient>();
             
             services.AddAutoMapper(typeof(Startup));
