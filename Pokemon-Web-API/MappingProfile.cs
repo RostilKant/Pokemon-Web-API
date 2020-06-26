@@ -21,13 +21,7 @@ namespace Pokemon_Web_API
                     opt 
                     => opt.MapFrom(x => x.Name));
             CreateMap<Pokemon, PokemonDto>();
+            CreateMap<Type, TypeDto>();
         }
-    }
-    public class CustomResolver : IValueResolver<RootObject, NewRootObject, List<Result>>
-    {
-        public List<Result> Resolve(RootObject source, NewRootObject destination, List<Result> destMember, ResolutionContext context)
-       {
-           throw new System.NotImplementedException();
-       }
     }
 }

@@ -14,4 +14,9 @@ namespace Entities.Models
         public int PokemonId { get; set; }
         public Pokemon Pokemon { get; set; }
     }
+
+    public class TypeDto
+    {
+        public string Name { get; set; }
+    }
 }

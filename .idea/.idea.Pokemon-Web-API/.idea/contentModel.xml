@@ -11,6 +11,7 @@
         <e p="IPokemonRepository.cs" t="Include" />
         <e p="IRepositoryBase&lt;T&gt;.cs" t="Include" />
         <e p="IRepositoryManager.cs" t="Include" />
+        <e p="ITypeRepository.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -37,12 +38,9 @@
           <e p="Type.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
+          <e p="EntitiesConfiguration.cs" t="Include" />
           <e p="Pokemon.cs" t="Include" />
-          <e p="PokemonConfiguration.cs" t="Include" />
-          <e p="PokemonDto.cs" t="Include" />
-          <e p="PokemonType.cs" t="Include" />
           <e p="Type.cs" t="Include" />
-          <e p="TypeConfiguration.cs" t="Include" />
         </e>
         <e p="RepositoryContext.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
@@ -69,6 +67,7 @@
       <e p="Pokemon-Web-API" t="IncludeRecursive">
         <e p="Controllers" t="Include">
           <e p="PokemonsController.cs" t="Include" />
+          <e p="TypesController.cs" t="Include" />
         </e>
         <e p="CsvOutputFormatter.cs" t="Include" />
         <e p="Extensions" t="Include">
@@ -134,11 +133,23 @@
         <e p="Repository.csproj" t="IncludeRecursive" />
         <e p="RepositoryBase.cs" t="Include" />
         <e p="RepositoryManager.cs" t="Include" />
+        <e p="TypeRepository.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="Repository.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Services" t="IncludeRecursive">
+        <e p="Services.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Services.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>

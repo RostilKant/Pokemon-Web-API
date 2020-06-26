@@ -3,8 +3,7 @@ using System.Linq;
 using Contracts;
 using Entities;
 using Entities.Models;
-using HttpServices;
-using RestSharp;
+
 
 namespace Repository
 {
@@ -21,5 +20,9 @@ namespace Repository
             FindAll(trackChanges)
                 .OrderBy(p => p.Name)
                 .ToList();
+
+        public Pokemon GetPokemon(int pokemonId, bool trackChanges) =>
+            FindByCondition(p => p.Id.Equals(pokemonId), trackChanges)
+                .SingleOrDefault();
     }
 }

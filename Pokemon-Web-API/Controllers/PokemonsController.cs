@@ -19,7 +19,7 @@ using Pokemon = Entities.Models.Pokemon;
 
 namespace Pokemon_Web_API.Controllers
 {
-    [Route("api")]
+    [Route("api/pokemons")]
     [ApiController]
     public class PokemonsController : ControllerBase
     {
@@ -58,7 +58,6 @@ namespace Pokemon_Web_API.Controllers
 
             return Ok(poke);
         }
-        [Route("pokemons")]
         [HttpGet]
         public IActionResult GetPokemons()
         {
@@ -67,5 +66,21 @@ namespace Pokemon_Web_API.Controllers
             return Ok(pokemonsDto);
         }
         
+        [HttpGet("{pokemonId}")]
+        public IActionResult GetPokemonById(int pokemonId)
+        {
+            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+
+            if(pokemon == null)
+            {
+                _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
+                return NotFound();
+            }
+            else
+            {
+                var pokemonDto = _mapper.Map<PokemonDto>(pokemon);
+                return Ok(pokemonDto);
+            }
+        }
     }
 }

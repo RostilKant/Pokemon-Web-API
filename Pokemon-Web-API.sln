@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpServices", "HttpServices\HttpServices.csproj", "{DE0668E3-7C5E-4C62-8CC4-71CFDC021878}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{55E4698A-632E-4306-9E98-854F1F822FB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{DE0668E3-7C5E-4C62-8CC4-71CFDC021878}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE0668E3-7C5E-4C62-8CC4-71CFDC021878}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE0668E3-7C5E-4C62-8CC4-71CFDC021878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E4698A-632E-4306-9E98-854F1F822FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E4698A-632E-4306-9E98-854F1F822FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E4698A-632E-4306-9E98-854F1F822FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E4698A-632E-4306-9E98-854F1F822FB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

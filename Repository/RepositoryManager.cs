@@ -1,6 +1,5 @@
 using Contracts;
 using Entities;
-using HttpServices;
 
 namespace Repository
 {
@@ -13,6 +12,12 @@ namespace Repository
         }
 
         private IPokemonRepository _pokemonRepository;
+        private ITypeRepository _typeRepository;
+        
+        public ITypeRepository Type
+        {
+            get { return _typeRepository ??= new TypeRepository(RepositoryContext); }
+        }
 
         public IPokemonRepository Pokemon
         {
