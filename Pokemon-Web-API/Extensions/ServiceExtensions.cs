@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Runtime.Serialization;
 using Contracts;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Serilog;
 using Serilog.Enrichers.AspnetcoreHttpcontext;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
+using Services;
 
 namespace Pokemon_Web_API.Extensions
 {
@@ -52,10 +54,11 @@ namespace Pokemon_Web_API.Extensions
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IRepositoryManager,RepositoryManager>();
         
-        public static IMvcBuilder AddCustomCsvFormatter(this IMvcBuilder builder) =>
-            builder.AddMvcOptions(config => config.OutputFormatters.Add(new
-                CsvOutputFormatter()));
-
+        // public static IMvcBuilder AddCustomCsvFormatter(this IMvcBuilder builder) =>
+        //     builder.AddMvcOptions(config => config.OutputFormatters.Add(new
+        //         CsvOutputFormatter()));
+        public static void ConfigurePokemonService(this IServiceCollection services) =>
+            services.AddScoped<IPokemonService, PokemonService>();
 
     }
 }

@@ -1,4 +1,4 @@
-namespace Entities.JsonModels
+namespace Entities.GETAllFromPokeApi
 {
     public class NResult
     {

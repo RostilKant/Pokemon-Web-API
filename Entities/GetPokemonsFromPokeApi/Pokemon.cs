@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Entities.GetPokemonModels
+namespace Entities.GetPokemonsFromPokeApi
 {
     public class Pokemon
     {

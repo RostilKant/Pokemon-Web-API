@@ -1,0 +1,62 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Services/Services.csproj",
+    "projectName": "Services",
+    "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Services/Services.csproj",
+    "outputPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Services/obj/",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp3.1"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "projectReferences": {
+          "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/Contracts.csproj": {
+            "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/Contracts.csproj"
+          },
+          "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj": {
+            "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp3.1": {
+      "dependencies": {
+        "AutoMapper": {
+          "target": "Package",
+          "version": "[9.0.0, )"
+        }
+      },
+      "imports": [
+        "net461",
+        "net462",
+        "net47",
+        "net471",
+        "net472",
+        "net48"
+      ],
+      "assetTargetFallback": true,
+      "warn": true,
+      "frameworkReferences": {
+        "Microsoft.AspNetCore.App": {
+          "privateAssets": "none"
+        },
+        "Microsoft.NETCore.App": {
+          "privateAssets": "all"
+        }
+      },
+      "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
+    }
+  }
+}

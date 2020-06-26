@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Entities.JsonModels;
 using Entities.Models;
 using Pokemon = Entities.Models.Pokemon;
 

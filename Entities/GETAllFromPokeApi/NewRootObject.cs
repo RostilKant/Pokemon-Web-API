@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Entities.JsonModels;
 
-namespace Entities.GET_All_JsonModels
+namespace Entities.GETAllFromPokeApi
 {
     //New RootObject for mapping with proper Url
     public class NewRootObject

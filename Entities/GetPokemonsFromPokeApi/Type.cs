@@ -1,4 +1,4 @@
-namespace Entities.GetPokemonModels
+namespace Entities.GetPokemonsFromPokeApi
 {
     public class Type
     {

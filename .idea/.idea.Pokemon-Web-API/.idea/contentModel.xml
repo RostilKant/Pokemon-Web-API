@@ -9,6 +9,7 @@
       <e p="Contracts" t="IncludeRecursive">
         <e p="Contracts.csproj" t="IncludeRecursive" />
         <e p="IPokemonRepository.cs" t="Include" />
+        <e p="IPokemonService.cs" t="Include" />
         <e p="IRepositoryBase&lt;T&gt;.cs" t="Include" />
         <e p="IRepositoryManager.cs" t="Include" />
         <e p="ITypeRepository.cs" t="Include" />
@@ -26,13 +27,13 @@
         <e p="ErrorModel" t="Include">
           <e p="ErrorDetails.cs" t="Include" />
         </e>
-        <e p="GET All JsonModels" t="Include">
+        <e p="GETAllFromPokeApi" t="Include">
           <e p="NResult.cs" t="Include" />
           <e p="NewRootObject.cs" t="Include" />
           <e p="Result.cs" t="Include" />
           <e p="RootObject.cs" t="Include" />
         </e>
-        <e p="GetPokemonModels" t="Include">
+        <e p="GetPokemonsFromPokeApi" t="Include">
           <e p="Pokemon.cs" t="Include" />
           <e p="PokemonType.cs" t="Include" />
           <e p="Type.cs" t="Include" />
@@ -69,7 +70,6 @@
           <e p="PokemonsController.cs" t="Include" />
           <e p="TypesController.cs" t="Include" />
         </e>
-        <e p="CsvOutputFormatter.cs" t="Include" />
         <e p="Extensions" t="Include">
           <e p="ExceptionMiddlewareExtensions.cs" t="Include" />
           <e p="ServiceExtensions.cs" t="Include" />
@@ -144,6 +144,7 @@
         </e>
       </e>
       <e p="Services" t="IncludeRecursive">
+        <e p="PokemonService.cs" t="Include" />
         <e p="Services.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">

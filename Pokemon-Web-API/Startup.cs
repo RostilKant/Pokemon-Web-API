@@ -41,13 +41,12 @@ namespace Pokemon_Web_API
                     config.ReturnHttpNotAcceptable = true;
                 })
                 .AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-                .AddXmlDataContractSerializerFormatters()
-                .AddCustomCsvFormatter();
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddXmlDataContractSerializerFormatters();
             
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
-            
+            services.ConfigurePokemonService();
             //services.AddHttpClient();
             services.AddTransient<PokeApiRestClient>();
             

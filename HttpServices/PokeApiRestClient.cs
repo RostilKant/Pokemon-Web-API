@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Entities.JsonModels;
+using Entities.GETAllFromPokeApi;
 using RestSharp;
-using Pokemon = Entities.GetPokemonModels.Pokemon;
+using Pokemon = Entities.GetPokemonsFromPokeApi.Pokemon;
 
 namespace HttpServices
 {

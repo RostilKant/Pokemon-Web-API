@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using System.Xml;
 
-namespace Entities.JsonModels
+namespace Entities.GETAllFromPokeApi
 {
     public class RootObject
     {
