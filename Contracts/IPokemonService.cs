@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace Contracts
         IEnumerable<PokemonDto> FindAllPokemons();
         PokemonDto FindPokemonById(int pokemonId);
 
+        IEnumerable<PokemonDto> FindPokemonsByIds(IEnumerable<int> ids);
+
         PokemonDto PostPokemon(PokemonForCreationDto pokemonForCreationDto);
+        IEnumerable<PokemonDto> PostPokemonCollection(IEnumerable<PokemonForCreationDto> pokemonForCreation);
     }
 }

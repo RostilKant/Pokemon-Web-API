@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Contracts;
 using Entities.GETAllFromPokeApi;
@@ -32,19 +33,17 @@ namespace Services
         {
             Entities.GetPokemonsFromPokeApi.Pokemon poke = _client.GetPoke(pokeId);
 
-            if (poke != null) return poke;
-            _logger.LogInformation($"Pokemon with id: {pokeId} doesn't exist on the poke.api.");
-            return null;
-
+            if (poke == null) _logger.LogInformation($"Pokemon with id: {pokeId} doesn't exist on the poke.api.");
+            return poke;
         }
 
         public IEnumerable<PokemonDto> FindAllPokemons()
         {
             var pokemons = _repositoryManager.Pokemon.GetAllPokemons(false);
+
+            if (pokemons == null) _logger.LogInformation($"Pokemons doesn't exist in the DB.");
             
-            if (pokemons != null) return _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
-            _logger.LogInformation($"Pokemons doesn't exist in the DB.");
-            return null;
+            return _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
 
         }
 
@@ -52,9 +51,23 @@ namespace Services
         {
             var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
 
-            if (pokemon != null) return _mapper.Map<PokemonDto>(pokemon);
-            _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
-            return null;
+            if (pokemon == null) _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
+            
+            return _mapper.Map<PokemonDto>(pokemon);
+        }
+
+        public IEnumerable<PokemonDto> FindPokemonsByIds(IEnumerable<int> ids)
+        {
+            if(ids == null) _logger.LogError("Parameter ids is null");
+            var pokemons = _repositoryManager.Pokemon.GetPokemonsByIds(ids,false);
+            if (ids.Count() != pokemons.Count())
+            {
+                _logger.LogError("Some ids are not valid in a collection");
+                return null;
+            }
+
+            var pokemonsToReturn = _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
+            return pokemonsToReturn;
         }
 
         public PokemonDto PostPokemon(PokemonForCreationDto pokemonForCreationDto)
@@ -69,6 +82,17 @@ namespace Services
 
             _logger.LogInformation("PokemonForCreationDto object sent from client is null.");
             return null;
+        }
+
+        public IEnumerable<PokemonDto> PostPokemonCollection(IEnumerable<PokemonForCreationDto> pokemonForCreation)
+        {
+            if (pokemonForCreation == null) _logger.LogError("Pokemon collection sent from client is null.");
+
+            var pokemons = _mapper.Map<IEnumerable<Pokemon>>(pokemonForCreation);
+            foreach (var pokemon in pokemons) _repositoryManager.Pokemon.CreatePokemon(pokemon);
+            _repositoryManager.Save();
+            var pokemonsToReturn = _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
+            return pokemonsToReturn;
         }
     }
 }

@@ -109,6 +109,9 @@
           <e p="20200624093222_InitialData005.cs" t="Include" />
           <e p="RepositoryContextModelSnapshot.cs" t="Include" />
         </e>
+        <e p="ModelBinders" t="Include">
+          <e p="ArrayModelBinder.cs" t="Include" />
+        </e>
         <e p="Pokemon-Web-API.csproj" t="IncludeRecursive" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">

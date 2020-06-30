@@ -1,5 +1,6 @@
 using System;
-using System.Collections.Generic;    
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Contracts;
 using Entities.GETAllFromPokeApi;
@@ -7,6 +8,7 @@ using Entities.Models;
 using HttpServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Pokemon_Web_API.ModelBinders;
 using Pokemon = Entities.GetPokemonsFromPokeApi.Pokemon;
 
 
@@ -49,14 +51,33 @@ namespace Pokemon_Web_API.Controllers
             if (pokemon == null) return NotFound();
             return Ok(pokemon);
         }
-
+        
+        [HttpGet("collection/{pokemonIds}", Name = "PokemonsCollection")]
+        public IActionResult GetPokemonByIds([ModelBinder(BinderType =
+        typeof(ArrayModelBinder))]IEnumerable<int> pokemonIds)
+        {
+            if (pokemonIds == null) return BadRequest("Parameter ids is null");
+            var pokemons = _pokemonService.FindPokemonsByIds(pokemonIds);
+            if (pokemons == null) return NotFound();
+            return Ok(pokemons);
+        }
+        
         [HttpPost(Name = "CreatePokemon")]
         public IActionResult CreatePokemon([FromBody]PokemonForCreationDto pokemon)
         {
+            if (pokemon == null) return BadRequest("PokemonForCreationDto object is null!");
             var pokemonDto = _pokemonService.PostPokemon(pokemon);
-            if (pokemonDto == null) return BadRequest("PokemonForCreationDto object is null!");
             //return CreatedAtRoute("PokemonById", new {id = pokemonDto.Id}, pokemonDto);
             return Created($"api/pokemons/{pokemonDto.Id}", pokemonDto);
+        }
+
+        [HttpPost("collection")]
+        public IActionResult CreatePokemonCollection([FromBody] IEnumerable<PokemonForCreationDto> pokemonForCreation)
+        {
+            if (pokemonForCreation == null) return BadRequest("PokemonForCreationDto object is null!");
+            var pokemons = _pokemonService.PostPokemonCollection(pokemonForCreation);
+            var ids = string.Join(",", pokemons.Select(p => p.Id));
+            return Created($"api/pokemons/collection/{ids}", pokemons);
         }
     }
 }
