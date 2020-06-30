@@ -38,5 +38,13 @@ namespace Entities.Models
         
         public IEnumerable<TypeForCreationDto> Types { get; set; }
     }
+    public class PokemonForUpdateDto
+    {
+        public string Name { get; set; }
+        public int Height { get; set; }
+        public int Weight { get; set; }
+        
+        public IEnumerable<TypeForCreationDto> Types { get; set; }
+    }
     
 }

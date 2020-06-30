@@ -25,6 +25,7 @@ namespace Pokemon_Web_API
             CreateMap<PokemonForCreationDto, Pokemon>().ReverseMap();
             CreateMap<TypeForCreationDto, Type>().ReverseMap();
             CreateMap<Entities.GetPokemonsFromPokeApi.Pokemon, PokemonForCreationDto>();
+            CreateMap<PokemonForUpdateDto, Pokemon>();
         }
     }
 }

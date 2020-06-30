@@ -9,19 +9,22 @@ using Microsoft.Extensions.Logging;
 
 namespace Services
 {
-    public class PokemonService: IPokemonService
+    public class PokemonService : IPokemonService
     {
         private readonly PokeApiRestClient _client;
         private readonly IRepositoryManager _repositoryManager;
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
-        public PokemonService(PokeApiRestClient client, IRepositoryManager repositoryManager, ILogger<PokemonService> logger, IMapper mapper)
+
+        public PokemonService(PokeApiRestClient client, IRepositoryManager repositoryManager,
+            ILogger<PokemonService> logger, IMapper mapper)
         {
             _client = client;
             _repositoryManager = repositoryManager;
             _logger = logger;
             _mapper = mapper;
         }
+
         public NewRootObject GetAllFromPokeApi()
         {
             var poke = _client.GetPokes();
@@ -42,7 +45,7 @@ namespace Services
             var pokemons = _repositoryManager.Pokemon.GetAllPokemons(false);
 
             if (pokemons == null) _logger.LogInformation($"Pokemons doesn't exist in the DB.");
-            
+
             return _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
 
         }
@@ -52,14 +55,14 @@ namespace Services
             var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
 
             if (pokemon == null) _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
-            
+
             return _mapper.Map<PokemonDto>(pokemon);
         }
 
         public IEnumerable<PokemonDto> FindPokemonsByIds(IEnumerable<int> ids)
         {
-            if(ids == null) _logger.LogError("Parameter ids is null");
-            var pokemons = _repositoryManager.Pokemon.GetPokemonsByIds(ids,false);
+            if (ids == null) _logger.LogError("Parameter ids is null");
+            var pokemons = _repositoryManager.Pokemon.GetPokemonsByIds(ids, false);
             if (ids.Count() != pokemons.Count())
             {
                 _logger.LogError("Some ids are not valid in a collection");
@@ -103,10 +106,26 @@ namespace Services
                 _logger.LogInformation("GG");
                 return false;
             }
+
             _repositoryManager.Pokemon.DeletePokemon(pokemon);
             _repositoryManager.Save();
             return true;
 
+        }
+
+        public bool UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate)
+        {
+            if (pokemonForUpdate == null) _logger.LogInformation("CompanyForUpdateDto object sent from client is null.");
+            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
+            if (pokemon == null)
+            {
+                _logger.LogInformation($"Pokemon with id: {pokemonId} doesn't exist in the database.");
+                return false;
+            }
+
+            _mapper.Map(pokemonForUpdate, pokemon);
+            _repositoryManager.Save();
+            return true;
         }
     }
 }

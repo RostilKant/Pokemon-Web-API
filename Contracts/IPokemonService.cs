@@ -20,5 +20,7 @@ namespace Contracts
         IEnumerable<PokemonDto> PostPokemonCollection(IEnumerable<PokemonForCreationDto> pokemonForCreation);
 
         bool DeletePokemon(int pokemonId);
+
+        bool UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate);
     }
 }

@@ -87,5 +87,14 @@ namespace Pokemon_Web_API.Controllers
             if (!pokemon) return NotFound();
             return NoContent();
         }
+
+        [HttpPut("{pokemonId}")]
+        public IActionResult UpdatePokemon(int pokemonId, [FromBody] PokemonForUpdateDto pokemonForUpdate)
+        {
+            if (pokemonForUpdate == null) return BadRequest("PokemobForUpdateDto object is null");
+            var pokemon = _pokemonService.UpdatePokemon(pokemonId, pokemonForUpdate);
+            if (!pokemon) return NotFound();
+            return NoContent();
+        }
     }
 }
