@@ -1,11 +1,11 @@
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/bin/Debug/netcoreapp3.1/Contracts.deps.json
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/bin/Debug/netcoreapp3.1/Contracts.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/bin/Debug/netcoreapp3.1/Contracts.pdb
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/bin/Debug/netcoreapp3.1/Entities.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/bin/Debug/netcoreapp3.1/Entities.pdb
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/obj/Debug/netcoreapp3.1/Contracts.csprojAssemblyReference.cache
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/obj/Debug/netcoreapp3.1/Contracts.AssemblyInfoInputs.cache
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/obj/Debug/netcoreapp3.1/Contracts.AssemblyInfo.cs
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/obj/Debug/netcoreapp3.1/Contracts.csproj.CopyComplete
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/obj/Debug/netcoreapp3.1/Contracts.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/obj/Debug/netcoreapp3.1/Contracts.pdb
-/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/bin/Debug/netcoreapp3.1/Entities.dll
-/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/bin/Debug/netcoreapp3.1/Entities.pdb
-/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/obj/Debug/netcoreapp3.1/Contracts.csproj.CopyComplete

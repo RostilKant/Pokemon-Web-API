@@ -17,6 +17,22 @@ namespace Entities.Models
 
     public class TypeDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
     }
+
+    public class TypeForCreationDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    // public class RootType
+    // {
+    //     public IEnumerable<Type> Type;
+    // }
+
+    // public class TypeForCreationDto
+    // {
+    //     public RootType Types;
+    // }
 }

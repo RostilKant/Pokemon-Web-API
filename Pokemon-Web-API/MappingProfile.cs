@@ -14,14 +14,17 @@ namespace Pokemon_Web_API
         public MappingProfile()
         {
             CreateMap<RootObject, NewRootObject>();
-            CreateMap<Result,NResult>().ForMember(c => c.Url,x 
-                => x.MapFrom(y=>
-                string.Concat("https://localhost:5001/api/pokemons/pokeApi",y.Url.Remove(0,33))))
-                .ForMember(c=> c.Name,
-                    opt 
-                    => opt.MapFrom(x => x.Name));
+            CreateMap<Result, NResult>().ForMember(c => c.Url, x
+                    => x.MapFrom(y =>
+                        string.Concat("https://localhost:5001/api/pokemons/pokeApi", y.Url.Remove(0, 33))))
+                .ForMember(c => c.Name,
+                    opt
+                        => opt.MapFrom(x => x.Name));
             CreateMap<Pokemon, PokemonDto>();
             CreateMap<Type, TypeDto>();
+            CreateMap<PokemonForCreationDto, Pokemon>().ReverseMap();
+            CreateMap<TypeForCreationDto, Type>();
+            CreateMap<Entities.GetPokemonsFromPokeApi.Pokemon, PokemonForCreationDto>();
         }
     }
 }

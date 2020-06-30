@@ -18,7 +18,7 @@ namespace Services
             _logger = logger;
             _mapper = mapper;
         }
-        public IEnumerable<TypeDto> GetTypesOfPokemon(int pokemonId)
+        public IEnumerable<TypeDto> GetAllTypesOfPokemon(int pokemonId)
         {
             var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
             
@@ -32,5 +32,27 @@ namespace Services
             _logger.LogInformation($"Pokemon with Id {pokemonId} doesn't exists in DB.");
             return null;
         }
+
+        /*public TypeDto PostType(int pokemonId, TypeForCreationDto typeForCreation)
+        {
+            if (typeForCreation == null)
+            {
+                _logger.LogError("TypeForCreationDto object sent from client is null.");
+                return null;
+            }
+            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+
+            if (pokemon == null)
+            {
+                _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
+                typeForCreation.Name = "null";
+                return _mapper.Map<TypeDto>(_mapper.Map<Type>(typeForCreation));
+            }
+
+            var typeEntity = _mapper.Map<Type>(typeForCreation);
+            _repositoryManager.Type.CreateType(pokemonId,typeEntity);
+            _repositoryManager.Save();
+            return _mapper.Map<TypeDto>(typeEntity);
+        }*/
     }
 }

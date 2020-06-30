@@ -19,13 +19,22 @@ namespace Pokemon_Web_API.Controllers
             _typeService = typeService;
         }
 
-        [HttpGet]
+        [HttpGet( Name = "GetTypesForPokemon")]
         public IActionResult GetTypes(int pokemonId)
         {
-            var types = _typeService.GetTypesOfPokemon(pokemonId);
+            var types = _typeService.GetAllTypesOfPokemon(pokemonId);
             if (types == null) return NotFound();
             return Ok(types);
         }
+
+        // [HttpPost]
+        // public IActionResult CreateType(int pokemonId, TypeForCreationDto typeForCreationDto)
+        // {
+        //     var type = _typeService.PostType(pokemonId, typeForCreationDto);
+        //     if (type == null) return BadRequest();
+        //     if (type.Name.Equals("null")) return NotFound();
+        //     return Created($"api/pokemons/{pokemonId}/types/{type.Id}", type);
+        // }
         
     }
 }

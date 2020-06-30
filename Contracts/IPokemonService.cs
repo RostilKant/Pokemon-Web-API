@@ -13,5 +13,6 @@ namespace Contracts
         IEnumerable<PokemonDto> FindAllPokemons();
         PokemonDto FindPokemonById(int pokemonId);
 
+        PokemonDto PostPokemon(PokemonForCreationDto pokemonForCreationDto);
     }
 }

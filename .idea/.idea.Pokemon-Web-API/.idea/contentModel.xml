@@ -119,6 +119,8 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="log.json" t="Include" />
+        <e p="mono_crash.mem.114542.1.blob" t="Include" />
+        <e p="mono_crash.mem.36731.1.blob" t="Include" />
         <e p="mono_crash.mem.369820.1.blob" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

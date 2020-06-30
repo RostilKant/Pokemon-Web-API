@@ -1,6 +1,3 @@
-/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.csprojAssemblyReference.cache
-/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.AssemblyInfoInputs.cache
-/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.AssemblyInfo.cs
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/bin/Debug/netcoreapp3.1/Repository.deps.json
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/bin/Debug/netcoreapp3.1/Repository.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/bin/Debug/netcoreapp3.1/Repository.pdb
@@ -8,6 +5,9 @@
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/bin/Debug/netcoreapp3.1/Entities.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/bin/Debug/netcoreapp3.1/Contracts.pdb
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/bin/Debug/netcoreapp3.1/Entities.pdb
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.csprojAssemblyReference.cache
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.AssemblyInfoInputs.cache
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.AssemblyInfo.cs
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.csproj.CopyComplete
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/Debug/netcoreapp3.1/Repository.pdb

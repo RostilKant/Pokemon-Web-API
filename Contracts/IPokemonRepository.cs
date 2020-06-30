@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Entities.Models;
-using Pokemon = Entities.Models.Pokemon;
 
 namespace Contracts
 {
@@ -8,5 +7,7 @@ namespace Contracts
     {
         IEnumerable<Pokemon> GetAllPokemons(bool trackChanges);
         Pokemon GetPokemon(int pokemonId, bool trackChanges);
+
+        void CreatePokemon(Pokemon pokemon);
     }
 }

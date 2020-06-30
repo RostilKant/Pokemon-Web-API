@@ -16,5 +16,11 @@ namespace Repository
             FindByCondition(t => t.PokemonId.Equals(pokemonId), trackChanges)
                 .OrderBy(t => t.Name)
                 .ToList();
+
+        public void CreateType(int pokemonId, Type type)
+        {
+            type.PokemonId = pokemonId;
+            Create(type);
+        }
     }
 }

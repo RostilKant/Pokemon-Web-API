@@ -6,6 +6,7 @@ namespace Contracts
 {
     public interface ITypeService
     {
-        IEnumerable<TypeDto> GetTypesOfPokemon(int pokemonId);
+        IEnumerable<TypeDto> GetAllTypesOfPokemon(int pokemonId); 
+        // TypeDto PostType(int pokemonId, TypeForCreationDto typeForCreation);
     }
 }

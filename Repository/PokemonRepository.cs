@@ -24,5 +24,7 @@ namespace Repository
         public Pokemon GetPokemon(int pokemonId, bool trackChanges) =>
             FindByCondition(p => p.Id.Equals(pokemonId), trackChanges)
                 .SingleOrDefault();
+
+        public void CreatePokemon(Pokemon pokemon) => Create(pokemon);
     }
 }

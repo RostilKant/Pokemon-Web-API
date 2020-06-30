@@ -41,23 +41,34 @@ namespace Services
         public IEnumerable<PokemonDto> FindAllPokemons()
         {
             var pokemons = _repositoryManager.Pokemon.GetAllPokemons(false);
-            var pokemonsDto = _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
-            return pokemonsDto;
+            
+            if (pokemons != null) return _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
+            _logger.LogInformation($"Pokemons doesn't exist in the DB.");
+            return null;
+
         }
 
         public PokemonDto FindPokemonById(int pokemonId)
         {
             var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
-            if(pokemon == null)
+
+            if (pokemon != null) return _mapper.Map<PokemonDto>(pokemon);
+            _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
+            return null;
+        }
+
+        public PokemonDto PostPokemon(PokemonForCreationDto pokemonForCreationDto)
+        {
+            if (pokemonForCreationDto != null)
             {
-                _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
-                return null;
+                var pokemonEntity = _mapper.Map<Pokemon>(pokemonForCreationDto);
+                _repositoryManager.Pokemon.CreatePokemon(pokemonEntity);
+                _repositoryManager.Save();
+                return _mapper.Map<PokemonDto>(pokemonEntity);
             }
-            else
-            {
-                var pokemonDto = _mapper.Map<PokemonDto>(pokemon);
-                return pokemonDto;
-            }
+
+            _logger.LogInformation("PokemonForCreationDto object sent from client is null.");
+            return null;
         }
     }
 }

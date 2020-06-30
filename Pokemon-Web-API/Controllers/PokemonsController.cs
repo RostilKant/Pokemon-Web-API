@@ -21,14 +21,14 @@ namespace Pokemon_Web_API.Controllers
         {
             _pokemonService = pokemonService;
         }
-        [Route("pokeApi")]
+        [Route("poke-api")]
         [HttpGet]
         public IActionResult GetPokeApimons()
         {
             return Ok(_pokemonService.GetAllFromPokeApi());
         }
 
-        [HttpGet("pokeApi/{pokeId}")]
+        [HttpGet("poke-api/{pokeId}")]
         public IActionResult GetPokeApimon(string pokeId)
         {
             return Ok(_pokemonService.GetByIdFromPokeApi(pokeId));
@@ -42,12 +42,21 @@ namespace Pokemon_Web_API.Controllers
             return Ok(pokemons);
         }
         
-        [HttpGet("{pokemonId}")]
+        [HttpGet("{pokemonId}", Name = "GetPokemonById")]
         public IActionResult GetPokemonById(int pokemonId)
         {
             var pokemon = _pokemonService.FindPokemonById(pokemonId);
             if (pokemon == null) return NotFound();
             return Ok(pokemon);
+        }
+
+        [HttpPost(Name = "CreatePokemon")]
+        public IActionResult CreatePokemon([FromBody]PokemonForCreationDto pokemon)
+        {
+            var pokemonDto = _pokemonService.PostPokemon(pokemon);
+            if (pokemonDto == null) return BadRequest("PokemonForCreationDto object is null!");
+            //return CreatedAtRoute("PokemonById", new {id = pokemonDto.Id}, pokemonDto);
+            return Created($"api/pokemons/{pokemonDto.Id}", pokemonDto);
         }
     }
 }
