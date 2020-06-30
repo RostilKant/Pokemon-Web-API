@@ -94,5 +94,19 @@ namespace Services
             var pokemonsToReturn = _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
             return pokemonsToReturn;
         }
+
+        public bool DeletePokemon(int pokemonId)
+        {
+            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+            if (pokemon == null)
+            {
+                _logger.LogInformation("GG");
+                return false;
+            }
+            _repositoryManager.Pokemon.DeletePokemon(pokemon);
+            _repositoryManager.Save();
+            return true;
+
+        }
     }
 }

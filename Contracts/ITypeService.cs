@@ -8,5 +8,7 @@ namespace Contracts
     {
         IEnumerable<TypeDto> GetAllTypesOfPokemon(int pokemonId); 
         // TypeDto PostType(int pokemonId, TypeForCreationDto typeForCreation);
+        bool DeleteType(int pokemonId);
+        
     }
 }

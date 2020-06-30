@@ -79,5 +79,13 @@ namespace Pokemon_Web_API.Controllers
             var ids = string.Join(",", pokemons.Select(p => p.Id));
             return Created($"api/pokemons/collection/{ids}", pokemons);
         }
+
+        [HttpDelete("{pokemonId}")]
+        public IActionResult DeletePokemon(int pokemonId)
+        {
+            var pokemon = _pokemonService.DeletePokemon(pokemonId);
+            if (!pokemon) return NotFound();
+            return NoContent();
+        }
     }
 }

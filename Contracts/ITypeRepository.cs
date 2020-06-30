@@ -7,5 +7,6 @@ namespace Contracts
     public interface ITypeRepository
     {
         IEnumerable<Type> GetAllTypes(int pokemonId, bool trackChanges);
+        void DeleteType(Type type);
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Contracts;
 using Entities.Models;
@@ -25,14 +26,38 @@ namespace Services
             if (pokemon != null)
             {
                 var types = _repositoryManager.Type.GetAllTypes(pokemonId, false);
+                if (types == null) return null;
                 var typesDto = _mapper.Map<IEnumerable<TypeDto>>(types);
                 return typesDto;
+
             }
 
             _logger.LogInformation($"Pokemon with Id {pokemonId} doesn't exists in DB.");
             return null;
         }
 
+        public bool DeleteType(int pokemonId)
+        {
+            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId,false);
+            if (pokemon == null)
+            {
+                _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists");
+                return false;
+            }
+            var typesDto = GetAllTypesOfPokemon(pokemonId);
+            if (typesDto == null)
+            {
+                _logger.LogInformation($"Types for pokemon with id {pokemonId} doesn't exists");
+                return false;
+            }
+            var types = _mapper.Map<IEnumerable<Type>>(typesDto.ToList());
+            foreach (var type in types)
+            {
+                _repositoryManager.Type.DeleteType(type);
+            }
+            _repositoryManager.Save();
+            return true;
+        }
         /*public TypeDto PostType(int pokemonId, TypeForCreationDto typeForCreation)
         {
             if (typeForCreation == null)

@@ -10,5 +10,6 @@ namespace Contracts
         IEnumerable<Pokemon> GetPokemonsByIds(IEnumerable<int> ids, bool trackchanges);
 
         void CreatePokemon(Pokemon pokemon);
+        void DeletePokemon(Pokemon pokemon);
     }
 }

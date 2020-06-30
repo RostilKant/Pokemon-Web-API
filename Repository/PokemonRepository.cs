@@ -30,5 +30,6 @@ namespace Repository
                 .ToList();
 
         public void CreatePokemon(Pokemon pokemon) => Create(pokemon);
+        public void DeletePokemon(Pokemon pokemon) => Delete(pokemon);
     }
 }

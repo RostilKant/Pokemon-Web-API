@@ -17,6 +17,7 @@ namespace Repository
                 .OrderBy(t => t.Name)
                 .ToList();
 
+        public void DeleteType(Type type) => Delete(type);
         public void CreateType(int pokemonId, Type type)
         {
             type.PokemonId = pokemonId;
