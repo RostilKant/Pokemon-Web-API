@@ -6,6 +6,7 @@ using Contracts;
 using Entities.GETAllFromPokeApi;
 using Entities.Models;
 using HttpServices;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pokemon_Web_API.ModelBinders;
@@ -91,8 +92,17 @@ namespace Pokemon_Web_API.Controllers
         [HttpPut("{pokemonId}")]
         public IActionResult UpdatePokemon(int pokemonId, [FromBody] PokemonForUpdateDto pokemonForUpdate)
         {
-            if (pokemonForUpdate == null) return BadRequest("PokemobForUpdateDto object is null");
+            if (pokemonForUpdate == null) return BadRequest("PokemonForUpdateDto object is null");
             var pokemon = _pokemonService.UpdatePokemon(pokemonId, pokemonForUpdate);
+            if (!pokemon) return NotFound();
+            return NoContent();
+        }
+
+        [HttpPatch("{pokemonId}")]
+        public IActionResult PatchPokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDocument)
+        {
+            if (patchDocument == null) return BadRequest("patchDoc object is null");
+            var pokemon = _pokemonService.PartiallyUpdatePokemon(pokemonId, patchDocument);
             if (!pokemon) return NotFound();
             return NoContent();
         }

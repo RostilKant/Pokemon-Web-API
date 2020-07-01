@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Entities.GETAllFromPokeApi;
 using Entities.Models;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Contracts
 {
@@ -22,5 +24,7 @@ namespace Contracts
         bool DeletePokemon(int pokemonId);
 
         bool UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate);
+
+        bool PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc);
     }
 }

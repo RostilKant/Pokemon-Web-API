@@ -5,6 +5,7 @@ using Contracts;
 using Entities.GETAllFromPokeApi;
 using Entities.Models;
 using HttpServices;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.Extensions.Logging;
 
 namespace Services
@@ -124,6 +125,26 @@ namespace Services
             }
 
             _mapper.Map(pokemonForUpdate, pokemon);
+            _repositoryManager.Save();
+            return true;
+        }
+
+        public bool PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc)
+        {
+            if(patchDoc == null) _logger.LogError("patchDoc object sent from client is null.");
+            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+            if (pokemon == null)
+            {
+                _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists in DB.");
+                return false;
+            }
+
+            var pokemonEntity = _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
+            
+            var pokemonToPatch = _mapper.Map<PokemonForUpdateDto>(pokemonEntity);
+            
+            patchDoc?.ApplyTo(pokemonToPatch);
+            _mapper.Map(pokemonToPatch, pokemonEntity);
             _repositoryManager.Save();
             return true;
         }
