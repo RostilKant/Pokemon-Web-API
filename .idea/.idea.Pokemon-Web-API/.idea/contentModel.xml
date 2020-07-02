@@ -125,6 +125,7 @@
         <e p="mono_crash.mem.114542.1.blob" t="Include" />
         <e p="mono_crash.mem.36731.1.blob" t="Include" />
         <e p="mono_crash.mem.369820.1.blob" t="Include" />
+        <e p="mono_crash.mem.519327.1.blob" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">

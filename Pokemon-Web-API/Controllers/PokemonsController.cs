@@ -20,9 +20,11 @@ namespace Pokemon_Web_API.Controllers
     public class PokemonsController : ControllerBase
     {
         private readonly IPokemonService _pokemonService;
-        public PokemonsController(IPokemonService pokemonService)
+        private readonly ILogger _logger;
+        public PokemonsController(IPokemonService pokemonService, ILogger<PokemonsController> logger)
         {
             _pokemonService = pokemonService;
+            _logger = logger;
         }
         [Route("poke-api")]
         [HttpGet]
@@ -57,16 +59,28 @@ namespace Pokemon_Web_API.Controllers
         public IActionResult GetPokemonByIds([ModelBinder(BinderType =
         typeof(ArrayModelBinder))]IEnumerable<int> pokemonIds)
         {
-            if (pokemonIds == null) return BadRequest("Parameter ids is null");
-            var pokemons = _pokemonService.FindPokemonsByIds(pokemonIds);
-            if (pokemons == null) return NotFound();
-            return Ok(pokemons);
+             if (pokemonIds == null)
+             {
+                 _logger.LogError("Parameter ids is null");
+                 return BadRequest("Parameter ids is null");
+             }
+             
+             var pokemons = _pokemonService.FindPokemonsByIds(pokemonIds);
+             if (pokemons == null) return NotFound();
+             return Ok(pokemons);
         }
         
         [HttpPost(Name = "CreatePokemon")]
         public IActionResult CreatePokemon([FromBody]PokemonForCreationDto pokemon)
         {
-            if (pokemon == null) return BadRequest("PokemonForCreationDto object is null!");
+            if(!ModelState.IsValid) return UnprocessableEntity(ModelState);
+            
+            if (pokemon == null)
+            {
+                _logger.LogInformation("PokemonForCreationDto object sent from client is null.");
+                return BadRequest("PokemonForCreationDto object is null!");
+            }
+            
             var pokemonDto = _pokemonService.PostPokemon(pokemon);
             //return CreatedAtRoute("PokemonById", new {id = pokemonDto.Id}, pokemonDto);
             return Created($"api/pokemons/{pokemonDto.Id}", pokemonDto);
@@ -75,7 +89,17 @@ namespace Pokemon_Web_API.Controllers
         [HttpPost("collection")]
         public IActionResult CreatePokemonCollection([FromBody] IEnumerable<PokemonForCreationDto> pokemonForCreation)
         {
-            if (pokemonForCreation == null) return BadRequest("PokemonForCreationDto object is null!");
+            if (pokemonForCreation == null)
+            {
+                _logger.LogInformation("PokemonForUpdateDto object sent from client is null.");
+                return BadRequest("PokemonForCreationDto object is null!");
+            }
+            
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             var pokemons = _pokemonService.PostPokemonCollection(pokemonForCreation);
             var ids = string.Join(",", pokemons.Select(p => p.Id));
             return Created($"api/pokemons/collection/{ids}", pokemons);
@@ -92,7 +116,16 @@ namespace Pokemon_Web_API.Controllers
         [HttpPut("{pokemonId}")]
         public IActionResult UpdatePokemon(int pokemonId, [FromBody] PokemonForUpdateDto pokemonForUpdate)
         {
-            if (pokemonForUpdate == null) return BadRequest("PokemonForUpdateDto object is null");
+            if (pokemonForUpdate == null)
+            {
+                _logger.LogInformation("PokemonForUpdateDto object sent from client is null.");
+                return BadRequest("PokemonForUpdateDto object is null");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
+                return UnprocessableEntity(ModelState);
+            }
             var pokemon = _pokemonService.UpdatePokemon(pokemonId, pokemonForUpdate);
             if (!pokemon) return NotFound();
             return NoContent();
@@ -101,9 +134,21 @@ namespace Pokemon_Web_API.Controllers
         [HttpPatch("{pokemonId}")]
         public IActionResult PatchPokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDocument)
         {
-            if (patchDocument == null) return BadRequest("patchDoc object is null");
+            if (patchDocument == null)
+            {                
+                _logger.LogInformation("PatchDoc object sent from client is null.");
+                return BadRequest("patchDoc object is null");
+            }
+
             var pokemon = _pokemonService.PartiallyUpdatePokemon(pokemonId, patchDocument);
-            if (!pokemon) return NotFound();
+            patchDocument.ApplyTo(pokemon, ModelState);
+            
+            if(!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the patch document");
+                return UnprocessableEntity(ModelState);
+            }
+            _pokemonService.SaveAndMap(pokemonId, pokemon);
             return NoContent();
         }
     }

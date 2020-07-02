@@ -43,6 +43,8 @@ namespace Pokemon_Web_API
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddXmlDataContractSerializerFormatters();
+
+            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();

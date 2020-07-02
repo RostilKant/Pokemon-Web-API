@@ -25,6 +25,7 @@ namespace Contracts
 
         bool UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate);
 
-        bool PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc);
+        PokemonForUpdateDto PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc);
+        void SaveAndMap(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto);
     }
 }

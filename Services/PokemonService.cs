@@ -62,7 +62,6 @@ namespace Services
 
         public IEnumerable<PokemonDto> FindPokemonsByIds(IEnumerable<int> ids)
         {
-            if (ids == null) _logger.LogError("Parameter ids is null");
             var pokemons = _repositoryManager.Pokemon.GetPokemonsByIds(ids, false);
             if (ids.Count() != pokemons.Count())
             {
@@ -76,16 +75,10 @@ namespace Services
 
         public PokemonDto PostPokemon(PokemonForCreationDto pokemonForCreationDto)
         {
-            if (pokemonForCreationDto != null)
-            {
-                var pokemonEntity = _mapper.Map<Pokemon>(pokemonForCreationDto);
-                _repositoryManager.Pokemon.CreatePokemon(pokemonEntity);
-                _repositoryManager.Save();
-                return _mapper.Map<PokemonDto>(pokemonEntity);
-            }
-
-            _logger.LogInformation("PokemonForCreationDto object sent from client is null.");
-            return null;
+            var pokemonEntity = _mapper.Map<Pokemon>(pokemonForCreationDto);
+            _repositoryManager.Pokemon.CreatePokemon(pokemonEntity);
+            _repositoryManager.Save();
+            return _mapper.Map<PokemonDto>(pokemonEntity);
         }
 
         public IEnumerable<PokemonDto> PostPokemonCollection(IEnumerable<PokemonForCreationDto> pokemonForCreation)
@@ -104,19 +97,17 @@ namespace Services
             var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
             if (pokemon == null)
             {
-                _logger.LogInformation("GG");
+                _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists on DB.");
                 return false;
             }
-
+            
             _repositoryManager.Pokemon.DeletePokemon(pokemon);
             _repositoryManager.Save();
             return true;
-
         }
 
         public bool UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate)
         {
-            if (pokemonForUpdate == null) _logger.LogInformation("CompanyForUpdateDto object sent from client is null.");
             var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
             if (pokemon == null)
             {
@@ -129,24 +120,30 @@ namespace Services
             return true;
         }
 
-        public bool PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc)
+        public PokemonForUpdateDto PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc)
         {
-            if(patchDoc == null) _logger.LogError("patchDoc object sent from client is null.");
             var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
             if (pokemon == null)
             {
                 _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists in DB.");
-                return false;
+                return null;
             }
 
             var pokemonEntity = _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
             
             var pokemonToPatch = _mapper.Map<PokemonForUpdateDto>(pokemonEntity);
             
-            patchDoc?.ApplyTo(pokemonToPatch);
+            return pokemonToPatch;
+        }
+
+        public void SaveAndMap(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto)
+        {
+            var pokemonEntity = _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
+            
+            var pokemonToPatch = _mapper.Map<PokemonForUpdateDto>(pokemonEntity);
+
             _mapper.Map(pokemonToPatch, pokemonEntity);
             _repositoryManager.Save();
-            return true;
         }
     }
 }
