@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Pokemon_Web_API.ActionFilters;
 using Pokemon_Web_API.Extensions;
 using Serilog;
 using RestSharp;
@@ -50,6 +51,9 @@ namespace Pokemon_Web_API
             services.ConfigureRepositoryManager();
             services.ConfigurePokemonService();
             services.ConfigureTypeService();
+
+            services.AddScoped<ModelValidationFilterAttribute>();
+            services.AddScoped<ValidatePokemonExistsAttribute>();
             
             services.AddTransient<PokeApiRestClient>();
             

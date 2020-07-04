@@ -67,6 +67,10 @@
         </e>
       </e>
       <e p="Pokemon-Web-API" t="IncludeRecursive">
+        <e p="ActionFilters" t="Include">
+          <e p="ModelValidationFilterAttribute.cs" t="Include" />
+          <e p="ValidatePokemonExistsAttribute.cs" t="Include" />
+        </e>
         <e p="Controllers" t="Include">
           <e p="PokemonsController.cs" t="Include" />
           <e p="TypesController.cs" t="Include" />

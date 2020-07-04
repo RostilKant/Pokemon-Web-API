@@ -6,7 +6,9 @@ using Contracts;
 using Entities.GETAllFromPokeApi;
 using Entities.Models;
 using HttpServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Services
@@ -33,7 +35,7 @@ namespace Services
             var pokemons = _mapper.Map<NewRootObject>(poke);
             return pokemons;
         }
-
+        
         public Entities.GetPokemonsFromPokeApi.Pokemon GetByIdFromPokeApi(string pokeId)
         {
             Entities.GetPokemonsFromPokeApi.Pokemon poke = _client.GetPoke(pokeId);
@@ -56,7 +58,7 @@ namespace Services
         {
             var pokemon = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, false);
 
-            if (pokemon == null) _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
+            if (pokemon == null) _logger.LogInformation($"Pokemon with id: {pokemonId} doesn't exist in the database.");
 
             return _mapper.Map<PokemonDto>(pokemon);
         }
