@@ -22,11 +22,11 @@ namespace Services
         }
         public async Task<IEnumerable<TypeDto>> GetAllTypesOfPokemon(int pokemonId)
         {
-            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, false);
             
             if (pokemon != null)
             {
-                var types = await _repositoryManager.Type.GetAllTypes(pokemonId, false);
+                var types = await _repositoryManager.Type.GetAllTypesAsync(pokemonId, false);
                 if (types == null) return null;
                 var typesDto = _mapper.Map<IEnumerable<TypeDto>>(types);
                 return typesDto;
@@ -38,7 +38,7 @@ namespace Services
 
         public async Task<bool> DeleteType(int pokemonId)
         {
-            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId,false);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId,false);
             if (pokemon == null)
             {
                 _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists");

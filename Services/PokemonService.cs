@@ -42,9 +42,9 @@ namespace Services
             return poke;
         }
 
-        public async Task<IEnumerable<PokemonDto>> FindAllPokemons()
+        public async Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync()
         {
-            var pokemons = await _repositoryManager.Pokemon.GetAllPokemons(false);
+            var pokemons = await _repositoryManager.Pokemon.GetAllPokemonsAsync(false);
 
             if (pokemons == null) _logger.LogInformation($"Pokemons doesn't exist in the DB.");
 
@@ -52,18 +52,18 @@ namespace Services
 
         }
 
-        public async Task<PokemonDto> FindPokemonById(int pokemonId)
+        public async Task<PokemonDto> FindPokemonByIdAsync(int pokemonId)
         {
-            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, false);
 
             if (pokemon == null) _logger.LogInformation($"Company with id: {pokemonId} doesn't exist in the database.");
 
             return _mapper.Map<PokemonDto>(pokemon);
         }
 
-        public async Task<IEnumerable<PokemonDto>> FindPokemonsByIds(IEnumerable<int> ids)
+        public async Task<IEnumerable<PokemonDto>> FindPokemonsByIdsAsync(IEnumerable<int> ids)
         {
-            var pokemons = await _repositoryManager.Pokemon.GetPokemonsByIds(ids, false);
+            var pokemons = await _repositoryManager.Pokemon.GetPokemonsByIdsAsync(ids, false);
             if (ids.Count() != pokemons.Count())
             {
                 _logger.LogError("Some ids are not valid in a collection");
@@ -74,7 +74,7 @@ namespace Services
             return pokemonsToReturn;
         }
 
-        public async Task<PokemonDto> PostPokemon(PokemonForCreationDto pokemonForCreationDto)
+        public async Task<PokemonDto> PostPokemonAsync(PokemonForCreationDto pokemonForCreationDto)
         {
             var pokemonEntity = _mapper.Map<Pokemon>(pokemonForCreationDto);
             _repositoryManager.Pokemon.CreatePokemon(pokemonEntity);
@@ -82,7 +82,7 @@ namespace Services
             return _mapper.Map<PokemonDto>(pokemonEntity);
         }
 
-        public async Task<IEnumerable<PokemonDto>> PostPokemonCollection(IEnumerable<PokemonForCreationDto> pokemonForCreation)
+        public async Task<IEnumerable<PokemonDto>> PostPokemonCollectionAsync(IEnumerable<PokemonForCreationDto> pokemonForCreation)
         {
             if (pokemonForCreation == null) _logger.LogError("Pokemon collection sent from client is null.");
 
@@ -94,9 +94,9 @@ namespace Services
             return pokemonsToReturn;
         }
 
-        public async Task<bool> DeletePokemon(int pokemonId)
+        public async Task<bool> DeletePokemonAsync(int pokemonId)
         {
-            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, false);
             if (pokemon == null)
             {
                 _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists on DB.");
@@ -108,9 +108,9 @@ namespace Services
             return true;
         }
 
-        public async Task<bool> UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate)
+        public async Task<bool> UpdatePokemonAsync(int pokemonId, PokemonForUpdateDto pokemonForUpdate)
         {
-            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, true);
             if (pokemon == null)
             {
                 _logger.LogInformation($"Pokemon with id: {pokemonId} doesn't exist in the database.");
@@ -122,25 +122,25 @@ namespace Services
             return true;
         }
 
-        public async Task<PokemonForUpdateDto> PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc)
+        public async Task<PokemonForUpdateDto> PartiallyUpdatePokemonAsync(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc)
         {
-            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, false);
             if (pokemon == null)
             {
                 _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists in DB.");
                 return null;
             }
 
-            var pokemonEntity = await _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
+            var pokemonEntity = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, true);
             
             var pokemonToPatch = _mapper.Map<PokemonForUpdateDto>(pokemonEntity);
             
             return pokemonToPatch;
         }
 
-        public async Task SaveAndMap(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto)
+        public async Task SaveAndMapAsync(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto)
         {
-            var pokemonEntity = await _repositoryManager.Pokemon.GetPokemon(pokemonId, true);
+            var pokemonEntity = await _repositoryManager.Pokemon.GetPokemonAsync(pokemonId, true);
             
             var pokemonToPatch = _mapper.Map<PokemonForUpdateDto>(pokemonEntity);
 

@@ -38,7 +38,7 @@ namespace Pokemon_Web_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPokemons()
         {
-            var pokemons = await _pokemonService.FindAllPokemons();
+            var pokemons = await _pokemonService.FindAllPokemonsAsync();
             if (pokemons == null) return NotFound();
             return Ok(pokemons);
         }
@@ -46,7 +46,7 @@ namespace Pokemon_Web_API.Controllers
         [HttpGet("{pokemonId}", Name = "GetPokemonById")]
         public async Task<IActionResult> GetPokemonById(int pokemonId)
         {
-            var pokemon =  await _pokemonService.FindPokemonById(pokemonId);
+            var pokemon =  await _pokemonService.FindPokemonByIdAsync(pokemonId);
             if (pokemon == null) return NotFound();
             return Ok(pokemon);
         }
@@ -55,7 +55,7 @@ namespace Pokemon_Web_API.Controllers
         public async Task<IActionResult> GetPokemonByIds([ModelBinder(BinderType =
         typeof(ArrayModelBinder))]IEnumerable<int> pokemonIds)
         {
-            var pokemons = await _pokemonService.FindPokemonsByIds(pokemonIds);
+            var pokemons = await _pokemonService.FindPokemonsByIdsAsync(pokemonIds);
 
              if (pokemonIds == null)
              {
@@ -78,7 +78,7 @@ namespace Pokemon_Web_API.Controllers
                 return BadRequest("PokemonForCreationDto object is null!");
             }
             
-            var pokemonDto = await _pokemonService.PostPokemon(pokemon);
+            var pokemonDto = await _pokemonService.PostPokemonAsync(pokemon);
             //return CreatedAtRoute("PokemonById", new {id = pokemonDto.Id}, pokemonDto);
             return Created($"api/pokemons/{pokemonDto.Id}", pokemonDto);
         }
@@ -97,7 +97,7 @@ namespace Pokemon_Web_API.Controllers
                 _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var pokemons = await _pokemonService.PostPokemonCollection(pokemonForCreation);
+            var pokemons = await _pokemonService.PostPokemonCollectionAsync(pokemonForCreation);
             var ids = string.Join(",", pokemons.Select(p => p.Id));
             return Created($"api/pokemons/collection/{ids}", pokemons);
         }
@@ -105,7 +105,7 @@ namespace Pokemon_Web_API.Controllers
         [HttpDelete("{pokemonId}")]
         public async Task<IActionResult> DeletePokemon(int pokemonId)
         {
-            var pokemon = await _pokemonService.DeletePokemon(pokemonId);
+            var pokemon = await _pokemonService.DeletePokemonAsync(pokemonId);
             if (!pokemon) return NotFound();
             return NoContent();
         }
@@ -123,7 +123,7 @@ namespace Pokemon_Web_API.Controllers
                 _logger.LogError("Invalid model state for the EmployeeForUpdateDto object");
                 return UnprocessableEntity(ModelState);
             }
-            var pokemon = await _pokemonService.UpdatePokemon(pokemonId, pokemonForUpdate);
+            var pokemon = await _pokemonService.UpdatePokemonAsync(pokemonId, pokemonForUpdate);
             if (!pokemon) return NotFound();
             return NoContent();
         }
@@ -137,7 +137,7 @@ namespace Pokemon_Web_API.Controllers
                 return BadRequest("patchDoc object is null");
             }
 
-            var pokemon = await _pokemonService.PartiallyUpdatePokemon(pokemonId, patchDocument);
+            var pokemon = await _pokemonService.PartiallyUpdatePokemonAsync(pokemonId, patchDocument);
             patchDocument.ApplyTo(pokemon, ModelState);
             
             if(!ModelState.IsValid)
@@ -145,7 +145,7 @@ namespace Pokemon_Web_API.Controllers
                 _logger.LogError("Invalid model state for the patch document");
                 return UnprocessableEntity(ModelState);
             }
-            await _pokemonService.SaveAndMap(pokemonId, pokemon);
+            await _pokemonService.SaveAndMapAsync(pokemonId, pokemon);
             return NoContent();
         }
     }

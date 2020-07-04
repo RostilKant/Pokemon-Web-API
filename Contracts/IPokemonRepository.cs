@@ -6,9 +6,9 @@ namespace Contracts
 {
     public interface IPokemonRepository
     {
-        Task<IEnumerable<Pokemon>>  GetAllPokemons(bool trackChanges);
-        Task<Pokemon> GetPokemon(int pokemonId, bool trackChanges);
-        Task<IEnumerable<Pokemon>> GetPokemonsByIds(IEnumerable<int> ids, bool trackchanges);
+        Task<IEnumerable<Pokemon>>  GetAllPokemonsAsync(bool trackChanges);
+        Task<Pokemon> GetPokemonAsync(int pokemonId, bool trackChanges);
+        Task<IEnumerable<Pokemon>> GetPokemonsByIdsAsync(IEnumerable<int> ids, bool trackchanges);
 
         void CreatePokemon(Pokemon pokemon);
         void DeletePokemon(Pokemon pokemon);

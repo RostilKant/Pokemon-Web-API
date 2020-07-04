@@ -7,7 +7,7 @@ namespace Contracts
 {
     public interface ITypeRepository
     {
-        Task<IEnumerable<Type>> GetAllTypes(int pokemonId, bool trackChanges);
+        Task<IEnumerable<Type>> GetAllTypesAsync(int pokemonId, bool trackChanges);
         void DeleteType(Type type);
     }
 }

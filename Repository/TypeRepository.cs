@@ -14,7 +14,7 @@ namespace Repository
         {
         }
 
-        public async Task<IEnumerable<Type>> GetAllTypes(int pokemonId, bool trackChanges) => await 
+        public async Task<IEnumerable<Type>> GetAllTypesAsync(int pokemonId, bool trackChanges) => await 
             FindByCondition(t => t.PokemonId.Equals(pokemonId), trackChanges)
                 .OrderBy(t => t.Name)
                 .ToListAsync();
