@@ -48,7 +48,6 @@ namespace Services
         public async Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonPageParameters pokemonPageParameters)
         {
             var pokemons = await _repositoryManager.Pokemon.GetAllPokemonsAsync(pokemonPageParameters,false);
-
             if (pokemons == null) _logger.LogInformation($"Pokemons doesn't exist in the DB.");
 
             return _mapper.Map<IEnumerable<PokemonDto>>(pokemons);

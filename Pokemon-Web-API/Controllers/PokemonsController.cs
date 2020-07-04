@@ -11,6 +11,7 @@ using HttpServices;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Pokemon_Web_API.ActionFilters;
 using Pokemon_Web_API.ModelBinders;
 using Pokemon = Entities.GetPokemonsFromPokeApi.Pokemon;
@@ -41,6 +42,7 @@ namespace Pokemon_Web_API.Controllers
         public async Task<IActionResult> GetPokemons([FromQuery] PokemonPageParameters pokemonPageParameters)
         {
             var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonPageParameters);
+            
             if (pokemons == null) return NotFound();
             return Ok(pokemons);
         }

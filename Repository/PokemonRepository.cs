@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Contracts;
 using Entities;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -18,13 +19,15 @@ namespace Repository
         //public Entities.JsonModels.RootObject GetAllPoke() => _client.GetPokemons();
 
         //public Entities.GetPokemonModels.Pokemon GetPoke(int pokeId) => _client.GetPokemon(pokeId);
-        public async Task<IEnumerable<Pokemon>> GetAllPokemonsAsync(PokemonPageParameters pokemonPageParameters,bool trackChanges) => await   
-            FindAll(trackChanges)
+        public async Task<PagedList<Pokemon>> GetAllPokemonsAsync(PokemonPageParameters pokemonPageParameters, bool trackChanges)
+        {
+            var pokemons = await FindAll(trackChanges)
                 .OrderBy(p => p.Name)
-                .Skip((pokemonPageParameters.PageNumber -1) * pokemonPageParameters.PageSize)
-                .Take(pokemonPageParameters.PageSize)
                 .ToListAsync();
-
+            return PagedList<Pokemon>
+                .ToPagedList(pokemons, pokemonPageParameters.PageNumber, pokemonPageParameters.PageSize);
+        }
+        
         public async Task<Pokemon> GetPokemonAsync(int pokemonId, bool trackChanges) => await 
             FindByCondition(p => p.Id.Equals(pokemonId), trackChanges)
                 .SingleOrDefaultAsync();
