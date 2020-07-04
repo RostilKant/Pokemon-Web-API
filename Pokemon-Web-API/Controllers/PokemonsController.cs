@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Contracts;
+using Entities;
 using Entities.GETAllFromPokeApi;
 using Entities.Models;
 using HttpServices;
@@ -37,9 +38,9 @@ namespace Pokemon_Web_API.Controllers
         public IActionResult GetPokeApimon(string pokeId) => Ok(_pokemonService.GetByIdFromPokeApi(pokeId));
         
         [HttpGet]
-        public async Task<IActionResult> GetPokemons()
+        public async Task<IActionResult> GetPokemons([FromQuery] PokemonPageParameters pokemonPageParameters)
         {
-            var pokemons = await _pokemonService.FindAllPokemonsAsync();
+            var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonPageParameters);
             if (pokemons == null) return NotFound();
             return Ok(pokemons);
         }
@@ -57,7 +58,7 @@ namespace Pokemon_Web_API.Controllers
         typeof(ArrayModelBinder))]IEnumerable<int> pokemonIds)
         {
             var pokemons = await _pokemonService.FindPokemonsByIdsAsync(pokemonIds);
-
+            if (pokemons == null) return NotFound();
              if (pokemonIds == null)
              {
                  _logger.LogError("Parameter ids is null");
@@ -89,7 +90,7 @@ namespace Pokemon_Web_API.Controllers
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
         public async Task<IActionResult> DeletePokemon(int pokemonId)
         {
-            var pokemon = await _pokemonService.DeletePokemonAsync(pokemonId);
+            await _pokemonService.DeletePokemonAsync(pokemonId);
             return NoContent();
         }
 
@@ -98,15 +99,16 @@ namespace Pokemon_Web_API.Controllers
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePokemon(int pokemonId, [FromBody] PokemonForUpdateDto pokemonForUpdate)
         {
-            var pokemon = await _pokemonService.UpdatePokemonAsync(pokemonId, pokemonForUpdate);
+            await _pokemonService.UpdatePokemonAsync(pokemonId, pokemonForUpdate);
             return NoContent();
         }
 
         [HttpPatch("{pokemonId}")]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
-        public async Task<IActionResult> PatchPokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDtoDocument)
+        public async Task<IActionResult> PatchPokemon(int pokemonId, [FromBody] JsonPatchDocument<PokemonForUpdateDto> patchDtoDocument)
         {
             var pokemon = await _pokemonService.PartiallyUpdatePokemonAsync(pokemonId, patchDtoDocument);
+            if (pokemon == null) return NotFound();
             patchDtoDocument.ApplyTo(pokemon, ModelState);
             await _pokemonService.SaveAndMapAsync(pokemonId, pokemon);
             return NoContent();

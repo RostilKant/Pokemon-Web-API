@@ -18,9 +18,11 @@ namespace Repository
         //public Entities.JsonModels.RootObject GetAllPoke() => _client.GetPokemons();
 
         //public Entities.GetPokemonModels.Pokemon GetPoke(int pokeId) => _client.GetPokemon(pokeId);
-        public async Task<IEnumerable<Pokemon>> GetAllPokemonsAsync(bool trackChanges) => await   
+        public async Task<IEnumerable<Pokemon>> GetAllPokemonsAsync(PokemonPageParameters pokemonPageParameters,bool trackChanges) => await   
             FindAll(trackChanges)
                 .OrderBy(p => p.Name)
+                .Skip((pokemonPageParameters.PageNumber -1) * pokemonPageParameters.PageSize)
+                .Take(pokemonPageParameters.PageSize)
                 .ToListAsync();
 
         public async Task<Pokemon> GetPokemonAsync(int pokemonId, bool trackChanges) => await 

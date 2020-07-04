@@ -45,6 +45,7 @@
           <e p="Type.cs" t="Include" />
         </e>
         <e p="RepositoryContext.cs" t="Include" />
+        <e p="RequestParameters.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
