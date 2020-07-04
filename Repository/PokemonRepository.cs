@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Repository
@@ -16,18 +18,18 @@ namespace Repository
         //public Entities.JsonModels.RootObject GetAllPoke() => _client.GetPokemons();
 
         //public Entities.GetPokemonModels.Pokemon GetPoke(int pokeId) => _client.GetPokemon(pokeId);
-        public IEnumerable<Pokemon> GetAllPokemons(bool trackChanges) =>
+        public async Task<IEnumerable<Pokemon>> GetAllPokemons(bool trackChanges) => await   
             FindAll(trackChanges)
                 .OrderBy(p => p.Name)
-                .ToList();
+                .ToListAsync();
 
-        public Pokemon GetPokemon(int pokemonId, bool trackChanges) =>
+        public async Task<Pokemon> GetPokemon(int pokemonId, bool trackChanges) => await 
             FindByCondition(p => p.Id.Equals(pokemonId), trackChanges)
-                .SingleOrDefault();
+                .SingleOrDefaultAsync();
 
-        public IEnumerable<Pokemon> GetPokemonsByIds(IEnumerable<int> ids, bool trackChanges) =>
+        public async Task<IEnumerable<Pokemon>> GetPokemonsByIds(IEnumerable<int> ids, bool trackChanges) => await 
             FindByCondition(p => ids.Contains(p.Id), trackChanges)
-                .ToList();
+                .ToListAsync();
 
         public void CreatePokemon(Pokemon pokemon) => Create(pokemon);
         public void DeletePokemon(Pokemon pokemon) => Delete(pokemon);

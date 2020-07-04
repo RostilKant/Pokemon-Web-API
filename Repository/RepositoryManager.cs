@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Contracts;
 using Entities;
 
@@ -24,6 +25,6 @@ namespace Repository
             get { return _pokemonRepository ??= new PokemonRepository(RepositoryContext); }
         }
 
-        public void Save() => RepositoryContext.SaveChanges();
+        public Task Save() => RepositoryContext.SaveChangesAsync();
     }
 }

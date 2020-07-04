@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Entities.Models;
 
 namespace Contracts
 {
     public interface ITypeService
     {
-        IEnumerable<TypeDto> GetAllTypesOfPokemon(int pokemonId); 
+        Task<IEnumerable<TypeDto>> GetAllTypesOfPokemon(int pokemonId); 
         // TypeDto PostType(int pokemonId, TypeForCreationDto typeForCreation);
-        bool DeleteType(int pokemonId);
+        Task<bool> DeleteType(int pokemonId);
         
     }
 }

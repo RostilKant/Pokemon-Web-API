@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Contracts;
 using Entities.Models;
@@ -19,32 +20,31 @@ namespace Services
             _logger = logger;
             _mapper = mapper;
         }
-        public IEnumerable<TypeDto> GetAllTypesOfPokemon(int pokemonId)
+        public async Task<IEnumerable<TypeDto>> GetAllTypesOfPokemon(int pokemonId)
         {
-            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId, false);
             
             if (pokemon != null)
             {
-                var types = _repositoryManager.Type.GetAllTypes(pokemonId, false);
+                var types = await _repositoryManager.Type.GetAllTypes(pokemonId, false);
                 if (types == null) return null;
                 var typesDto = _mapper.Map<IEnumerable<TypeDto>>(types);
                 return typesDto;
-
             }
 
             _logger.LogInformation($"Pokemon with Id {pokemonId} doesn't exists in DB.");
             return null;
         }
 
-        public bool DeleteType(int pokemonId)
+        public async Task<bool> DeleteType(int pokemonId)
         {
-            var pokemon = _repositoryManager.Pokemon.GetPokemon(pokemonId,false);
+            var pokemon = await _repositoryManager.Pokemon.GetPokemon(pokemonId,false);
             if (pokemon == null)
             {
                 _logger.LogInformation($"Pokemon with id {pokemonId} doesn't exists");
                 return false;
             }
-            var typesDto = GetAllTypesOfPokemon(pokemonId);
+            var typesDto = await GetAllTypesOfPokemon(pokemonId);
             if (typesDto == null)
             {
                 _logger.LogInformation($"Types for pokemon with id {pokemonId} doesn't exists");
@@ -55,7 +55,7 @@ namespace Services
             {
                 _repositoryManager.Type.DeleteType(type);
             }
-            _repositoryManager.Save();
+            await _repositoryManager.Save();
             return true;
         }
         /*public TypeDto PostType(int pokemonId, TypeForCreationDto typeForCreation)

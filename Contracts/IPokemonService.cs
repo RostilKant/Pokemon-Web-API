@@ -13,19 +13,19 @@ namespace Contracts
     {
         NewRootObject GetAllFromPokeApi();
         Entities.GetPokemonsFromPokeApi.Pokemon  GetByIdFromPokeApi(string pokeId);
-        IEnumerable<PokemonDto> FindAllPokemons();
-        PokemonDto FindPokemonById(int pokemonId);
+        Task<IEnumerable<PokemonDto>> FindAllPokemons();
+        Task<PokemonDto> FindPokemonById(int pokemonId);
 
-        IEnumerable<PokemonDto> FindPokemonsByIds(IEnumerable<int> ids);
+        Task<IEnumerable<PokemonDto>> FindPokemonsByIds(IEnumerable<int> ids);
 
-        PokemonDto PostPokemon(PokemonForCreationDto pokemonForCreationDto);
-        IEnumerable<PokemonDto> PostPokemonCollection(IEnumerable<PokemonForCreationDto> pokemonForCreation);
+        Task<PokemonDto> PostPokemon(PokemonForCreationDto pokemonForCreationDto);
+        Task<IEnumerable<PokemonDto>> PostPokemonCollection(IEnumerable<PokemonForCreationDto> pokemonForCreation);
 
-        bool DeletePokemon(int pokemonId);
+        Task<bool> DeletePokemon(int pokemonId);
 
-        bool UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate);
+        Task<bool> UpdatePokemon(int pokemonId, PokemonForUpdateDto pokemonForUpdate);
 
-        PokemonForUpdateDto PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc);
-        void SaveAndMap(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto);
+        Task<PokemonForUpdateDto> PartiallyUpdatePokemon(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc);
+        Task SaveAndMap(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Contracts;
 using Entities.Models;
@@ -21,20 +22,21 @@ namespace Pokemon_Web_API.Controllers
         }
 
         [HttpGet( Name = "GetTypesForPokemon")]
-        public IActionResult GetTypes(int pokemonId)
+        public async Task<IActionResult> GetTypes(int pokemonId)
         {
-            var types = _typeService.GetAllTypesOfPokemon(pokemonId);
+            var types = await _typeService.GetAllTypesOfPokemon(pokemonId);
             if (types == null || !types.Any()) return NotFound();
             return Ok(types);
         }
 
         [HttpDelete]
-        public IActionResult DeleteTypes(int pokemonId)
+        public async Task<IActionResult> DeleteTypes(int pokemonId)
         {
-            var type = _typeService.DeleteType(pokemonId);
+            var type = await _typeService.DeleteType(pokemonId);
             if (!type) return NotFound();
             return NoContent();
         }
+        
         // [HttpPost]
         // public IActionResult CreateType(int pokemonId, TypeForCreationDto typeForCreationDto)
         // {
