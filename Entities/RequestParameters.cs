@@ -14,5 +14,8 @@ namespace Entities
         }
     }
 
-    public class PokemonPageParameters : RequestParameters { }
+    public class PokemonPageParameters : RequestParameters
+    {
+        public string Type { get; set; }
+    }
 }
