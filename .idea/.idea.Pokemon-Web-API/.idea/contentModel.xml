@@ -141,6 +141,9 @@
       </e>
       <e p="Pokemon-Web-API.sln" t="IncludeFlat" />
       <e p="Repository" t="IncludeRecursive">
+        <e p="Extensions" t="Include">
+          <e p="PokemonExtensions.cs" t="Include" />
+        </e>
         <e p="PokemonRepository.cs" t="Include" />
         <e p="Repository.csproj" t="IncludeRecursive" />
         <e p="RepositoryBase.cs" t="Include" />

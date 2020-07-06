@@ -6,6 +6,7 @@ using Entities;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
+using Repository.Extensions;
 
 
 namespace Repository
@@ -21,20 +22,16 @@ namespace Repository
         //public Entities.GetPokemonModels.Pokemon GetPoke(int pokeId) => _client.GetPokemon(pokeId);
         public async Task<PagedList<Pokemon>> GetAllPokemonsAsync(PokemonPageParameters pokemonParameters, bool trackChanges)
         {
-            var filteredPokemons = await 
-                FindByCondition(p => 
-                        p.Types.Any(t => t.Name.Equals(pokemonParameters.Type)),trackChanges)
+            var pokemons = await 
+                FindAll(trackChanges)
+                    .FilterByType(pokemonParameters.Type)
+                    .SearchingByName(pokemonParameters.Name)
                     .Include(p => p.Types)
                     .OrderBy(p => p.Name)
                     .ToListAsync();
             
-            var pokemons = await 
-                FindAll(trackChanges)
-                    .Include(p => p.Types)
-                    .ToListAsync();
-            
-            return PagedList<Pokemon>.ToPagedList(pokemonParameters.Type == null ? 
-                pokemons : filteredPokemons, pokemonParameters.PageNumber, pokemonParameters.PageSize);
+            return PagedList<Pokemon>.ToPagedList(pokemons, pokemonParameters.PageNumber,
+                pokemonParameters.PageSize);
         }
         
         public async Task<Pokemon> GetPokemonAsync(int pokemonId, bool trackChanges) => await 
