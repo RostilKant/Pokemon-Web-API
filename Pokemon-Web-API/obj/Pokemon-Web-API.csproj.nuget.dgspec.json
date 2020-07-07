@@ -344,6 +344,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "System.Linq.Dynamic.Core": {
+              "target": "Package",
+              "version": "[1.1.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

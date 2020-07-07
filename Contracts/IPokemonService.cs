@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Entities;
 using Entities.GETAllFromPokeApi;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace Contracts

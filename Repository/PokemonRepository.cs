@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Contracts;
 using Entities;
@@ -25,9 +26,9 @@ namespace Repository
             var pokemons = await 
                 FindAll(trackChanges)
                     .FilterByType(pokemonParameters.Type)
-                    .SearchingByName(pokemonParameters.Name)
+                    .SearchByName(pokemonParameters.Name)
+                    .Sort(pokemonParameters.OrderBy)
                     .Include(p => p.Types)
-                    .OrderBy(p => p.Name)
                     .ToListAsync();
             
             return PagedList<Pokemon>.ToPagedList(pokemons, pokemonParameters.PageNumber,

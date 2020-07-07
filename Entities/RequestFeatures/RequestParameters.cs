@@ -1,4 +1,4 @@
-namespace Entities
+namespace Entities.RequestFeatures
 {
     public abstract class RequestParameters
     {
@@ -12,11 +12,19 @@ namespace Entities
             get => _pageSize;
             set => _pageSize = (value > MaxSize) ? _pageSize : value;
         }
+        
+        public string OrderBy { get;set;}
     }
 
     public class PokemonPageParameters : RequestParameters
     {
+        public PokemonPageParameters()
+        {
+            OrderBy = "name";
+        }
         public string Type { get; set; }
         public string Name { get; set; }
+
+        
     }
 }
