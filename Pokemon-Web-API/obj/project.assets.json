@@ -7656,7 +7656,7 @@
       "outputPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/rostil/.config/NuGet/NuGet.Config"
+        "/home/rostil/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

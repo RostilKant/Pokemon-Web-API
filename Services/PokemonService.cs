@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -21,14 +22,16 @@ namespace Services
         private readonly IRepositoryManager _repositoryManager;
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
+        private readonly IDataShaper<PokemonDto> _dataShaper;
 
         public PokemonService(PokeApiRestClient client, IRepositoryManager repositoryManager,
-            ILogger<PokemonService> logger, IMapper mapper)
+            ILogger<PokemonService> logger, IMapper mapper, IDataShaper<PokemonDto> dataShaper)
         {
             _client = client;
             _repositoryManager = repositoryManager;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
 
         public NewRootObject GetAllFromPokeApi()
@@ -46,9 +49,9 @@ namespace Services
             return poke;
         }
 
-        public async Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonPageParameters pokemonPageParameters)
+        public async Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonParameters pokemonParameters)
         {
-            var pokemons = await _repositoryManager.Pokemon.GetAllPokemonsAsync(pokemonPageParameters,false);
+            var pokemons = await _repositoryManager.Pokemon.GetAllPokemonsAsync(pokemonParameters,false);
             if (pokemons == null) _logger.LogInformation($"Pokemons doesn't exist in the DB.");
 
             return _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
@@ -141,5 +144,10 @@ namespace Services
             _mapper.Map(pokemonToPatch, pokemonEntity);
             await _repositoryManager.Save();
         }
+
+        public IEnumerable<ExpandoObject> ShapePokemons(IEnumerable<PokemonDto> pokemons,
+            PokemonParameters pokemonParameters) => 
+            _dataShaper.ShapeData(pokemons, pokemonParameters.Fields);
+
     }
 }

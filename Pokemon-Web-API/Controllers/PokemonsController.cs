@@ -40,35 +40,32 @@ namespace Pokemon_Web_API.Controllers
         public IActionResult GetPokeApimon(string pokeId) => Ok(_pokemonService.GetByIdFromPokeApi(pokeId));
         
         [HttpGet]
-        public async Task<IActionResult> GetPokemons([FromQuery] PokemonPageParameters pokemonPageParameters)
+        public async Task<IActionResult> GetPokemons([FromQuery] PokemonParameters pokemonParameters)
         {
-            var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonPageParameters);
+            var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonParameters);
             
             if (pokemons == null) return NotFound();
-            return Ok(pokemons);
+            return Ok(_pokemonService.ShapePokemons(pokemons,pokemonParameters));
         }
         
         [HttpGet("{pokemonId}", Name = "GetPokemonById")]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
-        public async Task<IActionResult> GetPokemonById(int pokemonId)
-        {
-            var pokemon =  await _pokemonService.FindPokemonByIdAsync(pokemonId);
-            return Ok(pokemon);
-        }
+        public async Task<IActionResult> GetPokemonById(int pokemonId) => 
+            Ok(await _pokemonService.FindPokemonByIdAsync(pokemonId));
+        
         
         [HttpGet("collection/{pokemonIds}", Name = "PokemonsCollection")]
         public async Task<IActionResult> GetPokemonByIds([ModelBinder(BinderType =
         typeof(ArrayModelBinder))]IEnumerable<int> pokemonIds)
         {
             var pokemons = await _pokemonService.FindPokemonsByIdsAsync(pokemonIds);
-            if (pokemons == null) return NotFound();
-             if (pokemonIds == null)
-             {
+            if (pokemons == null) return NotFound(); 
+            if (pokemonIds == null) 
+            {
                  _logger.LogError("Parameter ids is null");
-                 return BadRequest("Parameter ids is null");
-             }
-             
-             return Ok(pokemons);
+                 return BadRequest("Parameter ids is null"); 
+            }
+            return Ok(pokemons);
         }
         
         [HttpPost(Name = "CreatePokemon")]

@@ -8,7 +8,7 @@ namespace Contracts
 {
     public interface IPokemonRepository
     {
-        Task<PagedList<Pokemon>>  GetAllPokemonsAsync(PokemonPageParameters pokemonParameters ,bool trackChanges);
+        Task<PagedList<Pokemon>>  GetAllPokemonsAsync(PokemonParameters pokemonParameters ,bool trackChanges);
         Task<Pokemon> GetPokemonAsync(int pokemonId, bool trackChanges);
         Task<IEnumerable<Pokemon>> GetPokemonsByIdsAsync(IEnumerable<int> ids, bool trackchanges);
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Entities;
@@ -15,7 +16,7 @@ namespace Contracts
     {
         NewRootObject GetAllFromPokeApi();
         Entities.GetPokemonsFromPokeApi.Pokemon  GetByIdFromPokeApi(string pokeId);
-        Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonPageParameters pokemonPageParameters);
+        Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonParameters pokemonParameters);
         Task<PokemonDto> FindPokemonByIdAsync(int pokemonId);
 
         Task<IEnumerable<PokemonDto>> FindPokemonsByIdsAsync(IEnumerable<int> ids);
@@ -29,5 +30,8 @@ namespace Contracts
 
         Task<PokemonForUpdateDto> PartiallyUpdatePokemonAsync(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc);
         Task SaveAndMapAsync(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto);
+
+        public IEnumerable<ExpandoObject> ShapePokemons(IEnumerable<PokemonDto> pokemons,
+            PokemonParameters pokemonParameters);
     }
 }

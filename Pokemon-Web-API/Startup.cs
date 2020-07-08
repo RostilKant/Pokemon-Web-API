@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Contracts;
+using Entities.Models;
 using HttpServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Pokemon_Web_API.ActionFilters;
 using Pokemon_Web_API.Extensions;
+using Repository.DataShaping;
 using Serilog;
 using RestSharp;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
@@ -54,7 +57,9 @@ namespace Pokemon_Web_API
 
             services.AddScoped<ModelValidationFilterAttribute>();
             services.AddScoped<ValidatePokemonExistsAttribute>();
-            
+
+            services.AddScoped<IDataShaper<PokemonDto>, DataShaper<PokemonDto>>();
+                
             services.AddTransient<PokeApiRestClient>();
             
             services.AddAutoMapper(typeof(Startup));

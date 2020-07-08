@@ -21,7 +21,7 @@ namespace Repository
         //public Entities.JsonModels.RootObject GetAllPoke() => _client.GetPokemons();
 
         //public Entities.GetPokemonModels.Pokemon GetPoke(int pokeId) => _client.GetPokemon(pokeId);
-        public async Task<PagedList<Pokemon>> GetAllPokemonsAsync(PokemonPageParameters pokemonParameters, bool trackChanges)
+        public async Task<PagedList<Pokemon>> GetAllPokemonsAsync(PokemonParameters pokemonParameters, bool trackChanges)
         {
             var pokemons = await 
                 FindAll(trackChanges)

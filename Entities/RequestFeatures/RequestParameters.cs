@@ -14,11 +14,14 @@ namespace Entities.RequestFeatures
         }
         
         public string OrderBy { get;set;}
+        
+        public string Fields { get; set; }
+        
     }
 
-    public class PokemonPageParameters : RequestParameters
+    public class PokemonParameters : RequestParameters
     {
-        public PokemonPageParameters()
+        public PokemonParameters()
         {
             OrderBy = "name";
         }
