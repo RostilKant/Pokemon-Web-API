@@ -20,6 +20,7 @@ using Pokemon_Web_API.Extensions;
 using Repository.DataShaping;
 using Serilog;
 using RestSharp;
+using Services.Utility;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Pokemon_Web_API
@@ -44,8 +45,7 @@ namespace Pokemon_Web_API
                     config.RespectBrowserAcceptHeader = true;
                     config.ReturnHttpNotAcceptable = true;
                 })
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddNewtonsoftJson()
                 .AddXmlDataContractSerializerFormatters();
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
@@ -57,9 +57,13 @@ namespace Pokemon_Web_API
 
             services.AddScoped<ModelValidationFilterAttribute>();
             services.AddScoped<ValidatePokemonExistsAttribute>();
+            services.AddScoped<ValidateMediaTypeAttribute>();
 
             services.AddScoped<IDataShaper<PokemonDto>, DataShaper<PokemonDto>>();
-                
+            services.AddScoped<PokemonLinks>();
+            
+            services.ConfigureCustomMediaType();
+            
             services.AddTransient<PokeApiRestClient>();
             
             services.AddAutoMapper(typeof(Startup));

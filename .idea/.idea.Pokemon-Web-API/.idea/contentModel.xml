@@ -40,9 +40,18 @@
           <e p="PokemonType.cs" t="Include" />
           <e p="Type.cs" t="Include" />
         </e>
+        <e p="LinkModels" t="Include">
+          <e p="Link.cs" t="Include" />
+          <e p="LinkCollectionWrapper.cs" t="Include" />
+          <e p="LinkResource.cs" t="Include" />
+          <e p="LinkResponse.cs" t="Include" />
+        </e>
         <e p="Models" t="Include">
           <e p="EntitiesConfiguration.cs" t="Include" />
+          <e p="Entity.cs" t="Include" />
           <e p="Pokemon.cs" t="Include" />
+          <e p="ShapedEntity.cs" t="Include" />
+          <e p="ShapedExpObject.cs" t="Include" />
           <e p="Type.cs" t="Include" />
         </e>
         <e p="RepositoryContext.cs" t="Include" />
@@ -75,6 +84,7 @@
       <e p="Pokemon-Web-API" t="IncludeRecursive">
         <e p="ActionFilters" t="Include">
           <e p="ModelValidationFilterAttribute.cs" t="Include" />
+          <e p="ValidateMediaTypeAttribute.cs" t="Include" />
           <e p="ValidatePokemonExistsAttribute.cs" t="Include" />
         </e>
         <e p="Controllers" t="Include">
@@ -166,6 +176,9 @@
         <e p="PokemonService.cs" t="Include" />
         <e p="Services.csproj" t="IncludeRecursive" />
         <e p="TypeService.cs" t="Include" />
+        <e p="Utility" t="Include">
+          <e p="PokemonLinks.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

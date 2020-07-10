@@ -40,12 +40,13 @@ namespace Pokemon_Web_API.Controllers
         public IActionResult GetPokeApimon(string pokeId) => Ok(_pokemonService.GetByIdFromPokeApi(pokeId));
         
         [HttpGet]
+        [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetPokemons([FromQuery] PokemonParameters pokemonParameters)
         {
             var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonParameters);
-            
             if (pokemons == null) return NotFound();
-            return Ok(_pokemonService.ShapePokemons(pokemons,pokemonParameters));
+            var links = _pokemonService.GenerateLinksOrShapePokemons(pokemons,pokemonParameters,HttpContext);
+            return links.HasLinks ? Ok(links.LinkedShapedObjects) : Ok(links.ShapedObjects);
         }
         
         [HttpGet("{pokemonId}", Name = "GetPokemonById")]
@@ -86,7 +87,7 @@ namespace Pokemon_Web_API.Controllers
             return Created($"api/pokemons/collection/{ids}", pokemons);
         }
 
-        [HttpDelete("{pokemonId}")]
+        [HttpDelete("{pokemonId}", Name = "DeletePokemon")]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
         public async Task<IActionResult> DeletePokemon(int pokemonId)
         {
@@ -94,7 +95,7 @@ namespace Pokemon_Web_API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{pokemonId}")]
+        [HttpPut("{pokemonId}", Name = "UpdatePokemon")]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
         public async Task<IActionResult> UpdatePokemon(int pokemonId, [FromBody] PokemonForUpdateDto pokemonForUpdate)
@@ -103,9 +104,9 @@ namespace Pokemon_Web_API.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{pokemonId}")]
+        [HttpPatch("{pokemonId}", Name = "PartiallyUpdatePokemon")]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
-        public async Task<IActionResult> PatchPokemon(int pokemonId, [FromBody] JsonPatchDocument<PokemonForUpdateDto> patchDtoDocument)
+        public async Task<IActionResult> PartiallyUpdatePokemon(int pokemonId, [FromBody] JsonPatchDocument<PokemonForUpdateDto> patchDtoDocument)
         {
             var pokemon = await _pokemonService.PartiallyUpdatePokemonAsync(pokemonId, patchDtoDocument);
             if (pokemon == null) return NotFound();

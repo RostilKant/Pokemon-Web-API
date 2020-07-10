@@ -6,6 +6,7 @@ using AutoMapper;
 using Contracts;
 using Entities;
 using Entities.GETAllFromPokeApi;
+using Entities.LinkModels;
 using Entities.Models;
 using Entities.RequestFeatures;
 using HttpServices;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Services.Utility;
 
 namespace Services
 {
@@ -22,16 +24,16 @@ namespace Services
         private readonly IRepositoryManager _repositoryManager;
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
-        private readonly IDataShaper<PokemonDto> _dataShaper;
+        private readonly PokemonLinks _pokemonLinks;
 
         public PokemonService(PokeApiRestClient client, IRepositoryManager repositoryManager,
-            ILogger<PokemonService> logger, IMapper mapper, IDataShaper<PokemonDto> dataShaper)
+            ILogger<PokemonService> logger, IMapper mapper, PokemonLinks pokemonLinks)
         {
             _client = client;
             _repositoryManager = repositoryManager;
             _logger = logger;
             _mapper = mapper;
-            _dataShaper = dataShaper;
+            _pokemonLinks = pokemonLinks;
         }
 
         public NewRootObject GetAllFromPokeApi()
@@ -145,9 +147,11 @@ namespace Services
             await _repositoryManager.Save();
         }
 
-        public IEnumerable<ExpandoObject> ShapePokemons(IEnumerable<PokemonDto> pokemons,
-            PokemonParameters pokemonParameters) => 
-            _dataShaper.ShapeData(pokemons, pokemonParameters.Fields);
+        public LinkResponse GenerateLinksOrShapePokemons(IEnumerable<PokemonDto> pokemons,
+            PokemonParameters pokemonParameters, HttpContext context) => 
+            _pokemonLinks.TryGenerateLinks(pokemons, pokemonParameters.Fields, context);
+            
+        
 
     }
 }

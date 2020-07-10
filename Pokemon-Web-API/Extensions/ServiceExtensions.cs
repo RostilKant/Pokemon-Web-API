@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Contracts;
 using Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -58,6 +61,24 @@ namespace Pokemon_Web_API.Extensions
             services.AddScoped<IPokemonService, PokemonService>();
         public static void ConfigureTypeService(this IServiceCollection services) =>
             services.AddScoped<ITypeService, TypeService>();
+
+        public static void ConfigureCustomMediaType(this IServiceCollection services)
+        {
+            services.Configure<MvcOptions>(config =>
+            {
+                var newtonsoftJsonOutputFormatter = config.OutputFormatters
+                    .OfType<NewtonsoftJsonOutputFormatter>()?.FirstOrDefault();
+                newtonsoftJsonOutputFormatter?.SupportedMediaTypes
+                    .Add("application/vnd.rostil.hateoas+json");
+                
+                var xmlOutputFormatter = config.OutputFormatters
+                    .OfType<XmlDataContractSerializerOutputFormatter>()?.FirstOrDefault();
+
+                xmlOutputFormatter?.SupportedMediaTypes
+                    .Add("application/vnd.rostil.hateoas+xml");
+                
+            });
+        }
 
     }
 }

@@ -6,8 +6,10 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Entities;
 using Entities.GETAllFromPokeApi;
+using Entities.LinkModels;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace Contracts
@@ -31,7 +33,7 @@ namespace Contracts
         Task<PokemonForUpdateDto> PartiallyUpdatePokemonAsync(int pokemonId, JsonPatchDocument<PokemonForUpdateDto> patchDoc);
         Task SaveAndMapAsync(int pokemonId, PokemonForUpdateDto pokemonForUpdateDto);
 
-        public IEnumerable<ExpandoObject> ShapePokemons(IEnumerable<PokemonDto> pokemons,
-            PokemonParameters pokemonParameters);
+        public LinkResponse GenerateLinksOrShapePokemons(IEnumerable<PokemonDto> pokemons,
+            PokemonParameters pokemonParameters, HttpContext context);
     }
 }
