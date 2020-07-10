@@ -40,6 +40,7 @@ namespace Pokemon_Web_API.Controllers
         public IActionResult GetPokeApimon(string pokeId) => Ok(_pokemonService.GetByIdFromPokeApi(pokeId));
         
         [HttpGet]
+        [HttpHead]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetPokemons([FromQuery] PokemonParameters pokemonParameters)
         {
@@ -114,5 +115,13 @@ namespace Pokemon_Web_API.Controllers
             await _pokemonService.SaveAndMapAsync(pokemonId, pokemon);
             return NoContent();
         }
+
+        [HttpOptions]
+        public IActionResult GetPokemonsOptions()
+        {
+            Response.Headers.Add("Allow","GET, OPTIONS, POST");
+            return Ok();
+        }
+        
     }
 }
