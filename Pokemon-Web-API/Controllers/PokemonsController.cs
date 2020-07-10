@@ -39,7 +39,7 @@ namespace Pokemon_Web_API.Controllers
         [HttpGet("poke-api/{pokeId}")]
         public IActionResult GetPokeApimon(string pokeId) => Ok(_pokemonService.GetByIdFromPokeApi(pokeId));
         
-        [HttpGet]
+        [HttpGet(Name = "GetPokemons")]
         [HttpHead]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetPokemons([FromQuery] PokemonParameters pokemonParameters)

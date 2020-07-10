@@ -89,6 +89,7 @@
         </e>
         <e p="Controllers" t="Include">
           <e p="PokemonsController.cs" t="Include" />
+          <e p="RootController.cs" t="Include" />
           <e p="TypesController.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">

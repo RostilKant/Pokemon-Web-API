@@ -70,13 +70,16 @@ namespace Pokemon_Web_API.Extensions
                     .OfType<NewtonsoftJsonOutputFormatter>()?.FirstOrDefault();
                 newtonsoftJsonOutputFormatter?.SupportedMediaTypes
                     .Add("application/vnd.rostil.hateoas+json");
+                newtonsoftJsonOutputFormatter?.SupportedMediaTypes
+                    .Add("application/vnd.rostil.apiroot+json");
                 
                 var xmlOutputFormatter = config.OutputFormatters
                     .OfType<XmlDataContractSerializerOutputFormatter>()?.FirstOrDefault();
 
                 xmlOutputFormatter?.SupportedMediaTypes
                     .Add("application/vnd.rostil.hateoas+xml");
-                
+                xmlOutputFormatter?.SupportedMediaTypes
+                    .Add("application/vnd.rostil.apiroot+xml");
             });
         }
 
