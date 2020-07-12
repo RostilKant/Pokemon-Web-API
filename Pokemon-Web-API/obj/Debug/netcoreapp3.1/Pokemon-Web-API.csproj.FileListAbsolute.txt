@@ -141,3 +141,4 @@
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/obj/Debug/netcoreapp3.1/staticwebassets/Pokemon-Web-API.StaticWebAssets.xml
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/obj/Debug/netcoreapp3.1/Pokemon-Web-API.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/obj/Debug/netcoreapp3.1/Pokemon-Web-API.pdb
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Versioning.dll

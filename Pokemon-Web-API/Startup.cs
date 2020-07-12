@@ -47,6 +47,7 @@ namespace Pokemon_Web_API
                 })
                 .AddNewtonsoftJson()
                 .AddXmlDataContractSerializerFormatters();
+            services.AddAutoMapper(typeof(Startup));
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             
@@ -64,10 +65,10 @@ namespace Pokemon_Web_API
             
             services.ConfigureCustomMediaType();
             
+            services.ConfigureVersioning();
+            
             services.AddTransient<PokeApiRestClient>();
             
-            services.AddAutoMapper(typeof(Startup));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
