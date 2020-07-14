@@ -8,6 +8,7 @@ using Entities.Models;
 using HttpServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Pokemon_Web_API.ActionFilters;
 using Pokemon_Web_API.Extensions;
 using Repository.DataShaping;
@@ -44,6 +46,7 @@ namespace Pokemon_Web_API
                 {
                     config.RespectBrowserAcceptHeader = true;
                     config.ReturnHttpNotAcceptable = true;
+                    config.CacheProfiles.Add("Public120", new CacheProfile{Duration = 120, Location = ResponseCacheLocation.Any});
                 })
                 .AddNewtonsoftJson()
                 .AddXmlDataContractSerializerFormatters();
@@ -67,6 +70,9 @@ namespace Pokemon_Web_API
             
             services.ConfigureVersioning();
             
+            services.ConfigureResponseCaching();
+            services.ConfigureCacheHeaders();
+            
             services.AddTransient<PokeApiRestClient>();
             
         }
@@ -89,6 +95,9 @@ namespace Pokemon_Web_API
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
+            app.UseResponseCaching();
+
+            app.UseHttpCacheHeaders();
             
             app.UseRouting();
 

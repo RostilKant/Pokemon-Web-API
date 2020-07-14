@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using Contracts;
 using Entities;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -95,6 +96,21 @@ namespace Pokemon_Web_API.Extensions
                 opt.Conventions.Controller<PokemonsController>().HasApiVersion(new ApiVersion(1,0));
                 opt.Conventions.Controller<PokemonsControllerV2>().HasDeprecatedApiVersion(new ApiVersion(2,0));
             });
+
+        public static void ConfigureResponseCaching(this IServiceCollection services) =>
+            services.AddResponseCaching();
+
+        public static void ConfigureCacheHeaders(this IServiceCollection services) =>
+            services.AddHttpCacheHeaders(
+                expirationOptions =>
+                {
+                    expirationOptions.MaxAge = 69;
+                    expirationOptions.CacheLocation = CacheLocation.Private;
+                },
+                validationOptions =>
+                {
+                    validationOptions.MustRevalidate = true;
+                });
 
     }
 }

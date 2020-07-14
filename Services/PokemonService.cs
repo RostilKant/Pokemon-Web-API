@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Contracts;
-using Entities;
 using Entities.GETAllFromPokeApi;
 using Entities.LinkModels;
 using Entities.Models;
@@ -12,7 +10,6 @@ using Entities.RequestFeatures;
 using HttpServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Utility;
 

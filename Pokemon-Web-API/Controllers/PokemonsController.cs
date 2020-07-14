@@ -1,27 +1,22 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using Contracts;
-using Entities;
-using Entities.GETAllFromPokeApi;
 using Entities.Models;
 using Entities.RequestFeatures;
-using HttpServices;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Pokemon_Web_API.ActionFilters;
 using Pokemon_Web_API.ModelBinders;
-using Pokemon = Entities.GetPokemonsFromPokeApi.Pokemon;
 
 
 namespace Pokemon_Web_API.Controllers
 {
     [Route("api/pokemons")]
     [ApiController]
+    //[ResponseCache(CacheProfileName = "Duration120")]
     public class PokemonsController : ControllerBase
     {
         private readonly IPokemonService _pokemonService;
@@ -52,6 +47,9 @@ namespace Pokemon_Web_API.Controllers
         
         [HttpGet("{pokemonId}", Name = "GetPokemonById")]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
+        //[ResponseCache(Duration = 20, Location = ResponseCacheLocation.Any)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)]
+        [HttpCacheValidation(MustRevalidate = false)]
         public async Task<IActionResult> GetPokemonById(int pokemonId) => 
             Ok(await _pokemonService.FindPokemonByIdAsync(pokemonId));
         

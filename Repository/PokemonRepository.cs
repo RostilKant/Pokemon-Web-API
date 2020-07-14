@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Contracts;
 using Entities;
@@ -37,6 +36,7 @@ namespace Repository
         
         public async Task<Pokemon> GetPokemonAsync(int pokemonId, bool trackChanges) => await 
             FindByCondition(p => p.Id.Equals(pokemonId), trackChanges)
+                .Include(p => p.Types)
                 .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Pokemon>> GetPokemonsByIdsAsync(IEnumerable<int> ids, bool trackChanges) => await 
