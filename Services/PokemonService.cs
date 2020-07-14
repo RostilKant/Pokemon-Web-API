@@ -11,6 +11,7 @@ using HttpServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Services.Utility;
 
 namespace Services
@@ -48,13 +49,16 @@ namespace Services
             return poke;
         }
 
-        public async Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonParameters pokemonParameters)
+        public async Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonParameters pokemonParameters, HttpResponse response)
         {
             var pokemons = await _repositoryManager.Pokemon.GetAllPokemonsAsync(pokemonParameters,false);
-            if (pokemons == null) _logger.LogInformation($"Pokemons doesn't exist in the DB.");
 
+            if (pokemons == null) _logger.LogInformation($"Pokemons doesn't exist in the DB."); 
+            
+            response.Headers.Add("X-Pagination",
+                    JsonConvert.SerializeObject(pokemons.Metadata));
+            
             return _mapper.Map<IEnumerable<PokemonDto>>(pokemons);
-
         }
 
         public async Task<PokemonDto> FindPokemonByIdAsync(int pokemonId)

@@ -39,7 +39,7 @@ namespace Pokemon_Web_API.Controllers
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetPokemons([FromQuery] PokemonParameters pokemonParameters)
         {
-            var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonParameters);
+            var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonParameters, Response);
             if (pokemons == null) return NotFound();
             var links = _pokemonService.GenerateLinksOrShapePokemons(pokemons,pokemonParameters,HttpContext);
             return links.HasLinks ? Ok(links.LinkedShapedObjects) : Ok(links.ShapedObjects);

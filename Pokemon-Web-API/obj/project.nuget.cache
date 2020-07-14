@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZRARCDcMoQLEMmcTsw7qde1QtL/tzai6vHDAyfpLELtdXwbIhVPEypn0IpifIq3Joz3lnL6i64/0Vc//f9ig2g==",
+  "dgSpecHash": "mNnMjkqcNkpPP56txvYPIXjZ/QjbkxqHdKaM/R/LIN5ZWzcnLUVMqBJr8c1LEBx9zMA2fP6P/R1tH3T24DxHmA==",
   "success": true,
   "projectFilePath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/Pokemon-Web-API.csproj",
   "expectedPackageFiles": [
+    "/home/rostil/.nuget/packages/aspnetcoreratelimit/3.0.5/aspnetcoreratelimit.3.0.5.nupkg.sha512",
     "/home/rostil/.nuget/packages/automapper/9.0.0/automapper.9.0.0.nupkg.sha512",
     "/home/rostil/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/7.0.0/automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "/home/rostil/.nuget/packages/marvin.cache.headers/5.0.1/marvin.cache.headers.5.0.1.nupkg.sha512",

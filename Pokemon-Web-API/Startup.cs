@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreRateLimit;
 using AutoMapper;
 using Contracts;
 using Entities.Models;
@@ -72,6 +73,10 @@ namespace Pokemon_Web_API
             
             services.ConfigureResponseCaching();
             services.ConfigureCacheHeaders();
+
+            services.AddMemoryCache();
+            services.ConfigureRateLimitingOptions();
+            services.AddHttpContextAccessor();
             
             services.AddTransient<PokeApiRestClient>();
             
@@ -98,6 +103,8 @@ namespace Pokemon_Web_API
             app.UseResponseCaching();
 
             app.UseHttpCacheHeaders();
+
+            app.UseIpRateLimiting();
             
             app.UseRouting();
 

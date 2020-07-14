@@ -26,7 +26,7 @@ namespace Pokemon_Web_API.Controllers
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetPokemons([FromQuery] PokemonParameters pokemonParameters)
         {
-            var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonParameters);
+            var pokemons = await _pokemonService.FindAllPokemonsAsync(pokemonParameters, Response);
             var pokemons1 = pokemons.Where(p =>
                 p.Types.Any(t => t.Name.Contains("p")));
             if (pokemons1 == null) return NotFound();
