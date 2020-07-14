@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -34,6 +35,25 @@ namespace Entities.Models
                     Height = 64,
                     Name = "bulbasaur",
                     Weight = 22
+                }
+            );
+        }
+    }
+    
+    public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
+    {
+        public void Configure(EntityTypeBuilder<IdentityRole> builder)
+        {
+            builder.HasData(
+                new IdentityRole
+                {
+                    Name = "Manager",
+                    NormalizedName = "MANAGER"
+                },
+                new IdentityRole
+                {
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
                 }
             );
         }

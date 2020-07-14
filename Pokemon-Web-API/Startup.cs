@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.Net.Http.Headers;
 using Pokemon_Web_API.ActionFilters;
 using Pokemon_Web_API.Extensions;
@@ -59,6 +60,7 @@ namespace Pokemon_Web_API
             services.ConfigureRepositoryManager();
             services.ConfigurePokemonService();
             services.ConfigureTypeService();
+            services.ConfigureUserService();
 
             services.AddScoped<ModelValidationFilterAttribute>();
             services.AddScoped<ValidatePokemonExistsAttribute>();
@@ -77,6 +79,10 @@ namespace Pokemon_Web_API
             services.AddMemoryCache();
             services.ConfigureRateLimitingOptions();
             services.AddHttpContextAccessor();
+
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+            services.ConfigureJWT(Configuration);
             
             services.AddTransient<PokeApiRestClient>();
             
@@ -108,6 +114,7 @@ namespace Pokemon_Web_API
             
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

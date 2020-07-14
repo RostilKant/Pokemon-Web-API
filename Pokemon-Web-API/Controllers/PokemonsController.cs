@@ -5,6 +5,7 @@ using Contracts;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -45,7 +46,7 @@ namespace Pokemon_Web_API.Controllers
             return links.HasLinks ? Ok(links.LinkedShapedObjects) : Ok(links.ShapedObjects);
         }
         
-        [HttpGet("{pokemonId}", Name = "GetPokemonById")]
+        [HttpGet("{pokemonId}", Name = "GetPokemonById"), Authorize]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
         //[ResponseCache(Duration = 20, Location = ResponseCacheLocation.Any)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)]

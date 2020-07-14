@@ -15,6 +15,7 @@
         <e p="IRepositoryManager.cs" t="Include" />
         <e p="ITypeRepository.cs" t="Include" />
         <e p="ITypeService.cs" t="Include" />
+        <e p="IUserService.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -53,6 +54,7 @@
           <e p="ShapedEntity.cs" t="Include" />
           <e p="ShapedExpObject.cs" t="Include" />
           <e p="Type.cs" t="Include" />
+          <e p="User.cs" t="Include" />
         </e>
         <e p="RepositoryContext.cs" t="Include" />
         <e p="RequestFeatures" t="Include">
@@ -88,6 +90,7 @@
           <e p="ValidatePokemonExistsAttribute.cs" t="Include" />
         </e>
         <e p="Controllers" t="Include">
+          <e p="AuthenticationController.cs" t="Include" />
           <e p="PokemonsController.cs" t="Include" />
           <e p="PokemonsControllerV2.cs" t="Include" />
           <e p="RootController.cs" t="Include" />
@@ -129,6 +132,10 @@
           <e p="20200624093018_InitialData004.cs" t="Include" />
           <e p="20200624093222_InitialData005.Designer.cs" t="Include" />
           <e p="20200624093222_InitialData005.cs" t="Include" />
+          <e p="20200714140300_CreatingIdentityTables.Designer.cs" t="Include" />
+          <e p="20200714140300_CreatingIdentityTables.cs" t="Include" />
+          <e p="20200714143325_AddingRolestoDb.Designer.cs" t="Include" />
+          <e p="20200714143325_AddingRolestoDb.cs" t="Include" />
           <e p="RepositoryContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="ModelBinders" t="Include">
@@ -178,6 +185,7 @@
         <e p="PokemonService.cs" t="Include" />
         <e p="Services.csproj" t="IncludeRecursive" />
         <e p="TypeService.cs" t="Include" />
+        <e p="UserService.cs" t="Include" />
         <e p="Utility" t="Include">
           <e p="PokemonLinks.cs" t="Include" />
         </e>
