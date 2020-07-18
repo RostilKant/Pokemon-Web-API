@@ -19,7 +19,11 @@ namespace Pokemon_Web_API.Controllers
             _userService = userService;
             _logger = logger;
         }
-
+        /// <summary>
+        /// User registration
+        /// </summary>
+        /// <param name="userForRegistration"></param>
+        /// <returns></returns>
         [HttpPost]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
@@ -28,7 +32,11 @@ namespace Pokemon_Web_API.Controllers
                 return BadRequest(ModelState);
             return StatusCode(201);
         }
-
+        /// <summary>
+        /// Users authorization 
+        /// </summary>
+        /// <param name="userForAuthentication"></param>
+        /// <returns>JWT Token</returns>
         [HttpPost("login")]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto userForAuthentication)
@@ -41,6 +49,6 @@ namespace Pokemon_Web_API.Controllers
             }
 
             return Ok(new {Token = await _userService.CreateToken()});
-        }
+        }    
     }
 }

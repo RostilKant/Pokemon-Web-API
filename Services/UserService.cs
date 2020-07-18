@@ -49,7 +49,9 @@ namespace Services
                 return false;
             }
 
-            await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
+            userForRegistration.Roles ??= new List<string> {"User"};
+            
+                await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
 
             return true;
         }
@@ -71,6 +73,7 @@ namespace Services
              return new JwtSecurityTokenHandler()
                 .WriteToken(tokenOptions);
         }
+        
 
         private static SigningCredentials GetSigningCredentials()
         {
@@ -107,6 +110,8 @@ namespace Services
                 signingCredentials: credentials
                 );
         }
+        
+        
         
     }
 }

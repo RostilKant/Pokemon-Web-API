@@ -86,6 +86,7 @@ namespace Pokemon_Web_API
             
             services.AddTransient<PokeApiRestClient>();
             
+            services.ConfigureSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,7 +102,15 @@ namespace Pokemon_Web_API
             app.UseStaticFiles();
 
             app.UseCors("CorsPolicy");
-
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+                {
+                    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Pokemon Web API v1");
+                    s.SwaggerEndpoint("/swagger/v2/swagger.json", "Pokemon Web API v2");
+                }
+            );
+            
             app.UseForwardedHeaders(new ForwardedHeadersOptions()
             {
                 ForwardedHeaders = ForwardedHeaders.All

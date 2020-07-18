@@ -158,3 +158,8 @@
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Microsoft.IdentityModel.Tokens.dll
 /home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/System.IdentityModel.Tokens.Jwt.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Microsoft.OpenApi.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Pokemon-Web-API/bin/Debug/netcoreapp3.1/Pokemon-Web-API.xml

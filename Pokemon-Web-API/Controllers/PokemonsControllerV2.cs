@@ -11,6 +11,7 @@ namespace Pokemon_Web_API.Controllers
 {
     [Route("api/pokemons")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v2")]
     public class PokemonsControllerV2 : Controller
     {
         private readonly IPokemonService _pokemonService;
