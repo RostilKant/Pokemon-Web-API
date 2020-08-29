@@ -16,7 +16,7 @@ namespace Pokemon_Web_API.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Entities.Models.Pokemon", b =>
@@ -185,15 +185,15 @@ namespace Pokemon_Web_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9066ddce-9dde-4c69-8482-a520a5412893",
-                            ConcurrencyStamp = "187c3d8a-b7b2-4aa5-8ec1-a99919650b1a",
+                            Id = "5941d792-cb65-4566-aa40-266dff91ddda",
+                            ConcurrencyStamp = "872119b4-9b5b-4ea4-8e19-5e5ff4bce31b",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "cca8f961-d7c6-4add-adef-3b496eb31768",
-                            ConcurrencyStamp = "78d380ea-c146-401e-90ea-c17636c2d438",
+                            Id = "d4a5d29f-3b8b-4310-96e1-93e42d187637",
+                            ConcurrencyStamp = "a2e9023b-012e-4b11-9c93-5206a792bd1d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

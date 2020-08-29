@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/Repository.csproj",
+    "projectUniqueName": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Repository/Repository.csproj",
     "projectName": "Repository",
-    "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/Repository.csproj",
-    "outputPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Repository/obj/",
+    "projectPath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Repository/Repository.csproj",
+    "outputPath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Repository/obj/",
     "projectStyle": "PackageReference",
     "originalTargetFrameworks": [
       "netcoreapp3.1"
@@ -15,8 +15,8 @@
     "frameworks": {
       "netcoreapp3.1": {
         "projectReferences": {
-          "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/Contracts.csproj": {
-            "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/Contracts.csproj"
+          "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Contracts/Contracts.csproj": {
+            "projectPath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Contracts/Contracts.csproj"
           }
         }
       }
@@ -50,7 +50,7 @@
           "privateAssets": "all"
         }
       },
-      "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
     }
   }
 }

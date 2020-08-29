@@ -4,6 +4,20 @@
         <name>Pokemon-Web-API</name>
     </assembly>
     <members>
+        <member name="M:Pokemon_Web_API.Controllers.AuthenticationController.RegisterUser(Entities.Models.UserForRegistrationDto)">
+            <summary>
+            User registration
+            </summary>
+            <param name="userForRegistration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Pokemon_Web_API.Controllers.AuthenticationController.Authenticate(Entities.Models.UserForAuthenticationDto)">
+            <summary>
+            Users authorization 
+            </summary>
+            <param name="userForAuthentication"></param>
+            <returns>JWT Token</returns>
+        </member>
         <member name="M:Pokemon_Web_API.Controllers.PokemonsController.GetPokeApimons">
             <summary>
             Get the list of all pokemons from https://pokeapi.co

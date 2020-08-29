@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Services/Services.csproj",
+    "projectUniqueName": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Services/Services.csproj",
     "projectName": "Services",
-    "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Services/Services.csproj",
-    "outputPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Services/obj/",
+    "projectPath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Services/Services.csproj",
+    "outputPath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Services/obj/",
     "projectStyle": "PackageReference",
     "originalTargetFrameworks": [
       "netcoreapp3.1"
@@ -15,11 +15,11 @@
     "frameworks": {
       "netcoreapp3.1": {
         "projectReferences": {
-          "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/Contracts.csproj": {
-            "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/Contracts/Contracts.csproj"
+          "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Contracts/Contracts.csproj": {
+            "projectPath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/Contracts/Contracts.csproj"
           },
-          "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj": {
-            "projectPath": "/home/rostil/Programming/ASP .NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj"
+          "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj": {
+            "projectPath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj"
           }
         }
       }
@@ -64,7 +64,7 @@
           "privateAssets": "all"
         }
       },
-      "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
     }
   }
 }
