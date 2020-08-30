@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4+nUeSacIDYJa+EuIkqBCKLrm7nvI6BbZJK1kRyuy9E3POWYJzKAe8DnJvJotymOePmoOIUEFJTrFg6sKri1VA==",
+  "dgSpecHash": "hAclHSJ8wkjj9FNheEZDOCw9BF2S2VFlAD4YfFEBB+oh3WTy4C3MFlna3osVukPjD8Sk+vquJYZtvQbEAVyhRw==",
   "success": true,
   "projectFilePath": "/home/rostil/Programming/ASP.NET Core/Pokemon-Web-API/HttpServices/HttpServices.csproj",
   "expectedPackageFiles": [

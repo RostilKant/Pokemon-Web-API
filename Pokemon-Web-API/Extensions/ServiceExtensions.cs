@@ -207,7 +207,7 @@ namespace Pokemon_Web_API.Extensions
                     }
 
                 });
-                s.SwaggerDoc("v2cd", new OpenApiInfo{Title = "Pokemon Web API", Version = "v2"});
+                s.SwaggerDoc("v2", new OpenApiInfo{Title = "Pokemon Web API", Version = "v2"});
                 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

@@ -10,7 +10,7 @@ namespace Entities
         public RepositoryContext(DbContextOptions options) : base(options)
         {
             //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
         public DbSet<Pokemon> Pokemons { get; set; }
         public DbSet<Type> Types { get; set; }
