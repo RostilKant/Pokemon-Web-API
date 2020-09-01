@@ -32,7 +32,8 @@ Command above used for adding cert with nickname to chrome database
 
 https://serverfault.com/questions/845766/generating-a-self-signed-cert-with-openssl-that-works-in-chrome-58 - command for creating .key and .cert
 Command above differ from previous by adding [SAN] section, in order to avoid NET::ERR_CERT_COMMON_NAME_INVALID.
-
+UPD: [SAN] section isn't essential, u should use simple openssconfig.cnf with prop subjectAltName, without it ssl in chrome doesn't work, and simply use Common Name as 'localhost'
+For example u can check my config in AngularClient/ssl/generate-trusted-ssl-certificate/openssl-custom.cnf
 
 
 
