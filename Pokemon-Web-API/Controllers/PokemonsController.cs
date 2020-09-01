@@ -65,7 +65,7 @@ namespace Pokemon_Web_API.Controllers
             Ok(await _pokemonService.FindPokemonByIdAsync(pokemonId));
         
         
-        [HttpGet("collection/{pokemonIds}", Name = "PokemonsCollection"), Authorize]
+        [HttpGet("collection/", Name = "PokemonsCollection"), Authorize]
         public async Task<IActionResult> GetPokemonByIds([ModelBinder(BinderType =
         typeof(ArrayModelBinder))]IEnumerable<int> pokemonIds)
         {
