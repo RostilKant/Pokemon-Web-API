@@ -17,7 +17,6 @@ If u got NET::ERR_CERT_AUTHORITY_INVALID - https://superuser.com/questions/10837
 The file contained one certificate, which was not imported: localhost: Not a Certification Authority:
 -
 > openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 365 -out server.crt 
-If doesn't help, u can try https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate
 To trust cert(Ubuntu/Debian) - https://unix.stackexchange.com/questions/90450/adding-a-self-signed-certificate-to-the-trusted-list
 
 FINAL:
@@ -34,6 +33,10 @@ https://serverfault.com/questions/845766/generating-a-self-signed-cert-with-open
 Command above differ from previous by adding [SAN] section, in order to avoid NET::ERR_CERT_COMMON_NAME_INVALID.
 UPD: [SAN] section isn't essential, u should use simple openssconfig.cnf with prop subjectAltName, without it ssl in chrome doesn't work, and simply use Common Name as 'localhost'
 For example u can check my config in AngularClient/ssl/generate-trusted-ssl-certificate/openssl-custom.cnf
+
+For trusting ssl for asp .net core server I used command above with openssl-custom.cnf
+
+https://stackoverflow.com/questions/55485511/how-to-run-dotnet-dev-certs-https-trust
 
 
 
