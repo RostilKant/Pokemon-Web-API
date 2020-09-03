@@ -49,6 +49,12 @@ namespace Services
             return poke;
         }
 
+        public string GetPokemonFrontView(string pokeId)
+        {
+            var baseUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
+            return $"{baseUrl}/{pokeId}.png";
+        }
+
         public async Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonParameters pokemonParameters, HttpResponse response)
         {
             var pokemons = await _repositoryManager.Pokemon.GetAllPokemonsAsync(pokemonParameters,false);

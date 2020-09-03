@@ -8,6 +8,7 @@ namespace Entities.GetPokemonsFromPokeApi
         public string Name { get; set; }
         public int Height { get; set; }
         public int Weight { get; set; }
+        public List<Sprite> Sprites { get; set; }
         
         public List<PokemonType> Types { get; set; }
     }

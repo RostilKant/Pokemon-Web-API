@@ -1,7 +1,0 @@
-# Datasource local storage ignored files
-/.idea.Pokemon-Web-API/.idea/dataSources/
-/.idea.Pokemon-Web-API/.idea/dataSources.local.xml
-**/*.dll
-*.pdb
-netcoreapp3.1
-*.cache

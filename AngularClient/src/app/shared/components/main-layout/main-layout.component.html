@@ -1,0 +1,21 @@
+<div >
+  <mat-toolbar color="primary">
+    <span class="flexim"><mat-icon>coronavirus</mat-icon></span>
+    <span class="flexim" >Pokemon Web API</span>
+    <button mat-button >
+      Login
+    </button>
+  </mat-toolbar>
+</div>
+
+  <mat-list>
+    <mat-list-item mat-list-item  *ngFor="let pokemon of poke;let idx = index">
+      <img matListAvatar src="{{generateSrc(idx+1)}}" alt="Not Found" >
+      <h3 matLine> {{pokemon.name | titlecase}} </h3>
+      <p matLine>
+        <span> {{pokemon.name | titlecase}} </span>
+        <span class="demo-2"> -- small intro </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+

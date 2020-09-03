@@ -18,6 +18,7 @@ namespace Contracts
     {
         NewRootObject GetAllFromPokeApi();
         Entities.GetPokemonsFromPokeApi.Pokemon  GetByIdFromPokeApi(string pokeId);
+        public string GetPokemonFrontView(string pokeId);
         Task<IEnumerable<PokemonDto>> FindAllPokemonsAsync(PokemonParameters pokemonParameters, HttpResponse response);
         Task<PokemonDto> FindPokemonByIdAsync(int pokemonId);
 

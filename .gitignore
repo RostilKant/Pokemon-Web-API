@@ -1,10 +1,11 @@
 # Datasource local storage ignored files
 /.idea.Pokemon-Web-API/.idea/dataSources/
 /.idea.Pokemon-Web-API/.idea/dataSources.local.xml
-**/*.dll
+*.dll
 *.pdb
 netcoreapp3.1
 *.cache
+/.idea/*
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
@@ -17,6 +18,8 @@ AngularClient/bazel-out
 
 # dependencies
 AngularClient/node_modules
+/node_modules
+*/bin/Debug/netcoreapp3.1
 
 # profiling files
 chrome-profiler-events*.json
