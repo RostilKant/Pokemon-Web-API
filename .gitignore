@@ -33,6 +33,10 @@ speed-measure-plugin*.json
 *.launch
 .settings/
 *.sublime-workspace
+*.csproj
+*.csproj.*
+
+
 
 # IDE - VSCode
 .vscode/*
