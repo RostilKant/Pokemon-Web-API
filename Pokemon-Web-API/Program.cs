@@ -22,13 +22,16 @@ namespace Pokemon_Web_API
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    /*webBuilder.ConfigureKestrel(o =>
-                    {
-                        o.ConfigureHttpsDefaults(o =>
-                        {
-                            o.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
-                        });
-                    });*/
+                    
                 });
     }
 }
+
+/*"Kestrel": {
+   "Certificates": {
+     "Default": {
+       "Path": "./Pokemon-Web-API/AngularClient/ssl/server1.pfx",
+       "Password": ""
+     }
+   }
+ }*/
