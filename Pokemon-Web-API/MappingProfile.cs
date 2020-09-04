@@ -16,7 +16,8 @@ namespace Pokemon_Web_API
             CreateMap<RootObject, NewRootObject>();
             CreateMap<Result, NResult>().ForMember(c => c.Url, x
                     => x.MapFrom(y =>
-                        string.Concat("https://localhost:5001/api/pokemons/pokeApi", y.Url.Remove(0, 33))))
+                        //Previous map - https://localhost:5001/api/pokemons/poke-api
+                        string.Concat("https://pokemon-web-api.azurewebsites.net/api/pokemons/poke-api", y.Url.Remove(0, 33))))
                 .ForMember(c => c.Name,
                     opt
                         => opt.MapFrom(x => x.Name));
