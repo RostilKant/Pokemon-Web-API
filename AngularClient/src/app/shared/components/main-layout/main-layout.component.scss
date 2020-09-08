@@ -1,9 +1,13 @@
-.flexim {
-  flex: auto;
+mat-toolbar{
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+.mat-toolbar-single-row{
+  height: 50px;
+  margin-bottom: 20px;
 }
 
-/*.mat-list-base {
-  width: 18%;
-  margin-left: auto;
-  margin-right: auto;
-}*/

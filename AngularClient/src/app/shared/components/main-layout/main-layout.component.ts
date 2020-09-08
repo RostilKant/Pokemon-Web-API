@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {delay} from 'rxjs/operators';
+
+const img = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' ;
 
 @Component({
   selector: 'app-main-layout',
@@ -10,17 +13,21 @@ export class MainLayoutComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
   poke;
+  isLoading;
 
   ngOnInit(): void {
-    this.http.get('https://localhost:5001/api/pokemons/poke-api').subscribe((response: any) => {
+    this.isLoading = true;
+    this.http.get('https://pokemon-web-api.azurewebsites.net/api/pokemons/poke-api')
+      .pipe(delay(2000))
+      .subscribe((response: any) => {
       this.poke = response.results;
-      console.log(response);
-    }, error => {
+      this.isLoading = false;
+      }, error => {
       console.log(error);
     });
   }
 
   generateSrc(id: number): string {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    return img + `${id}.png`;
   }
 }

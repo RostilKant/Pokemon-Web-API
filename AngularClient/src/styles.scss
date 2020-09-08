@@ -1,4 +1,32 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.disableScrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.flexim {
+  flex: auto;
+}
+
+.mat-list-base {
+  padding-top: 4rem !important;
+ /* width: 18%;
+  margin-left: auto;
+  margin-right: auto;*/
+
+}
+
+mat-progress-spinner {
+  margin: 15rem auto;
+  width: 50%;
+}
+
