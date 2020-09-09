@@ -1,18 +1,21 @@
-<nav>
-    <mat-toolbar color="primary">
-      <span class="flexim"><mat-icon>coronavirus</mat-icon></span>
-      <span class="flexim" >Pokemon Web API</span>
-      <button mat-button >
-        Login
-      </button>
-    </mat-toolbar>
-</nav>
+<div>
+  <mat-toolbar color="primary">
+    <span class="flexim"><mat-icon>coronavirus</mat-icon></span>
+    <span class="flexim" >Pokemon Web API</span>
+    <button mat-button >
+      Login
+    </button>
+  </mat-toolbar>
+</div>
 
 
-<div *ngIf="!isLoading; else loading">
-  <mat-list>
+<div class="enableScrollBar" >
+
+  <router-outlet></router-outlet>
+
+  <mat-list *ngIf="!isLoading; else loading">
     <mat-list-item mat-list-item  *ngFor="let pokemon of poke;let idx = index;">
-      <img matListAvatar [src]="generateSrc(idx + 1)" alt="Not Found" >
+      <img class="bigger-icon" matListAvatar [src]="generateSrc(idx + 1)" alt="Not Found" >
       <h3 matLine> {{pokemon.name | titlecase}} </h3>
       <p matLine>
         <span> {{pokemon.name | titlecase}} </span>
