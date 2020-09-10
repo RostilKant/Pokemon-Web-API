@@ -6,11 +6,19 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCardModule} from '@angular/material/card';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
+import {MainLayoutComponent} from './components/main-layout/main-layout.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
+  declarations: [
+    PokemonComponent,
+    MainLayoutComponent
+  ],
   imports: [
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   exports: [
     MatToolbarModule,
@@ -19,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     MatListModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    PokemonComponent
   ]
 })
 export class SharedModule{ }

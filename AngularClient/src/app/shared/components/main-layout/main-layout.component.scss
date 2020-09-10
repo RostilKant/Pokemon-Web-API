@@ -2,38 +2,18 @@ mat-toolbar{
   display: flex;
   z-index: 2;
 }
+
 .mat-toolbar-single-row{
   height: 2.5rem;
 }
-
 
 .flexim {
   flex: auto;
 }
 
-.mat-list-base {
-  //display: none;
-  // padding-top: 4rem !important;
-  /* width: 18%;
-   margin-left: auto;
-   margin-right: auto;*/
-
-}
-
-mat-progress-spinner {
-  margin: 15rem auto;
-  width: 50%;
-}
-
-.enableScrollBar{
+div {
   height: 100%;
   overflow: auto;
 }
-
-.bigger-icon {
-  width: 76px !important;
-  height: 76px !important;
-}
-
 
 
