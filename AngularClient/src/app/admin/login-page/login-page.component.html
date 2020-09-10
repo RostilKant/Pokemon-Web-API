@@ -1,1 +1,37 @@
-<p>login-page works!</p>
+<p>Login as administrator</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field
+    [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>Email</mat-label>
+    <label for="email">
+      <input formControlName="email" type="email" id="email" matInput placeholder="Email">
+    </label>
+    <mat-hint>Please, use @gmail.com</mat-hint>
+    <mat-error *ngIf="form.get('email').touched && form.get('email').invalid">
+      {{getEmailErrorMessage()}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>Password</mat-label>
+    <label for="password">
+      <input formControlName="password" type="password" id="password" matInput placeholder="Password">
+    </label>
+<!--    <mat-hint>Only latin letters & at least 6 symbols</mat-hint>-->
+    <mat-error *ngIf="form.get('password').touched && form.get('password').invalid">
+      {{getPasswordErrorMessage()}}
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    type="submit"
+    [disabled]="form.invalid"
+    mat-flat-button
+    color="accent"
+  >Login</button>
+</form>

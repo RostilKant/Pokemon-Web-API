@@ -8,6 +8,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import {MainLayoutComponent} from './components/main-layout/main-layout.component';
 import {RouterModule} from '@angular/router';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import {RouterModule} from '@angular/router';
     MatIconModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     MatToolbarModule,
@@ -32,6 +36,8 @@ import {RouterModule} from '@angular/router';
     MatProgressSpinnerModule,
     HttpClientModule,
     RouterModule,
+    MatFormFieldModule,
+    MatInputModule,
     PokemonComponent
   ]
 })
