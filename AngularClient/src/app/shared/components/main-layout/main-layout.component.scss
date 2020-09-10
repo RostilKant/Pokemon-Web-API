@@ -1,19 +1,26 @@
 mat-toolbar{
   display: flex;
   z-index: 2;
+
 }
 
 .mat-toolbar-single-row{
   height: 2.5rem;
 }
 
-.flexim {
-  flex: auto;
+.flex-spacer {
+  flex-grow: 1;
 }
 
-div {
+mat-icon {
+  padding: 0 8px 0 0 ;
+}
+
+div.enableScrolling {
   height: 100%;
   overflow: auto;
 }
 
-
+.mat-button {
+  padding: 0 8px;
+}

@@ -7,6 +7,7 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {DashboardPageComponent} from './dashboard-page/dashboard-page.component';
 import {CreatePageComponent} from './create-page/create-page.component';
 import {EditPageComponent} from './edit-page/edit-page.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {EditPageComponent} from './edit-page/edit-page.component';
           {path: 'pokemon/:id/edit', component: EditPageComponent}
         ]
       }
-    ])
+    ]),
+    SharedModule
   ]
 })
 export class AdminModule {

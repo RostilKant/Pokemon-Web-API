@@ -5,7 +5,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule} from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatCardModule} from '@angular/material/card';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import {MainLayoutComponent} from './components/main-layout/main-layout.component';
 import {RouterModule} from '@angular/router';
@@ -18,7 +17,12 @@ import {RouterModule} from '@angular/router';
   ],
   imports: [
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -26,8 +30,8 @@ import {RouterModule} from '@angular/router';
     MatIconModule,
     MatListModule,
     MatProgressSpinnerModule,
-    MatCardModule,
     HttpClientModule,
+    RouterModule,
     PokemonComponent
   ]
 })

@@ -1,2 +1,13 @@
-<p>admin-layout works!</p>
-<router-outlet></router-outlet>
+<mat-toolbar color="accent">
+  <mat-icon>coronavirus</mat-icon>
+  <span>Pokemon Web API</span>
+  <div class="flex-spacer"></div>
+  <a mat-button [routerLink]="['/admin', 'dashboard']">Dashboard</a>
+  <a mat-button [routerLink]="['/admin', 'create']">Create</a>
+  <a mat-button (click)="logout($event)">Logout</a>
+</mat-toolbar>
+
+<div>
+  <router-outlet></router-outlet>
+</div>
+
