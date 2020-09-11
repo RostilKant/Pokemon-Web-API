@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Contracts;
 using Entities.Models;
@@ -12,6 +13,11 @@ namespace Contracts
 
         Task<bool> ValidateUser(UserForAuthenticationDto userForAuthentication);
 
-        Task<string> CreateToken();
+        Task<MyToken> CreateToken();
+    }
+    public class MyToken
+    {
+        public string Token { get; set; }
+        public TimeSpan ExpiresIn { get; set; }
     }
 }

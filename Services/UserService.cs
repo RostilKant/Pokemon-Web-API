@@ -64,14 +64,19 @@ namespace Services
                 .CheckPasswordAsync(_user, userForAuthentication.Password));
         }
 
-        public async Task<string> CreateToken()
+        public async Task<MyToken> CreateToken()
         {
             var credentials = GetSigningCredentials();
             var claims = await GetClaims();
             var tokenOptions = GenerateTokenOptions(credentials, claims);
+            
+            return new MyToken
+            {
+                Token = new JwtSecurityTokenHandler()
+                    .WriteToken(tokenOptions),
+                ExpiresIn = tokenOptions.ValidTo.ToLocalTime().TimeOfDay
+            };
 
-             return new JwtSecurityTokenHandler()
-                .WriteToken(tokenOptions);
         }
         
 
@@ -111,7 +116,7 @@ namespace Services
                 );
         }
         
-        
-        
     }
+    
 }
+

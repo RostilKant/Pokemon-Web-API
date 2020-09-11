@@ -48,7 +48,7 @@ namespace Pokemon_Web_API.Controllers
                 return Unauthorized();
             }
 
-            return Ok(new {Token = await _userService.CreateToken()});
+            return Ok(await _userService.CreateToken());
         }    
     }
 }
