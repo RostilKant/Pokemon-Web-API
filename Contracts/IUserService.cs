@@ -18,6 +18,6 @@ namespace Contracts
     public class MyToken
     {
         public string Token { get; set; }
-        public TimeSpan ExpiresIn { get; set; }
+        public DateTime ExpiresIn { get; set; }
     }
 }

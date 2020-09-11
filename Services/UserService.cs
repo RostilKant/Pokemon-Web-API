@@ -74,7 +74,7 @@ namespace Services
             {
                 Token = new JwtSecurityTokenHandler()
                     .WriteToken(tokenOptions),
-                ExpiresIn = tokenOptions.ValidTo.ToLocalTime().TimeOfDay
+                ExpiresIn = tokenOptions.ValidTo.ToLocalTime()
             };
 
         }
