@@ -10,6 +10,9 @@ export class DashboardPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // if (localStorage.getItem('jwt-token') == null){
+    //   this.router.navigate(['/admin', 'login']);
+    // }
   }
 
 }

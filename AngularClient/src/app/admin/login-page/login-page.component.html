@@ -1,16 +1,19 @@
 <p>Login as administrator</p>
 <form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-card *ngIf="error$ | async as error" >
+    {{error}}
+  </mat-card>
   <mat-form-field
-    [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid }"
+    [ngClass]="{invalid: form.get('userName').touched && form.get('userName').invalid }"
     color="accent"
     appearance="standard">
-    <mat-label>Email</mat-label>
-    <label for="email">
-      <input formControlName="email" type="email" id="email" matInput placeholder="Email">
+    <mat-label>User Name</mat-label>
+    <label for="userName">
+      <input formControlName="userName" id="userName" matInput placeholder="User Name">
     </label>
-    <mat-hint>Please, use @gmail.com</mat-hint>
-    <mat-error *ngIf="form.get('email').touched && form.get('email').invalid">
-      {{getEmailErrorMessage()}}
+    <mat-hint>It should contain at least 1 number</mat-hint>
+    <mat-error *ngIf="form.get('userName').touched && form.get('userName').invalid">
+      {{getUserNameErrorMessage()}}
     </mat-error>
   </mat-form-field>
 
@@ -30,8 +33,11 @@
 
   <button
     type="submit"
-    [disabled]="form.invalid"
+    [disabled]="form.invalid || submitted"
     mat-flat-button
     color="accent"
   >Login</button>
 </form>
+
+
+

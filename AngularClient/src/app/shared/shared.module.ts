@@ -10,6 +10,7 @@ import {MainLayoutComponent} from './components/main-layout/main-layout.componen
 import {RouterModule} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -20,24 +21,29 @@ import {MatInputModule} from '@angular/material/input';
   imports: [
     HttpClientModule,
     RouterModule,
+
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatListModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
-  exports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    HttpClientModule,
-    RouterModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
+  ],
+  exports: [
+    HttpClientModule,
+    RouterModule,
+
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+
     PokemonComponent
   ]
 })
