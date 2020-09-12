@@ -1,8 +1,13 @@
 <p>Login as administrator</p>
 <form [formGroup]="form" (ngSubmit)="submit()">
-  <mat-card *ngIf="error$ | async as error" >
+
+  <mat-card class="danger" *ngIf="error$ | async as error" >
     {{error}}
   </mat-card>
+  <mat-card class="info" *ngIf="message" >
+    {{message}}
+  </mat-card>
+
   <mat-form-field
     [ngClass]="{invalid: form.get('userName').touched && form.get('userName').invalid }"
     color="accent"

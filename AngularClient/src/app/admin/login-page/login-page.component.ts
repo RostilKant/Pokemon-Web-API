@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../shared/interfaces';
 import {AuthService} from '../shared/services/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -13,12 +13,21 @@ export class LoginPageComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   error$ = this.auth.error$;
+  message;
 
   constructor(
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params.loginAgain) {
+        this.message = 'Please, login as admin';
+      }
+    });
+
     this.form = new FormGroup({
       userName: new FormControl(null,
         [Validators.required]),
@@ -63,4 +72,6 @@ export class LoginPageComponent implements OnInit {
       this.submitted = false;
     });
   }
+
+
 }
