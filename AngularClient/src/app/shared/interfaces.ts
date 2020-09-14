@@ -7,3 +7,7 @@ export interface MyToken {
   token: string;
   expiresIn: string;
 }
+
+export interface Type {
+  name: string;
+}

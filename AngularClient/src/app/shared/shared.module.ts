@@ -11,6 +11,9 @@ import {RouterModule} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -30,6 +33,9 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   exports: [
     HttpClientModule,
@@ -43,6 +49,9 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatChipsModule,
 
     PokemonComponent
   ]
