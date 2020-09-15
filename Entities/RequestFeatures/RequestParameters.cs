@@ -23,7 +23,7 @@ namespace Entities.RequestFeatures
     {
         public PokemonParameters()
         {
-            OrderBy = "name";
+            OrderBy = "id";
         }
         public string Type { get; set; }
         public string Name { get; set; }
