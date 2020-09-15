@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../shared/interfaces';
 import {AuthService} from '../shared/services/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {MyValidators} from '../../shared/my.validators';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -30,26 +31,24 @@ export class LoginPageComponent implements OnInit {
 
     this.form = new FormGroup({
       userName: new FormControl(null,
-        [Validators.required]),
+        [Validators.required, MyValidators.containNumber(/\d/)]),
       password: new FormControl(null,
         [Validators.required, Validators.minLength(8)])
     });
     localStorage.clear();
   }
 
-  getUserNameErrorMessage(): string {
-    if (this.form.get('userName').errors.required){
-      return 'You must enter a value';
+  getErrorMessage(control: string, secondPartOfControl: string = ''): string {
+    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.required) {
+      return `${control + secondPartOfControl} is required`;
     }
-  }
-
-  getPasswordErrorMessage(): string {
-    if (this.form.get('password').errors.required){
-      return 'You must enter a value';
-    }
-    if (this.form.get('password').errors.minlength){
-      return `You must enter at least
+    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.minlength) {
+      return `${control} must contain at least
       ${this.form.get('password').errors.minlength.requiredLength} symbols`;
+    }
+
+    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.containNumber) {
+      return `UserName must contain at least one number`;
     }
   }
 

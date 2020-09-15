@@ -18,7 +18,7 @@
     </label>
     <mat-hint>It should contain at least 1 number</mat-hint>
     <mat-error *ngIf="form.get('userName').touched && form.get('userName').invalid">
-      {{getUserNameErrorMessage()}}
+      {{getErrorMessage('User', 'Name')}}
     </mat-error>
   </mat-form-field>
 
@@ -32,7 +32,7 @@
     </label>
 <!--    <mat-hint>Only latin letters & at least 6 symbols</mat-hint>-->
     <mat-error *ngIf="form.get('password').touched && form.get('password').invalid">
-      {{getPasswordErrorMessage()}}
+      {{getErrorMessage('Password')}}
     </mat-error>
   </mat-form-field>
 
