@@ -1,1 +1,48 @@
-<p>dashboard-page works!</p>
+<mat-form-field
+  appearance="outline"
+  color="accent"
+>
+  <mat-label>Find any pokemon</mat-label>
+  <label>
+    <input
+      matInput
+      placeholder="Find it..."
+    >
+  </label>
+</mat-form-field>
+
+
+
+<table mat-table [dataSource]="pokemons" *ngIf="!isLoading; else loading">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let pokemon"> {{pokemon.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let pokemon"> {{pokemon.name | titlecase}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="height">
+    <th mat-header-cell *matHeaderCellDef> Height </th>
+    <td mat-cell *matCellDef="let pokemon"> {{pokemon.height}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let pokemon"> {{pokemon.weight}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<ng-template  #loading>
+  <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
+</ng-template>

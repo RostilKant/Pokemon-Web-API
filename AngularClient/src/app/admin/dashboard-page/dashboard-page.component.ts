@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {PokemonService} from '../shared/services/pokemon.service';
+import {delay} from 'rxjs/operators';
+import {PokemonDto} from '../../shared/interfaces';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -7,12 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPageComponent implements OnInit {
 
-  constructor() { }
+  isLoading;
+  pokemons: PokemonDto[];
+  displayedColumns: string[] = ['id', 'name', 'height', 'weight'];
+
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    // if (localStorage.getItem('jwt-token') == null){
-    //   this.router.navigate(['/admin', 'login']);
-    // }
+    this.isLoading = true;
+    this.pokemonService.getAllPokemons()
+      .pipe(delay(2000))
+      .subscribe((response: any) => {
+        this.pokemons = response;
+        this.isLoading = false;
+      }, error => {
+        console.log(error);
+      });
   }
 
 }

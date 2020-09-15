@@ -14,6 +14,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCardModule,
     MatCheckboxModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule
   ],
   exports: [
     HttpClientModule,
@@ -52,6 +54,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCheckboxModule,
     MatAutocompleteModule,
     MatChipsModule,
+    MatTableModule,
 
     PokemonComponent
   ]

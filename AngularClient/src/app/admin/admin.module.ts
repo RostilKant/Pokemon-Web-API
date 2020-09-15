@@ -11,7 +11,7 @@ import {SharedModule} from '../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from './shared/services/auth.service';
 import {AuthGuard} from './shared/services/auth.guard';
-import {PostService} from './shared/services/post.service';
+import {PokemonService} from './shared/services/pokemon.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MyInterceptor} from '../shared/my.interceptor';
 
@@ -49,7 +49,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
   providers: [
     AuthService,
     AuthGuard,
-    PostService,
+    PokemonService,
     INTERCEPTOR_PROVIDER
   ]
 })

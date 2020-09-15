@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PokemonDto, Type} from '../../shared/interfaces';
-import {PostService} from '../shared/services/post.service';
+import {PokemonService} from '../shared/services/pokemon.service';
 // import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
@@ -40,7 +40,7 @@ export class CreatePageComponent implements OnInit {
   // removable = true;
   disable = false;
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PokemonService) {
   }
 
   ngOnInit(): void {

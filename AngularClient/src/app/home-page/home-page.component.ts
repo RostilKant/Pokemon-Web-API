@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {delay} from 'rxjs/operators';
+import {PokemonService} from '../admin/shared/services/pokemon.service';
 
 const img = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' ;
 
@@ -11,13 +11,13 @@ const img = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/po
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private pokemonService: PokemonService) { }
   poke;
   isLoading;
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.http.get('https://pokemon-web-api.azurewebsites.net/api/pokemons/poke-api')
+    this.pokemonService.getAllFromPokeApi()
       .pipe(delay(2000))
       .subscribe((response: any) => {
         this.poke = response.results;

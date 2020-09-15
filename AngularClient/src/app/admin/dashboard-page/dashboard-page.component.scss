@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+}
+
+
+mat-progress-spinner {
+  margin: 15rem auto;
+  width: 50%;
+}
+
+mat-form-field.mat-form-field {
+  width: 98%;
+  margin-left: 1%;
+  margin-right: 1%;
+  padding: 0 !important;
+}
+
+.mat-input-element {
+  margin: 0;
+}
+
+mat-form-field.mat-form-field-infix {
+  padding: 0 !important;
+}
+
+mat-form-field.mat-form-field-appearance-outline {
+  padding: 0 !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0;
+}
