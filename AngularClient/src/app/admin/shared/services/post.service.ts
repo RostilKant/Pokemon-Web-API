@@ -10,10 +10,11 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   create(pokemon: PokemonDto): Observable<PokemonDto> {
-    return this.http.post<PokemonDto>('https://pokemon-web-api.azurewebsites.net/api/pokemons', pokemon, {
+    return this.http.post<PokemonDto>('https://pokemon-web-api.azurewebsites.net/api/pokemons', pokemon);
+   /* {
       headers: {
         Authorization: localStorage.getItem('jwt-token'),
       }
-    });
+    });*/
   }
 }

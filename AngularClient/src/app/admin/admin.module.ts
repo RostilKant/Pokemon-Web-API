@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, Provider} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
@@ -12,6 +12,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from './shared/services/auth.service';
 import {AuthGuard} from './shared/services/auth.guard';
 import {PostService} from './shared/services/post.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {MyInterceptor} from '../shared/my.interceptor';
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: MyInterceptor
+};
 
 @NgModule({
   declarations: [
@@ -41,7 +49,8 @@ import {PostService} from './shared/services/post.service';
   providers: [
     AuthService,
     AuthGuard,
-    PostService
+    PostService,
+    INTERCEPTOR_PROVIDER
   ]
 })
 export class AdminModule {
