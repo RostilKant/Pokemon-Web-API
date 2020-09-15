@@ -7,7 +7,8 @@ namespace Entities.Models
     public class Type
     {
         
-        public int Id { get; set; }
+        [Key]
+        public int? Id { get; set; }
         public string Name { get; set; }
         
         [ForeignKey(nameof(Pokemon))]

@@ -44,7 +44,7 @@ namespace Pokemon_Web_API.Controllers
         [HttpGet("poke-api/{pokeId}")]
         public IActionResult GetPokeApimon(string pokeId) => Ok(_pokemonService.GetByIdFromPokeApi(pokeId));
         
-        
+        [Authorize]
         [HttpGet(Name = "GetPokemons")]
         //[HttpHead]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
@@ -57,6 +57,7 @@ namespace Pokemon_Web_API.Controllers
             return Ok(pokemons);
         }
         
+        [Authorize]
         [HttpGet("{pokemonId}", Name = "GetPokemonById")]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
         //[ResponseCache(Duration = 20, Location = ResponseCacheLocation.Any)]
@@ -65,7 +66,7 @@ namespace Pokemon_Web_API.Controllers
         public async Task<IActionResult> GetPokemonById(int pokemonId) => 
             Ok(await _pokemonService.FindPokemonByIdAsync(pokemonId));
         
-        
+        [Authorize]
         [HttpGet("collection/", Name = "PokemonsCollection")]
         public async Task<IActionResult> GetPokemonByIds([ModelBinder(BinderType =
         typeof(ArrayModelBinder))]IEnumerable<int> pokemonIds)
@@ -80,6 +81,7 @@ namespace Pokemon_Web_API.Controllers
             return Ok(pokemons);
         }
         
+        [Authorize]
         [HttpPost(Name = "CreatePokemon")]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
         public async Task<IActionResult> CreatePokemon([FromBody]PokemonForCreationDto pokemon)
@@ -89,6 +91,7 @@ namespace Pokemon_Web_API.Controllers
             return Created($"api/pokemons/{pokemonDto.Id}", pokemonDto);
         }
 
+        [Authorize]
         [HttpPost("collection")]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
         public async Task<IActionResult> CreatePokemonCollection([FromBody] IEnumerable<PokemonForCreationDto> pokemonForCreation)
@@ -98,6 +101,7 @@ namespace Pokemon_Web_API.Controllers
             return Created($"api/pokemons/collection/{ids}", pokemons);
         }
 
+        [Authorize]
         [HttpDelete("{pokemonId}", Name = "DeletePokemon")]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
         public async Task<IActionResult> DeletePokemon(int pokemonId)
@@ -106,6 +110,7 @@ namespace Pokemon_Web_API.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpPut("{pokemonId}", Name = "UpdatePokemon")]
         [ServiceFilter(typeof(ValidatePokemonExistsAttribute))]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
@@ -114,7 +119,8 @@ namespace Pokemon_Web_API.Controllers
             await _pokemonService.UpdatePokemonAsync(pokemonId, pokemonForUpdate);
             return NoContent();
         }
-
+        
+        [Authorize]
         [HttpPatch("{pokemonId}", Name = "PartiallyUpdatePokemon")]
         [ServiceFilter(typeof(ModelValidationFilterAttribute))]
         public async Task<IActionResult> PartiallyUpdatePokemon(int pokemonId, [FromBody] JsonPatchDocument<PokemonForUpdateDto> patchDtoDocument)
