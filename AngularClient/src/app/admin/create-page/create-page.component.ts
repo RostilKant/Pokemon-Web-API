@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Type} from '../../shared/interfaces';
+import {PokemonDto, Type} from '../../shared/interfaces';
+// import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-create-page',
@@ -8,12 +9,14 @@ import {Type} from '../../shared/interfaces';
   styleUrls: ['./create-page.component.scss']
 })
 export class CreatePageComponent implements OnInit {
+  // readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   /*['poison', 'ground', 'rock', 'ghost', 'fire', 'steel', 'water', 'grass',
     'electric', 'psychic', 'ice', 'dragon', 'shadow' ];*/
 
+/*
   types: Type[] = [
-    /*{name: 'poison'},
+    {name: 'poison'},
     {name: 'ground'},
     {name: 'rock'},
     {name: 'ghost'},
@@ -28,20 +31,24 @@ export class CreatePageComponent implements OnInit {
     {name: 'dark'},
     {name: 'shadow'},
     {name: 'fairy'},
-    {name: 'unknown'}*/
+    {name: 'unknown'}
   ];
+*/
 
   form: FormGroup;
+  // removable = true;
 
   constructor() {
   }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-        name: new FormControl(null, Validators.required),
+        name: new FormControl(null, [Validators.required]),
         height: new FormControl(null, [Validators.required, Validators.min(1)]),
         weight: new FormControl(null, [Validators.required, Validators.min(1)]),
-        types: new FormArray([])
+        types: new FormArray([
+
+        ])
       });
   }
 
@@ -59,4 +66,50 @@ export class CreatePageComponent implements OnInit {
     (this.form.get('types') as FormArray).push(control);
   }
 
+  submit(): void {
+    if (this.form.invalid) {
+      return;
+    }
+    const types = this.form.value.types;
+    const allTypes: Type[] = [];
+
+    // tslint:disable-next-line:prefer-for-of forin
+    for (const i in types) {
+      allTypes.push({
+        name: types[+i]
+      });
+    }
+
+    const pokemon: PokemonDto = {
+      name: this.form.value.name,
+      height: this.form.value.height,
+      weight: this.form.value.weight,
+      types: allTypes
+    };
+    console.log(pokemon);
+  }
+
+ /* add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.types.push({name: value.trim()});
+      this.addType();
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(type: Type): void {
+    const index = this.types.indexOf(type);
+
+    if (index >= 0) {
+      this.types.splice(index, 1);
+    }
+  }*/
 }

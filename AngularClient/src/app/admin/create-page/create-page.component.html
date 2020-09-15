@@ -1,5 +1,5 @@
 <p>Creating new pokemon</p>
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="submit()">
 
   <mat-form-field
     color="accent"
@@ -11,6 +11,7 @@
     <mat-error *ngIf="form.get('name').touched && form.get('name').invalid">
       {{getErrorMessage('Name')}}
     </mat-error>
+
   </mat-form-field>
 
   <mat-form-field
@@ -40,7 +41,7 @@
   <mat-form-field
     class="types"
     *ngFor="let control of form.get('types')['controls']; let idx = index"
-    formGroupName="types"
+    formArrayName="types"
     color="accent"
     appearance="standard">
     <mat-label>Type {{idx + 1}}</mat-label>
@@ -48,6 +49,27 @@
       <input id="type" matInput placeholder="Type" [formControl]="control">
     </label>
   </mat-form-field>
+
+  <!--<mat-form-field formGroupName="types">
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let t of types; let idx = index"
+        [selectable]="true"
+        [removable]="true"
+        (removed)="remove(t)">
+        {{t.name}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <label>
+        <input placeholder="New type..."
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event)">
+      </label>
+    </mat-chip-list>
+  </mat-form-field>-->
+
   <div>
     <button
       mat-flat-button

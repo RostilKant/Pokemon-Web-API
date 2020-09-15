@@ -9,5 +9,13 @@ export interface MyToken {
 }
 
 export interface Type {
+  id?: number;
   name: string;
+}
+
+export interface PokemonDto {
+  name: string;
+  height: number;
+  weight: number;
+  types: Type[];
 }
