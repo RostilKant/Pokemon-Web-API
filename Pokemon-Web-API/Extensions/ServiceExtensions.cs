@@ -39,7 +39,8 @@ namespace Pokemon_Web_API.Extensions
                 
                     builder.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader()); 
+                        .AllowAnyHeader()
+                        .AllowAnyOrigin()); 
             });
 
         public static IServiceCollection ConfigureSerilogger(this IServiceCollection services)
