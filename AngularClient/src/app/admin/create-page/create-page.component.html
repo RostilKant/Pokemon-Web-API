@@ -85,7 +85,10 @@
     type="submit"
     mat-flat-button
     color="primary"
+    [disabled]="disable || form.invalid"
   >Create
   </button>
 
+
+  <pre>{{jsonPokemon | json}}</pre>
 </form>

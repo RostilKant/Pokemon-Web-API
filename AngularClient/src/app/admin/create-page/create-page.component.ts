@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PokemonDto, Type} from '../../shared/interfaces';
+import {PostService} from '../shared/services/post.service';
 // import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
@@ -13,7 +14,7 @@ export class CreatePageComponent implements OnInit {
 
   /*['poison', 'ground', 'rock', 'ghost', 'fire', 'steel', 'water', 'grass',
     'electric', 'psychic', 'ice', 'dragon', 'shadow' ];*/
-
+  jsonPokemon: PokemonDto;
 /*
   types: Type[] = [
     {name: 'poison'},
@@ -37,15 +38,16 @@ export class CreatePageComponent implements OnInit {
 
   form: FormGroup;
   // removable = true;
+  disable = false;
 
-  constructor() {
+  constructor(private postService: PostService) {
   }
 
   ngOnInit(): void {
     this.form = new FormGroup({
         name: new FormControl(null, [Validators.required]),
-        height: new FormControl(null, [Validators.required, Validators.min(1)]),
-        weight: new FormControl(null, [Validators.required, Validators.min(1)]),
+        height: new FormControl(null, [Validators.required, Validators.min(18)]),
+        weight: new FormControl(null, [Validators.required, Validators.min(18)]),
         types: new FormArray([
 
         ])
@@ -70,6 +72,10 @@ export class CreatePageComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    this.disable = true;
+
+    setTimeout(() => { this.form.reset(); this.disable = false; }, 1000);
+
     const types = this.form.value.types;
     const allTypes: Type[] = [];
 
@@ -86,7 +92,13 @@ export class CreatePageComponent implements OnInit {
       weight: this.form.value.weight,
       types: allTypes
     };
-    console.log(pokemon);
+
+    this.jsonPokemon = pokemon;
+
+    this.postService.create(pokemon).subscribe(() => {
+      console.log(pokemon);
+    });
+
   }
 
  /* add(event: MatChipInputEvent): void {
