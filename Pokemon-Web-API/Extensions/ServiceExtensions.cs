@@ -37,10 +37,11 @@ namespace Pokemon_Web_API.Extensions
             {
                 opt.AddPolicy("CorsPolicy", builder =>
                 
-                    builder.AllowAnyOrigin()
+                    builder
+                        .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowAnyOrigin()); 
+                        .AllowCredentials()); 
             });
 
         public static IServiceCollection ConfigureSerilogger(this IServiceCollection services)

@@ -115,6 +115,7 @@ namespace Pokemon_Web_API
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
+            
             app.UseResponseCaching();
 
             app.UseHttpCacheHeaders();
