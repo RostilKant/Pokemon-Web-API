@@ -15,6 +15,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {MatTableModule} from '@angular/material/table';
   imports: [
     HttpClientModule,
     RouterModule,
+    FormsModule,
 
     MatToolbarModule,
     MatButtonModule,
@@ -55,6 +57,7 @@ import {MatTableModule} from '@angular/material/table';
     MatAutocompleteModule,
     MatChipsModule,
     MatTableModule,
+    FormsModule,
 
     PokemonComponent
   ]
