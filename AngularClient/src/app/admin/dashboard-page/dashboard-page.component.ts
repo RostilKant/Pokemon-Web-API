@@ -1,31 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PokemonService} from '../shared/services/pokemon.service';
-import {delay} from 'rxjs/operators';
-import {PokemonDto} from '../../shared/interfaces';
+import {PokemonDto, Type} from '../../shared/interfaces';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-page',
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.scss']
 })
-export class DashboardPageComponent implements OnInit {
+export class DashboardPageComponent implements OnInit, OnDestroy{
 
   isLoading;
   pokemons: PokemonDto[];
-  displayedColumns: string[] = ['id', 'name', 'height', 'weight'];
+  displayedColumns: string[] = ['id', 'name', 'height', 'weight', 'types', 'actions'];
+
+  getAllSub: Subscription;
+  deletePokemonSub: Subscription;
 
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.pokemonService.getAllPokemons()
-      .pipe(delay(2000))
-      .subscribe((response: any) => {
+    this.getAllSub = this.pokemonService.getAllPokemons()
+      .subscribe((response: PokemonDto[]) => {
         this.pokemons = response;
+        console.log(response);
         this.isLoading = false;
       }, error => {
         console.log(error);
       });
   }
 
+
+  /*ngOnChanges(changes: SimpleChanges): void {
+    this.getAllSub = this.pokemonService.getAllPokemons()
+      .subscribe((response: any) => {
+        console.log('NgOnChanges');
+        this.pokemons = response;
+      }, error => {
+        console.log(error);
+      });
+  }*/
+
+  remove(id: number): void {
+    this.deletePokemonSub = this.pokemonService.deletePokemon(id)
+      .subscribe(() => {
+        this.pokemons = this.pokemons.filter( p => p.id !== id);
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.getAllSub){
+      this.getAllSub.unsubscribe();
+    }
+
+    if (this.deletePokemonSub){
+      this.getAllSub.unsubscribe();
+    }
+  }
+
+  printIt(types: Type[]): string[] {
+    const stringTypes: string[] = [];
+    types.forEach((type) => {
+      stringTypes.push(type.name);
+    });
+    return stringTypes;
+  }
 }

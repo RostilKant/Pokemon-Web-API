@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<any>{
-    return this.http.post('https://pokemon-web-api.azurewebsites.net/api/authentication/login',
+    return this.http.post('https://localhost:5001/api/authentication/login',
       user)
       .pipe(
         tap(this.setToken),

@@ -14,6 +14,7 @@ export interface Type {
 }
 
 export interface PokemonDto {
+  id?: number;
   name: string;
   height: number;
   weight: number;

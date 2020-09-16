@@ -16,6 +16,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import {FormsModule} from '@angular/forms';
+import {PokemonService} from '../admin/shared/services/pokemon.service';
 
 
 @NgModule({
@@ -60,6 +61,9 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
 
     PokemonComponent
+  ],
+  providers: [
+    PokemonService
   ]
 })
 export class SharedModule{ }

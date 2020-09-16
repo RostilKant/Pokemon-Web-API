@@ -96,7 +96,7 @@ export class CreatePageComponent implements OnInit {
     this.jsonPokemon = pokemon;
 
     this.postService.create(pokemon).subscribe(() => {
-      console.log(pokemon);
+      console.log(pokemon.types.forEach(console.log));
     });
 
   }
