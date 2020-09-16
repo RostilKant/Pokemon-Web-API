@@ -28,9 +28,13 @@
     appearance="standard">
     <mat-label>Password</mat-label>
     <label for="password">
-      <input formControlName="password" type="password" id="password" matInput placeholder="Password">
+      <input formControlName="password" [type]="hide ? 'password' : 'text'" id="password" matInput placeholder="Password">
     </label>
-<!--    <mat-hint>Only latin letters & at least 6 symbols</mat-hint>-->
+
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+
     <mat-error *ngIf="form.get('password').touched && form.get('password').invalid">
       {{getErrorMessage('Password')}}
     </mat-error>

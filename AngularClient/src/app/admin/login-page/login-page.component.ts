@@ -15,6 +15,7 @@ export class LoginPageComponent implements OnInit {
   submitted = false;
   error$ = this.auth.error$;
   message;
+  hide = true;
 
   constructor(
     private auth: AuthService,
