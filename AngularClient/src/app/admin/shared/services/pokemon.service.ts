@@ -21,6 +21,10 @@ export class PokemonService {
     return this.http.get<PokemonDto[]>('https://localhost:5001/api/pokemons');
   }
 
+  getPokemonById(id: number): Observable<PokemonDto> {
+    return this.http.get<PokemonDto>(`https://localhost:5001/api/pokemons/${id}`);
+  }
+
   deletePokemon(pokemonId: number): Observable<void> {
     return this.http.delete<void>(`https://localhost:5001/api/pokemons/${pokemonId}`);
   }

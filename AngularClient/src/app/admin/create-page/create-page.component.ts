@@ -49,7 +49,6 @@ export class CreatePageComponent implements OnInit {
         height: new FormControl(null, [Validators.required, Validators.min(18)]),
         weight: new FormControl(null, [Validators.required, Validators.min(18)]),
         types: new FormArray([
-
         ])
       });
   }
