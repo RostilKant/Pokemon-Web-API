@@ -3,7 +3,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {PokemonService} from '../shared/services/pokemon.service';
 import {switchMap} from 'rxjs/operators';
 import {PokemonDto, Type} from '../../shared/interfaces';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-page',
@@ -17,7 +17,8 @@ export class EditPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private builder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -26,11 +27,11 @@ export class EditPageComponent implements OnInit {
           return this.pokemonService.getPokemonById(params.id);
         })
     ).subscribe( (pokemon: PokemonDto) => {
-      this.form = new FormGroup({
-        name: new FormControl(pokemon.name, [Validators.required]),
-        height: new FormControl(pokemon.height, [Validators.required, Validators.min(18)]),
-        weight: new FormControl(pokemon.weight, [Validators.required, Validators.min(18)]),
-        types: new FormArray([])
+      this.form = this.builder.group({
+        name: [pokemon.name, [Validators.required]],
+        height: [pokemon.height, [Validators.required, Validators.min(18)]],
+        weight: [pokemon.weight, [Validators.required, Validators.min(18)]],
+        types: this.builder.array([])
       });
       for (const type of pokemon.types){
         (this.form.get('types') as FormArray).push(new FormControl(type.name, Validators.required));

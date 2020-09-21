@@ -23,7 +23,7 @@
 </mat-form-field>
 
 
-<table mat-table [dataSource]="pokemons | searchType:searchByType" *ngIf="!isLoading; else loading">
+<table mat-table [dataSource]="pokemons | searchType:searchByType | searchName:searchByName" *ngIf="!isLoading; else loading">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> Id </th>
