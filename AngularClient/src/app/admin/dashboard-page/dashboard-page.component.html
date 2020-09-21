@@ -7,13 +7,14 @@
     <input
       matInput
       placeholder="Find it..."
+      [(ngModel)]="searchByName"
     >
   </label>
 </mat-form-field>
 
 
 
-<table mat-table [dataSource]="pokemons" *ngIf="!isLoading; else loading">
+<table mat-table [dataSource]="pokemons | searchName:searchByName" *ngIf="!isLoading; else loading">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> Id </th>

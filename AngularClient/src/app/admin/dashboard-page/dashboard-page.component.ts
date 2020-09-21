@@ -13,6 +13,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   isLoading;
   pokemons: PokemonDto[];
   displayedColumns: string[] = ['id', 'name', 'height', 'weight', 'types', 'actions'];
+  searchByName = '';
+  types = ['poison', 'ground', 'rock', 'ghost', 'fire', 'steel', 'water', 'grass',
+    'electric', 'psychic', 'ice', 'dragon', 'shadow' ];
 
   getAllSub: Subscription;
   deletePokemonSub: Subscription;
@@ -30,17 +33,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
         console.log(error);
       });
   }
-
-
-  /*ngOnChanges(changes: SimpleChanges): void {
-    this.getAllSub = this.pokemonService.getAllPokemons()
-      .subscribe((response: any) => {
-        console.log('NgOnChanges');
-        this.pokemons = response;
-      }, error => {
-        console.log(error);
-      });
-  }*/
 
   remove(id: number): void {
     this.deletePokemonSub = this.pokemonService.deletePokemon(id)

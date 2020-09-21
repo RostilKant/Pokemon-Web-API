@@ -17,12 +17,14 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import {FormsModule} from '@angular/forms';
 import {PokemonService} from '../admin/shared/services/pokemon.service';
+import {SearchByNamePipe} from './pipes/searchByName.pipe';
 
 
 @NgModule({
   declarations: [
     PokemonComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    SearchByNamePipe,
   ],
   imports: [
     HttpClientModule,
@@ -45,6 +47,7 @@ import {PokemonService} from '../admin/shared/services/pokemon.service';
   exports: [
     HttpClientModule,
     RouterModule,
+    SearchByNamePipe,
 
     MatToolbarModule,
     MatButtonModule,
