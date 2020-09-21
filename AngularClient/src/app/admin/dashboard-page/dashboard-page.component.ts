@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PokemonService} from '../shared/services/pokemon.service';
 import {PokemonDto, Type} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -14,8 +15,27 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   pokemons: PokemonDto[];
   displayedColumns: string[] = ['id', 'name', 'height', 'weight', 'types', 'actions'];
   searchByName = '';
-  types = ['poison', 'ground', 'rock', 'ghost', 'fire', 'steel', 'water', 'grass',
+   types = ['poison', 'ground', 'rock', 'ghost', 'fire', 'steel', 'water', 'grass',
     'electric', 'psychic', 'ice', 'dragon', 'shadow' ];
+  searchByType = '';
+  /*types: Type[] = [
+    {name: 'poison'},
+    {name: 'ground'},
+    {name: 'rock'},
+    {name: 'ghost'},
+    {name: 'fire'},
+    {name: 'steel'},
+    {name: 'water'},
+    {name: 'grass'},
+    {name: 'electric'},
+    {name: 'psychic'},
+    {name: 'ice'},
+    {name: 'dragon'},
+    {name: 'dark'},
+    {name: 'shadow'},
+    {name: 'fairy'},
+    {name: 'unknown'}
+  ];*/
 
   getAllSub: Subscription;
   deletePokemonSub: Subscription;
@@ -25,6 +45,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.isLoading = true;
     this.getAllSub = this.pokemonService.getAllPokemons()
+      .pipe(delay(2000))
       .subscribe((response: PokemonDto[]) => {
         this.pokemons = response;
         console.log(response);

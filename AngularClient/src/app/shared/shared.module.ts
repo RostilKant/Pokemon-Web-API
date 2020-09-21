@@ -18,6 +18,8 @@ import {MatTableModule} from '@angular/material/table';
 import {FormsModule} from '@angular/forms';
 import {PokemonService} from '../admin/shared/services/pokemon.service';
 import {SearchByNamePipe} from './pipes/searchByName.pipe';
+import {SearchByTypePipe} from './pipes/searchByType.pipe';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import {SearchByNamePipe} from './pipes/searchByName.pipe';
     PokemonComponent,
     MainLayoutComponent,
     SearchByNamePipe,
+    SearchByTypePipe
   ],
   imports: [
     HttpClientModule,
@@ -32,22 +35,13 @@ import {SearchByNamePipe} from './pipes/searchByName.pipe';
     FormsModule,
 
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatAutocompleteModule,
-    MatChipsModule,
-    MatTableModule
+    MatIconModule
   ],
   exports: [
     HttpClientModule,
     RouterModule,
     SearchByNamePipe,
+    SearchByTypePipe,
 
     MatToolbarModule,
     MatButtonModule,
@@ -61,6 +55,7 @@ import {SearchByNamePipe} from './pipes/searchByName.pipe';
     MatAutocompleteModule,
     MatChipsModule,
     MatTableModule,
+    MatSelectModule,
     FormsModule,
 
     PokemonComponent

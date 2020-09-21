@@ -1,6 +1,7 @@
 <mat-form-field
   appearance="outline"
   color="accent"
+  class="wider"
 >
   <mat-label>Find any pokemon</mat-label>
   <label>
@@ -12,9 +13,17 @@
   </label>
 </mat-form-field>
 
+<mat-form-field
+  appearance="outline"
+  color="accent">
+  <mat-label>Choose pokemon type</mat-label>
+  <mat-select [(value)]="searchByType">
+    <mat-option *ngFor="let type of types" [value]="type">{{type | titlecase}}</mat-option>
+  </mat-select>
+</mat-form-field>
 
 
-<table mat-table [dataSource]="pokemons | searchName:searchByName" *ngIf="!isLoading; else loading">
+<table mat-table [dataSource]="pokemons | searchType:searchByType" *ngIf="!isLoading; else loading">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> Id </th>
