@@ -3,15 +3,17 @@ using System;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Pokemon_Web_API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200916182726_dropDb")]
+    partial class dropDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +57,7 @@ namespace Pokemon_Web_API.Migrations
 
             modelBuilder.Entity("Entities.Models.Type", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -185,15 +187,15 @@ namespace Pokemon_Web_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c56d53ae-5ae1-4a8d-aa64-ee5b46209c13",
-                            ConcurrencyStamp = "9a4e807c-e7a5-4cd1-9e67-0b5be6518a2d",
+                            Id = "af442955-d0dc-4076-9107-ef055c1ca1df",
+                            ConcurrencyStamp = "31734519-eb40-41fa-9305-b20ae42a7fe7",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "0c47696f-df60-4007-b1f4-c82cefc3ef2a",
-                            ConcurrencyStamp = "d40c2d42-c2eb-49ed-a6b4-fad7f888bb97",
+                            Id = "9d8f3faf-6e6d-42cb-aab0-8eec6b468576",
+                            ConcurrencyStamp = "d04d58f4-64a0-4533-81c9-bcecd4a86024",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

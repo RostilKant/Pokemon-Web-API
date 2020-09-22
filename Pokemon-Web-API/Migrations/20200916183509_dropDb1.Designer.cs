@@ -3,15 +3,17 @@ using System;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Pokemon_Web_API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200916183509_dropDb1")]
+    partial class dropDb1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,15 +187,15 @@ namespace Pokemon_Web_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c56d53ae-5ae1-4a8d-aa64-ee5b46209c13",
-                            ConcurrencyStamp = "9a4e807c-e7a5-4cd1-9e67-0b5be6518a2d",
+                            Id = "780de9e3-ffdf-40a6-bffa-49447fd37d59",
+                            ConcurrencyStamp = "18f194ed-dea3-48b5-98a9-883dfa8338eb",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "0c47696f-df60-4007-b1f4-c82cefc3ef2a",
-                            ConcurrencyStamp = "d40c2d42-c2eb-49ed-a6b4-fad7f888bb97",
+                            Id = "00462904-40ff-4ebc-ae57-6af31642a18a",
+                            ConcurrencyStamp = "1d916d45-a598-4304-b738-613230dacb3c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

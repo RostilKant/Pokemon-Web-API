@@ -3,15 +3,17 @@ using System;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Pokemon_Web_API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200916190141_dropDb3")]
+    partial class dropDb3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,15 +44,6 @@ namespace Pokemon_Web_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pokemons");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Height = 64,
-                            Name = "bulbasaur",
-                            Weight = 22
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Type", b =>
@@ -71,20 +64,6 @@ namespace Pokemon_Web_API.Migrations
                     b.HasIndex("PokemonId");
 
                     b.ToTable("Types");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "grass",
-                            PokemonId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "poison",
-                            PokemonId = 1
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>
@@ -185,15 +164,15 @@ namespace Pokemon_Web_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c56d53ae-5ae1-4a8d-aa64-ee5b46209c13",
-                            ConcurrencyStamp = "9a4e807c-e7a5-4cd1-9e67-0b5be6518a2d",
+                            Id = "2c0c818a-18cc-430a-a8e6-0197209ec407",
+                            ConcurrencyStamp = "d8686d16-2067-42dd-918f-fc3e35ec79b0",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "0c47696f-df60-4007-b1f4-c82cefc3ef2a",
-                            ConcurrencyStamp = "d40c2d42-c2eb-49ed-a6b4-fad7f888bb97",
+                            Id = "06b41a55-08d0-4b77-8a52-77c08ff3b871",
+                            ConcurrencyStamp = "8be5d9a4-5524-461f-a222-2e29457be47a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
