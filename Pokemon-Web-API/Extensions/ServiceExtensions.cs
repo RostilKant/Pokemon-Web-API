@@ -63,7 +63,7 @@ namespace Pokemon_Web_API.Extensions
         
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
             services.AddDbContext<RepositoryContext>(opts => 
-                opts.UseNpgsql(configuration.GetConnectionString("sqlConnection"),
+                opts.UseNpgsql(configuration.GetConnectionString("sqlConnection1"),
                     m => m.MigrationsAssembly("Pokemon-Web-API")));
 
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
