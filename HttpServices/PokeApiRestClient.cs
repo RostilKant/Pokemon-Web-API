@@ -20,7 +20,7 @@ namespace HttpServices
 
         public RootObject GetPokes()
         {
-            var request = new RestRequest("pokemon?limit=808",DataFormat.Json);
+            var request = new RestRequest("pokemon?limit=807",DataFormat.Json);
             return RestClient.Get<RootObject>(request).Data;
         }
 
