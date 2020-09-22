@@ -13,6 +13,7 @@ import {AuthService} from './shared/services/auth.service';
 import {AuthGuard} from './shared/services/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MyInterceptor} from '../shared/my.interceptor';
+import { NotificationComponent } from './shared/components/notification/notification.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -26,7 +27,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LoginPageComponent,
     DashboardPageComponent,
     CreatePageComponent,
-    EditPageComponent
+    EditPageComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
