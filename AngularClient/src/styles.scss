@@ -13,3 +13,11 @@ body {
   display: none;
 }
 
+mat-progress-spinner {
+  margin: 15rem auto;
+  width: 50%;
+}
+
+.link:focus {
+  outline: 0 !important;
+}

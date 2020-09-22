@@ -1,9 +1,11 @@
 <mat-toolbar color="primary">
   <mat-icon>coronavirus</mat-icon>
-  <span>Pokemon Web API</span>
+  <span [routerLink]="['/']" class="link">Pokemon Web API</span>
   <div class="flex-spacer"></div>
   <button
     mat-button
+    type="button"
+
     [routerLink]="['/admin', 'login']"
   >
     Login

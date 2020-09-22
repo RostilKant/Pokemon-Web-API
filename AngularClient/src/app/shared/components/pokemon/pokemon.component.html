@@ -1,6 +1,16 @@
-<div>
-  <p>pokemon works!</p>
-  <button
-    [routerLink]="['/pokemon', 1]"
-  >Open</button>
-</div>
+<mat-list-item
+  mat-list-item
+  [routerLink]="['/pokemon', pokemonId+1]"
+  class="link"
+>
+  <img
+    class="bigger-icon" matListAvatar
+    [src]="generateSrc(pokemonId)"
+    alt="Not Found"
+  >
+  <h3
+    matLine
+  >
+    {{pokemonApi.name | titlecase}} </h3>
+  <p matLine></p>
+</mat-list-item>

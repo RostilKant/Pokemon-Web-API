@@ -18,6 +18,7 @@
   color="accent">
   <mat-label>Choose pokemon type</mat-label>
   <mat-select [(value)]="searchByType">
+    <mat-option value="">--</mat-option>
     <mat-option *ngFor="let type of types" [value]="type">{{type | titlecase}}</mat-option>
   </mat-select>
 </mat-form-field>

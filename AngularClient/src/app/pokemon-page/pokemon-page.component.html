@@ -1,1 +1,16 @@
-<p>pokemon-page works!</p>
+<div *ngIf="pokemon$ | async as pokemon; else loading">
+  <mat-card>
+    <mat-card-title>{{pokemon.name | titlecase}}</mat-card-title>
+    <mat-card-subtitle><pre>Pokemon types: {{printIt(pokemon.types)}}</pre></mat-card-subtitle>
+    <img [src]="frontSprite(pokemon.sprites)" alt="">
+    <img [src]="backSprite(pokemon.sprites)" alt="">
+    <mat-card-content>Height: {{pokemon.height}}</mat-card-content>
+    <mat-card-content>Weight: {{pokemon.weight}}</mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template  #loading>
+  <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
+</ng-template>
+
+

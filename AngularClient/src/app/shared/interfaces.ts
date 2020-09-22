@@ -19,4 +19,10 @@ export interface PokemonDto {
   height: number;
   weight: number;
   types: Type[];
+  sprites?: Sprite[];
+}
+
+export interface Sprite {
+  front_default: string;
+  back_default: string;
 }

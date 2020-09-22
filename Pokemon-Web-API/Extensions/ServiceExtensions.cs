@@ -128,7 +128,7 @@ namespace Pokemon_Web_API.Extensions
                 new RateLimitRule
                 {
                     Endpoint = "*",
-                    Limit = 5,
+                    Limit = 1000,
                     Period = "1m"
                 }
             };

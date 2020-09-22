@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {delay} from 'rxjs/operators';
 import {PokemonService} from '../admin/shared/services/pokemon.service';
 
-const img = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' ;
 
 @Component({
   selector: 'app-home-page',
@@ -25,10 +24,6 @@ export class HomePageComponent implements OnInit {
       }, error => {
         console.log(error);
       });
-  }
-
-  generateSrc(id: number): string {
-    return img + `${id}.png`;
   }
 
 }

@@ -13,7 +13,9 @@ namespace Pokemon_Web_API
     {
         public MappingProfile()
         {
-            CreateMap<RootObject, NewRootObject>();
+            CreateMap<RootObject, NewRootObject>().ForMember(c => c.Count, x
+                    => x.MapFrom(y => 
+                        807));
             CreateMap<Result, NResult>().ForMember(c => c.Url, x
                     => x.MapFrom(y =>
                         //Previous map - https://localhost:5001/api/pokemons/poke-api

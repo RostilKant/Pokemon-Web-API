@@ -1,13 +1,10 @@
-<app-pokemon></app-pokemon>
 <mat-list *ngIf="!isLoading; else loading">
-  <mat-list-item mat-list-item  *ngFor="let pokemon of poke;let idx = index;">
-    <img class="bigger-icon" matListAvatar [src]="generateSrc(idx + 1)" alt="Not Found" >
-    <h3 matLine> {{pokemon.name | titlecase}} </h3>
-    <p matLine>
-      <span> {{pokemon.name | titlecase}} </span>
-      <span class="demo-2"> -- small intro </span>
-    </p>
-  </mat-list-item>
+    <app-pokemon
+      *ngFor="let pokemon of poke;let idx = index;"
+      [pokemonApi]="pokemon"
+      [pokemonId]="idx"
+    >
+    </app-pokemon>
 </mat-list>
 
 <ng-template  #loading>

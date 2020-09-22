@@ -3,7 +3,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule} from '@angular/common/http';
-import {MatListModule} from '@angular/material/list';
+import {MatList, MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import {MainLayoutComponent} from './components/main-layout/main-layout.component';
@@ -20,6 +20,7 @@ import {PokemonService} from '../admin/shared/services/pokemon.service';
 import {SearchByNamePipe} from './pipes/searchByName.pipe';
 import {SearchByTypePipe} from './pipes/searchByType.pipe';
 import {MatSelectModule} from '@angular/material/select';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
@@ -33,9 +34,12 @@ import {MatSelectModule} from '@angular/material/select';
     HttpClientModule,
     RouterModule,
     FormsModule,
+    CommonModule,
 
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+    MatButtonModule
   ],
   exports: [
     HttpClientModule,

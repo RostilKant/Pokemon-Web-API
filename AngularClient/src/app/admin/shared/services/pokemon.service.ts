@@ -16,6 +16,9 @@ export class PokemonService {
   getAllFromPokeApi(): Observable<any> {
     return this.http.get('https://localhost:5001/api/pokemons/poke-api');
   }
+  getByIdFromPokeApi(id: number): Observable<any> {
+    return this.http.get(`https://localhost:5001/api/pokemons/poke-api/${id}`);
+  }
 
   getAll(): Observable<PokemonDto[]> {
     return this.http.get<PokemonDto[]>('https://localhost:5001/api/pokemons');
