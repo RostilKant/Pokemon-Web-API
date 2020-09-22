@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {PokemonService} from '../shared/services/pokemon.service';
 import {switchMap} from 'rxjs/operators';
 import {PokemonDto, Type} from '../../shared/interfaces';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-edit-page',
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.scss']
 })
-export class EditPageComponent implements OnInit {
+export class EditPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   disable = false;
+  uSub: Subscription;
+  pokemon: PokemonDto;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,21 +25,33 @@ export class EditPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.form = this.builder.group({
+      name: [null, [Validators.required]],
+      height: [null, [Validators.required, Validators.min(18)]],
+      weight: [null, [Validators.required, Validators.min(18)]],
+      types: this.builder.array([])
+    });
     this.route.params.pipe(
         switchMap((params: Params) => {
-          return this.pokemonService.getPokemonById(params.id);
+          return this.pokemonService.getById(params.id);
         })
     ).subscribe( (pokemon: PokemonDto) => {
-      this.form = this.builder.group({
-        name: [pokemon.name, [Validators.required]],
-        height: [pokemon.height, [Validators.required, Validators.min(18)]],
-        weight: [pokemon.weight, [Validators.required, Validators.min(18)]],
-        types: this.builder.array([])
+      this.pokemon = pokemon;
+      this.form.patchValue({
+        name: pokemon.name,
+        height: pokemon.height,
+        weight: pokemon.weight
       });
       for (const type of pokemon.types){
         (this.form.get('types') as FormArray).push(new FormControl(type.name, Validators.required));
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.uSub){
+      this.uSub.unsubscribe();
+    }
   }
 
   addType(): void {
@@ -71,16 +86,14 @@ export class EditPageComponent implements OnInit {
       });
     }
 
-    const pokemon: PokemonDto = {
+    this.uSub = this.pokemonService.update({
+      id: this.pokemon.id,
       name: this.form.value.name,
       height: this.form.value.height,
       weight: this.form.value.weight,
       types: allTypes
-    };
-
-   /* this.postService.create(pokemon).subscribe(() => {
-      console.log(pokemon.types.forEach(console.log));
-    });*/
-    this.disable = false;
+    }).subscribe(() => {
+      this.disable = false;
+    });
   }
 }

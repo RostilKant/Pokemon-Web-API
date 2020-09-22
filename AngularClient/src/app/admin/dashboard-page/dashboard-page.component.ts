@@ -44,7 +44,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.getAllSub = this.pokemonService.getAllPokemons()
+    this.getAllSub = this.pokemonService.getAll()
       .pipe(delay(2000))
       .subscribe((response: PokemonDto[]) => {
         this.pokemons = response;
@@ -56,7 +56,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   }
 
   remove(id: number): void {
-    this.deletePokemonSub = this.pokemonService.deletePokemon(id)
+    this.deletePokemonSub = this.pokemonService.delete(id)
       .subscribe(() => {
         this.pokemons = this.pokemons.filter( p => p.id !== id);
       });
@@ -75,7 +75,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   printIt(types: Type[]): string[] {
     const stringTypes: string[] = [];
     types.forEach((type) => {
-      stringTypes.push(type.name);
+      stringTypes.push(type.name.charAt(0).toUpperCase() + type.name.slice(1));
     });
     return stringTypes;
   }
