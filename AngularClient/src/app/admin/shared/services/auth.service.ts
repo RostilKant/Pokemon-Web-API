@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {MyToken, User} from '../../../shared/interfaces';
+import {MyToken, LoginUser} from '../../../shared/interfaces';
 import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 
@@ -21,7 +21,7 @@ export class AuthService {
     return localStorage.getItem('jwt-token');
   }
 
-  login(user: User): Observable<any>{
+  login(user: LoginUser): Observable<any>{
     return this.http.post('https://localhost:5001/api/authentication/login',
       user)
       .pipe(

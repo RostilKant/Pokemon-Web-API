@@ -1,6 +1,16 @@
-export interface User {
+export interface LoginUser {
   userName: string;
   password: string;
+}
+
+export interface RegistrationUser {
+  firstName: string;
+  lastName: string;
+  userName: string;
+  password: string;
+  email: string;
+  phoneNumber: string;
+  roles: string[];
 }
 
 export interface MyToken {
@@ -26,3 +36,5 @@ export interface Sprite {
   front_default: string;
   back_default: string;
 }
+
+
