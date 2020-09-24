@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {MyToken, LoginUser} from '../../../shared/interfaces';
+import {MyToken, LoginUser, RegistrationUser} from '../../../shared/interfaces';
 import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 
@@ -28,6 +28,10 @@ export class AuthService {
         tap(this.setToken),
         catchError(this.handleError.bind(this))
       );
+  }
+
+  register(user: RegistrationUser): Observable<any>{
+    return this.http.post('https://localhost:5001/api/authentication', user);
   }
 
   logout(): void {

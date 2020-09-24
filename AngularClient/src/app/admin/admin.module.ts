@@ -40,6 +40,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
       {
         path: '', component: AdminLayoutComponent, children: [
           {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
+          {path: 'registration', component: RegistrationPageComponent},
           {path: 'login', component: LoginPageComponent},
           {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
           {path: 'create', component: CreatePageComponent, canActivate: [AuthGuard]},

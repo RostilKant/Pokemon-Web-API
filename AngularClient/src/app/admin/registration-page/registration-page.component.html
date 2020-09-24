@@ -1,1 +1,102 @@
-<p>registration-page works!</p>
+<p>User Registration</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <mat-card class="danger" *ngIf="error$ | async as error" >
+    {{error}}
+  </mat-card>
+  <mat-card class="danger" *ngIf="message" >
+    {{message}}
+  </mat-card>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('firstName').touched && form.get('firstName').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>First Name</mat-label>
+    <label for="firstName">
+      <input formControlName="firstName" id="firstName" matInput placeholder="First name">
+    </label>
+    <mat-error *ngIf="form.get('firstName').touched && form.get('firstName').invalid">
+      {{getErrorMessage('First', 'Name')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('lastName').touched && form.get('lastName').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>Last Name</mat-label>
+    <label for="lastName">
+      <input formControlName="lastName" id="lastName" matInput placeholder="Last name">
+    </label>
+    <mat-error *ngIf="form.get('lastName').touched && form.get('lastName').invalid">
+      {{getErrorMessage('Last', 'Name')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('userName').touched && form.get('userName').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>User Name</mat-label>
+    <label for="userName">
+      <input formControlName="userName" id="userName" matInput placeholder="User Name">
+    </label>
+    <mat-hint>It should contain at least 1 number</mat-hint>
+    <mat-error *ngIf="form.get('userName').touched && form.get('userName').invalid">
+      {{getErrorMessage('User', 'Name')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>Email</mat-label>
+    <label for="email">
+      <input formControlName="email" id="email" matInput placeholder="Email">
+    </label>
+    <mat-error *ngIf="form.get('email').touched && form.get('email').invalid">
+      {{getErrorMessage('Email')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('phone').touched && form.get('phone').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>Phone</mat-label>
+    <label for="phone">
+      <input formControlName="phone" id="phone" matInput placeholder="Phone">
+    </label>
+    <mat-hint>Please, use international format. For example: +38 073 409 89 95</mat-hint>
+    <mat-error *ngIf="form.get('phone').touched && form.get('phone').invalid">
+      {{getErrorMessage('Phone')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>Password</mat-label>
+    <label for="password">
+      <input formControlName="password" [type]="hide ? 'password' : 'text'" id="password" matInput placeholder="Password">
+    </label>
+
+    <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+
+    <mat-error *ngIf="form.get('password').touched && form.get('password').invalid">
+      {{getErrorMessage('Password')}}
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    type="submit"
+    [disabled]="form.invalid || submitted"
+    mat-flat-button
+    color="accent"
+  >Sign up</button>
+</form>
