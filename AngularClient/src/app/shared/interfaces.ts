@@ -1,5 +1,5 @@
 export interface LoginUser {
-  userName: string;
+  email: string;
   password: string;
 }
 
@@ -8,10 +8,12 @@ export interface RegistrationUser {
   lastName: string;
   userName: string;
   password: string;
+  confirmPassword: string;
   email: string;
   phoneNumber: string;
   roles: string[];
 }
+
 
 export interface MyToken {
   token: string;
@@ -23,7 +25,7 @@ export interface Type {
   name: string;
 }
 
-export interface PokemonDto {
+export interface Pokemon {
   id?: number;
   name: string;
   height: number;

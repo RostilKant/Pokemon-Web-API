@@ -9,16 +9,15 @@
   </mat-card>
 
   <mat-form-field
-    [ngClass]="{invalid: form.get('userName').touched && form.get('userName').invalid }"
+    [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid }"
     color="accent"
     appearance="standard">
-    <mat-label>User Name</mat-label>
-    <label for="userName">
-      <input formControlName="userName" id="userName" matInput placeholder="User Name">
+    <mat-label>Email</mat-label>
+    <label for="email">
+      <input formControlName="email" id="email" matInput placeholder="Email">
     </label>
-    <mat-hint>It should contain at least 1 number</mat-hint>
-    <mat-error *ngIf="form.get('userName').touched && form.get('userName').invalid">
-      {{getErrorMessage('User', 'Name')}}
+    <mat-error *ngIf="form.get('email').touched && form.get('email').invalid">
+      {{getErrorMessage('Email')}}
     </mat-error>
   </mat-form-field>
 

@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginUser} from '../../shared/interfaces';
 import {AuthService} from '../shared/services/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {MyValidators} from '../../shared/my.validators';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -34,8 +33,8 @@ export class LoginPageComponent implements OnInit {
     });
 
     this.form = new FormGroup({
-      userName: new FormControl(null,
-        [Validators.required, MyValidators.containNumber(/\d/)]),
+      email: new FormControl(null,
+        [Validators.required, Validators.email]),
       password: new FormControl(null,
         [Validators.required, Validators.minLength(8)])
     });
@@ -51,8 +50,8 @@ export class LoginPageComponent implements OnInit {
       ${this.form.get('password').errors.minlength.requiredLength} symbols`;
     }
 
-    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.containNumber) {
-      return `UserName must contain at least one number`;
+    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.email) {
+      return `Email is invalid`;
     }
   }
 
@@ -63,7 +62,7 @@ export class LoginPageComponent implements OnInit {
     this.submitted = true;
 
     const user: LoginUser = {
-      userName: this.form.value.userName,
+      email: this.form.value.email,
       password: this.form.value.password
     };
 
