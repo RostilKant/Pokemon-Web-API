@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PokemonDto} from '../../interfaces';
-import {PokemonService} from '../../../admin/shared/services/pokemon.service';
+import {Pokemon} from '../../interfaces';
 
 const img = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' ;
 
@@ -14,7 +13,7 @@ export class PokemonComponent implements OnInit {
   @Input() pokemonApi;
   @Input() pokemonId: number;
 
-  pokemon: PokemonDto;
+  pokemon: Pokemon;
 
   constructor() { }
 

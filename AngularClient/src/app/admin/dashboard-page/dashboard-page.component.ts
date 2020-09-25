@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PokemonService} from '../shared/services/pokemon.service';
-import {PokemonDto, Type} from '../../shared/interfaces';
+import {Pokemon, Type} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
 import {delay} from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import {delay} from 'rxjs/operators';
 export class DashboardPageComponent implements OnInit, OnDestroy{
 
   isLoading;
-  pokemons: PokemonDto[];
+  pokemons: Pokemon[];
   displayedColumns: string[] = ['id', 'name', 'height', 'weight', 'types', 'actions'];
   searchByName = '';
    types = ['poison', 'ground', 'rock', 'ghost', 'fire', 'steel', 'water', 'grass',
@@ -46,9 +46,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
     this.isLoading = true;
     this.getAllSub = this.pokemonService.getAll()
       .pipe(delay(2000))
-      .subscribe((response: PokemonDto[]) => {
+      .subscribe((response: Pokemon[]) => {
         this.pokemons = response;
-        console.log(response);
         this.isLoading = false;
       }, error => {
         console.log(error);

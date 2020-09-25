@@ -69,7 +69,7 @@
     <label for="phone">
       <input formControlName="phone" id="phone" matInput placeholder="Phone">
     </label>
-    <mat-hint>Please, use international format. For example: +38 073 409 89 95</mat-hint>
+    <mat-hint>Please, use international format. For example: +380734098995</mat-hint>
     <mat-error *ngIf="form.get('phone').touched && form.get('phone').invalid">
       {{getErrorMessage('Phone')}}
     </mat-error>
@@ -88,8 +88,21 @@
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
 
-    <mat-error *ngIf="form.get('password').touched && form.get('password').invalid">
+    <mat-error *ngIf="form.get('password').touched || form.get('password').invalid">
       {{getErrorMessage('Password')}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [ngClass]="{invalid: form.get('confirmPassword').touched && form.get('confirmPassword').invalid }"
+    color="accent"
+    appearance="standard">
+    <mat-label>Confirm Password</mat-label>
+    <label for="confirmPassword">
+      <input formControlName="confirmPassword" id="confirmPassword" matInput placeholder="Confirm Password" type="password">
+    </label>
+    <mat-error *ngIf="form.get('confirmPassword').touched || form.get('confirmPassword').invalid">
+      {{getErrorMessage('Confirm', 'Password')}}
     </mat-error>
   </mat-form-field>
 

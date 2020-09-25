@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {PokemonService} from '../shared/services/pokemon.service';
 import {switchMap} from 'rxjs/operators';
-import {PokemonDto, Type} from '../../shared/interfaces';
+import {Pokemon, Type} from '../../shared/interfaces';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
@@ -16,7 +16,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
   form: FormGroup;
   disable = false;
   uSub: Subscription;
-  pokemon: PokemonDto;
+  pokemon: Pokemon;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +35,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         switchMap((params: Params) => {
           return this.pokemonService.getById(params.id);
         })
-    ).subscribe( (pokemon: PokemonDto) => {
+    ).subscribe( (pokemon: Pokemon) => {
       this.pokemon = pokemon;
       this.form.patchValue({
         name: pokemon.name,

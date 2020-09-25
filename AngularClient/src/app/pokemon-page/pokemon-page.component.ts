@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {PokemonService} from '../admin/shared/services/pokemon.service';
 import {Observable} from 'rxjs';
-import {PokemonDto, Sprite, Type} from '../shared/interfaces';
+import {Pokemon, Sprite} from '../shared/interfaces';
 import {switchMap} from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import {switchMap} from 'rxjs/operators';
 })
 export class PokemonPageComponent implements OnInit {
 
-  pokemon$: Observable<PokemonDto>;
+  pokemon$: Observable<Pokemon>;
 
   constructor(
     private route: ActivatedRoute,

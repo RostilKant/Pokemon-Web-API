@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../shared/services/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {MyValidators} from '../../shared/my.validators';
 import {RegistrationUser} from '../../shared/interfaces';
 import {HttpErrorResponse} from '@angular/common/http';
 
@@ -41,27 +40,36 @@ export class RegistrationPageComponent implements OnInit {
       lastName: new FormControl(null,
         [Validators.required]),
       userName: new FormControl(null,
-        [Validators.required, MyValidators.containNumber(/\d/)]),
+        [Validators.required,  Validators.pattern(/\d/)]),
       email: new FormControl(null,
-        [Validators.required]),
-      phone: new FormControl(null),
+        [Validators.required, Validators.email]),
+      phone: new FormControl(null, [Validators.required, Validators.pattern(/(\+38)[0-9]{10}$/)]),
       password: new FormControl(null,
-        [Validators.required, Validators.minLength(8)])
+        [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl(null,
+        [Validators.required]),
     });
     localStorage.clear();
   }
 
   getErrorMessage(control: string, secondPartOfControl: string = ''): string {
-    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.required) {
+
+    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors?.required) {
       return `${control + secondPartOfControl} is required`;
     }
-    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.minlength) {
+    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors?.minlength) {
       return `${control} must contain at least
-      ${this.form.get('password').errors.minlength.requiredLength} symbols`;
+      ${this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors?.minlength.requiredLength} symbols`;
+    }
+    if (this.form.get('userName').errors?.pattern) {
+      return `User name must contain at least one number`;
+    }
+    if (this.form.get('email').errors?.email) {
+      return 'Invalid email';
     }
 
-    if (this.form.get(control.toLocaleLowerCase() + secondPartOfControl).errors.containNumber) {
-      return `UserName must contain at least one number`;
+    if (this.form.get('phone').errors?.pattern) {
+      return `Phone must contain be Ukrainian and in international format`;
     }
   }
 
@@ -69,6 +77,7 @@ export class RegistrationPageComponent implements OnInit {
     if (this.form.invalid){
       return;
     }
+
     this.submitted = true;
 
     const user: RegistrationUser = {
@@ -78,6 +87,7 @@ export class RegistrationPageComponent implements OnInit {
       email: this.form.value.email,
       phoneNumber: this.form.value.phone,
       password: this.form.value.password,
+      confirmPassword: this.form.value.confirmPassword,
       roles: ['User']
     };
 
@@ -87,8 +97,8 @@ export class RegistrationPageComponent implements OnInit {
       this.submitted = false;
     }, (error: HttpErrorResponse) => {
       this.message = error.error.DuplicateEmail;
+      this.message = error.error.error;
       this.submitted = false;
     });
   }
-
 }

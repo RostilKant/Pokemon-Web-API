@@ -52,7 +52,7 @@ namespace Pokemon_Web_API.Extensions
                 .Enrich.WithMachineName()
                 .Enrich.WithProperty("Assembly", name.Name)
                 .Enrich.WithProperty("Version", name.Version)
-                .WriteTo.File(new RenderedCompactJsonFormatter(),"log.json")
+                .WriteTo.File(new RenderedCompactJsonFormatter(),"log1.json")
                 .CreateLogger();
 
             AppDomain.CurrentDomain.ProcessExit += (s, e) => Log.CloseAndFlush();

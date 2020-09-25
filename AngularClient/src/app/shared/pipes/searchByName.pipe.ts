@@ -1,11 +1,11 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {PokemonDto} from '../interfaces';
+import {Pokemon} from '../interfaces';
 
 @Pipe({
   name: 'searchName'
 })
 export class SearchByNamePipe implements PipeTransform{
-  transform(pokemons: PokemonDto[], search = ''): PokemonDto[] {
+  transform(pokemons: Pokemon[], search = ''): Pokemon[] {
     if (!search.trim()) {
       return pokemons;
     }
