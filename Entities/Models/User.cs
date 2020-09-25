@@ -22,6 +22,9 @@ namespace Entities.Models
         [Required(ErrorMessage = "Password is required")]
         public string? Password { get; set; }
         
+        [Required(ErrorMessage = "Input your password again!")]
+        public string? ConfirmPassword { get; set; }
+        
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public ICollection<string>? Roles { get; set; }
@@ -29,8 +32,8 @@ namespace Entities.Models
     
     public class UserForAuthenticationDto
     {
-        [Required(ErrorMessage = "User name is required")]
-        public string? UserName { get; set; }
+        [Required(ErrorMessage = "Email is required")]
+        public string? Email { get; set; }
         
         [Required(ErrorMessage = "Password name is required")]
         public string? Password { get; set; }

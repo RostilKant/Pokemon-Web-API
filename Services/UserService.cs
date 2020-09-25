@@ -40,6 +40,12 @@ namespace Services
             var user = _mapper.Map<User>(userForRegistration);
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
 
+            if (userForRegistration.Password != userForRegistration.ConfirmPassword)
+            {
+                modelState.TryAddModelError("error", "Password mismatch");
+                return false;
+            }
+
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
@@ -58,7 +64,7 @@ namespace Services
 
         public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuthentication)
         {
-            _user = await _userManager.FindByNameAsync(userForAuthentication.UserName);
+            _user = await _userManager.FindByEmailAsync(userForAuthentication.Email);
 
             return (_user != null && await _userManager
                 .CheckPasswordAsync(_user, userForAuthentication.Password));
