@@ -99,10 +99,11 @@
     appearance="standard">
     <mat-label>Confirm Password</mat-label>
     <label for="confirmPassword">
-      <input formControlName="confirmPassword" id="confirmPassword" matInput placeholder="Confirm Password" type="password">
+      <input formControlName="confirmPassword" id="confirmPassword"
+             matInput placeholder="Confirm Password" type="password" [errorStateMatcher]="matcher">
     </label>
-    <mat-error *ngIf="form.get('confirmPassword').touched || form.get('confirmPassword').invalid">
-      {{getErrorMessage('Confirm', 'Password')}}
+    <mat-error *ngIf="form.hasError('passwordMismatch')">
+      Passwords do not match
     </mat-error>
   </mat-form-field>
 

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../shared/services/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {RegistrationUser} from '../../shared/interfaces';
 import {HttpErrorResponse} from '@angular/common/http';
+import {MyValidators} from '../../shared/my.validators';
+import {MyErrorStateMatcher} from '../../shared/my.error-matcher';
 
 @Component({
   selector: 'app-registration-page',
@@ -17,11 +19,13 @@ export class RegistrationPageComponent implements OnInit {
   error$ = this.auth.error$;
   message;
   hide = true;
+  matcher = new MyErrorStateMatcher();
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -34,20 +38,16 @@ export class RegistrationPageComponent implements OnInit {
       }
     });
 
-    this.form = new FormGroup({
-      firstName: new FormControl(null,
-        [Validators.required]),
-      lastName: new FormControl(null,
-        [Validators.required]),
-      userName: new FormControl(null,
-        [Validators.required,  Validators.pattern(/\d/)]),
-      email: new FormControl(null,
-        [Validators.required, Validators.email]),
-      phone: new FormControl(null, [Validators.required, Validators.pattern(/(\+38)[0-9]{10}$/)]),
-      password: new FormControl(null,
-        [Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl(null,
-        [Validators.required]),
+    this.form = this.fb.group({
+      firstName: [null, [Validators.required]],
+      lastName: [null, [Validators.required]],
+      userName: [null, [Validators.required, Validators.pattern(/\d/)]],
+      email: [null, [Validators.required, Validators.email]],
+      phone: [null, [Validators.required, Validators.pattern(/(\+38)[0-9]{10}$/)]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['']
+    }, {
+      validators: [MyValidators.checkPass]
     });
     localStorage.clear();
   }
