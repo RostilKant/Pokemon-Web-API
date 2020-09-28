@@ -68,7 +68,11 @@ namespace Pokemon_Web_API.Controllers
         [HttpPost("forgot-pass")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel forgotPasswordModel)
         {
-            var token = await _userService.CreatePasswordResetToken(forgotPasswordModel.Email);
+            var token = await _userService.CreatePasswordResetToken(forgotPasswordModel.Email, ModelState);
+            if (token == null)
+            {
+                return BadRequest(ModelState);    
+            }
             var link = Url.Action("ConfirmEmail",
                 "Users", token, protocol: HttpContext.Request.Scheme);
             await _userService.SendEmailResetPasswordToken(link);

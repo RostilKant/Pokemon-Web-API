@@ -208,14 +208,19 @@ namespace Services
         {
             // var callbackUrl = $"https://localhost:5001/api/users/ConfirmEmail?userId={user.Id}&code={code}";
 
-            await _emailService.SendEmailAsync(_user.Email, "Confirm your password for Pokemon Web API", 
+            await _emailService.SendEmailAsync(_user.Email, "Confirm your email for Pokemon Web API", 
                 $"Submit your email by clicking this link: <a href='{link}'>{link}</a> ");
             
         }
 
-        public async Task<EmailToken> CreatePasswordResetToken(string email)
+        public async Task<EmailToken> CreatePasswordResetToken(string email, ModelStateDictionary modelState)
         {
             _user = await _userManager.FindByEmailAsync(email);
+            if (_user == null)
+            {
+                modelState.TryAddModelError("wrongEmail", "User with such email doesn't exists");
+                return null;
+            }
             
             var code = await _userManager.GeneratePasswordResetTokenAsync(_user);
             return new EmailToken {UserId = _user.Id, Code = code};
@@ -224,8 +229,8 @@ namespace Services
         public async Task SendEmailResetPasswordToken(string link)
         {
             var link1 = string.Concat("https://localhost:4200/admin/reset-pass", link.Remove(0, 45));
-            await _emailService.SendEmailAsync(_user.Email, "Confirm your password for Pokemon Web API", 
-                $"Submit your email by clicking this link: <a href='{link1}'>{link1}</a> ");
+            await _emailService.SendEmailAsync(_user.Email, "Resetting password for Pokemon Web API", 
+                $"For resetting password click this link: <a href='{link1}'>{link1}</a> ");
             
         }
 
