@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -23,22 +24,24 @@ namespace Services
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
 
         private User _user;
 
-        public UserService(ILogger<UserService> logger, IMapper mapper, UserManager<User> userManager, IConfiguration configuration)
+        public UserService(ILogger<UserService> logger, IMapper mapper, UserManager<User> userManager, IConfiguration configuration, IEmailService emailService)
         {
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
 
         public async Task<bool> RegisterUser(UserForRegistrationDto userForRegistration, ModelStateDictionary modelState)
         {
-            var user = _mapper.Map<User>(userForRegistration);
-            var result = await _userManager.CreateAsync(user, userForRegistration.Password);
+            _user = _mapper.Map<User>(userForRegistration);
+            var result = await _userManager.CreateAsync(_user, userForRegistration.Password);
 
             if (userForRegistration.Password != userForRegistration.ConfirmPassword)
             {
@@ -55,20 +58,121 @@ namespace Services
                 return false;
             }
 
+            // await CreateEmailToken(user);
+            
             userForRegistration.Roles ??= new List<string> {"User"};
             
-                await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
+                await _userManager.AddToRolesAsync(_user, userForRegistration.Roles);
 
             return true;
         }
 
-        public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuthentication)
+        public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuthentication, ModelStateDictionary modelState)
         {
             _user = await _userManager.FindByEmailAsync(userForAuthentication.Email);
+
+            if (_user == null)    
+            {
+                modelState.TryAddModelError("wrongEmailOrPassword", "Wrong email or password");
+                return false;
+            }
+            
+            if (!(await _userManager.IsEmailConfirmedAsync(_user)))
+            {
+                modelState.TryAddModelError("notConfirmedEmail", "Email wasn't confirmed!");
+                return false;
+            }
 
             return (_user != null && await _userManager
                 .CheckPasswordAsync(_user, userForAuthentication.Password));
         }
+        
+        public async Task<bool> ChangePassword(ChangePasswordModel changePasswordModel, ModelStateDictionary modelState)
+        {
+            _user = await _userManager.FindByEmailAsync(changePasswordModel.Email);
+            if (_user != null)
+            {
+                var result = await _userManager
+                    .ChangePasswordAsync(_user, 
+                    changePasswordModel.OldPassword, 
+                    changePasswordModel.NewPassword);
+                
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        modelState.TryAddModelError(error.Code, error.Description);
+                    }
+                    return false;
+                }
+                
+            }
+            else
+            {
+                modelState.TryAddModelError("userNotFound", "User with such email doesn't exists");
+                return false;
+            }
+
+            return true;
+        }
+        
+        public async Task<bool> ResetPassword(ResetPasswordModel resetPasswordModel, ModelStateDictionary modelState)
+        {
+            _user = await _userManager.FindByEmailAsync(resetPasswordModel.Email);
+            if (_user != null)
+            {
+                var result = await _userManager
+                    .ResetPasswordAsync(_user, 
+                        resetPasswordModel.Code,
+                        resetPasswordModel.NewPassword);
+                
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        modelState.TryAddModelError(error.Code, error.Description);
+                    }
+                    return false;
+                }
+                
+            }
+
+            return true;
+        }
+        
+        
+
+        public async Task<bool> ConfirmEmail(string userId, string code, ModelStateDictionary modelState)
+        {
+            _user = await _userManager.FindByIdAsync(userId);
+            var result = await _userManager.ConfirmEmailAsync(_user, code);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    modelState.TryAddModelError(error.Code, error.Description);
+                }
+
+                return false;
+            }
+
+            return true;
+
+        }
+
+        public async Task ResendEmailToken(string userId)
+        {
+            _user = await _userManager.FindByIdAsync(userId);
+            
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(_user);
+            var callbackUrl = $"https://localhost:5001/api/users/ConfirmEmail?userId={_user.Id}&code={code}";
+
+            await _emailService.SendEmailAsync(_user.Email, "Confirm your password for Pokemon Web API", 
+                $"If u want to reset your password click link: <a href='{callbackUrl}'>{callbackUrl}</a> ");
+
+        }
+
 
         public async Task<MyToken> CreateToken()
         {
@@ -84,7 +188,46 @@ namespace Services
             };
 
         }
+
+        /*public async Task CreateEmailToken(User user)
+        {
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var callbackUrl = $"https://localhost:5001/api/users/ConfirmEmail?userId={user.Id}&code={code}";
+
+            await _emailService.SendEmailAsync(user.Email, "Confirm your password for Pokemon Web API", 
+                $"Submit your email by clicking this link: <a href='{callbackUrl}'>{callbackUrl}</a> ");
+        }*/
         
+        public async Task<EmailToken> CreateEmailToken1()
+        {
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(_user);
+            return new EmailToken {UserId = _user.Id, Code = code};
+        }
+        
+        public async Task SendEmailToken1(string link)
+        {
+            // var callbackUrl = $"https://localhost:5001/api/users/ConfirmEmail?userId={user.Id}&code={code}";
+
+            await _emailService.SendEmailAsync(_user.Email, "Confirm your password for Pokemon Web API", 
+                $"Submit your email by clicking this link: <a href='{link}'>{link}</a> ");
+            
+        }
+
+        public async Task<EmailToken> CreatePasswordResetToken(string email)
+        {
+            _user = await _userManager.FindByEmailAsync(email);
+            
+            var code = await _userManager.GeneratePasswordResetTokenAsync(_user);
+            return new EmailToken {UserId = _user.Id, Code = code};
+        }
+        
+        public async Task SendEmailResetPasswordToken(string link)
+        {
+            var link1 = string.Concat("https://localhost:4200/admin/reset-pass", link.Remove(0, 45));
+            await _emailService.SendEmailAsync(_user.Email, "Confirm your password for Pokemon Web API", 
+                $"Submit your email by clicking this link: <a href='{link1}'>{link1}</a> ");
+            
+        }
 
         private static SigningCredentials GetSigningCredentials()
         {

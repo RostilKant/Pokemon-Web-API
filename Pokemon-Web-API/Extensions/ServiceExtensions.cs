@@ -73,6 +73,9 @@ namespace Pokemon_Web_API.Extensions
             services.AddScoped<IPokemonService, PokemonService>();
         public static void ConfigureTypeService(this IServiceCollection services) =>
             services.AddScoped<ITypeService, TypeService>();
+        
+        public static void ConfigureEmailService(this IServiceCollection services) =>
+            services.AddScoped<IEmailService, EmailService>();
 
         public static void ConfigureCustomMediaType(this IServiceCollection services)
         {
@@ -149,6 +152,7 @@ namespace Pokemon_Web_API.Extensions
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequiredLength = 8;
                 opt.User.RequireUniqueEmail = true;
+                opt.SignIn.RequireConfirmedEmail = true;
             } );
             
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);

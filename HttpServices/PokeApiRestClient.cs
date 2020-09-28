@@ -30,12 +30,5 @@ namespace HttpServices
             return RestClient.Get<Pokemon>(request).Data;
         }
         
-        //public Entities.GetPokemonModels.Pokemon GetPoke(string poke)
-       // {
-       //     var request = new RestRequest($"pokemon/{poke}",DataFormat.Json);
-       //     return RestClient.Get<Entities.GetPokemonModels.Pokemon>(request).Data;
-       // }
-        
-        
     }
 }

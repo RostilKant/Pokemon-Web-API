@@ -61,6 +61,7 @@ namespace Pokemon_Web_API
             services.ConfigurePokemonService();
             services.ConfigureTypeService();
             services.ConfigureUserService();
+            services.ConfigureEmailService();
 
             services.AddScoped<ModelValidationFilterAttribute>();
             services.AddScoped<ValidatePokemonExistsAttribute>();
@@ -94,6 +95,7 @@ namespace Pokemon_Web_API
         {
             if (env.IsDevelopment())
             {
+                IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
             app.ConfigureExceptionHandler(logger);
