@@ -18,7 +18,6 @@ AngularClient/bazel-out
 
 # dependencies
 AngularClient/node_modules
-/node_modules
 */bin/Debug/netcoreapp3.1
 
 # profiling files
@@ -57,3 +56,6 @@ testem.log
 .DS_Store
 Thumbs.db
 rider.project.restore.info
+
+*/obj
+/obj

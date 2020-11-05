@@ -189,30 +189,17 @@ namespace Services
 
         }
 
-        /*public async Task CreateEmailToken(User user)
-        {
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var callbackUrl = $"https://localhost:5001/api/users/ConfirmEmail?userId={user.Id}&code={code}";
-
-            await _emailService.SendEmailAsync(user.Email, "Confirm your password for Pokemon Web API", 
-                $"Submit your email by clicking this link: <a href='{callbackUrl}'>{callbackUrl}</a> ");
-        }*/
-        
         public async Task<EmailToken> CreateEmailToken1()
         {
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(_user);
             return new EmailToken {UserId = _user.Id, Code = code};
         }
         
-        public async Task SendEmailToken1(string link)
-        {
-            // var callbackUrl = $"https://localhost:5001/api/users/ConfirmEmail?userId={user.Id}&code={code}";
-
+        public async Task SendEmailToken1(string link) => 
             await _emailService.SendEmailAsync(_user.Email, "Confirm your email for Pokemon Web API", 
                 $"Submit your email by clicking this link: <a href='{link}'>{link}</a> ");
-            
-        }
 
+        
         public async Task<EmailToken> CreatePasswordResetToken(string email, ModelStateDictionary modelState)
         {
             _user = await _userManager.FindByEmailAsync(email);

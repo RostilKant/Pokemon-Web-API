@@ -26,7 +26,7 @@ namespace Contracts
 
         public Task SendEmailToken1(string link);
 
-        public Task<EmailToken> CreatePasswordResetToken(string email);
+        public Task<EmailToken> CreatePasswordResetToken(string email,  ModelStateDictionary modelState);
 
         public Task SendEmailResetPasswordToken(string link);
 

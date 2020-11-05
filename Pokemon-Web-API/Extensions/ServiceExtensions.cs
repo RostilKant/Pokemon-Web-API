@@ -166,7 +166,7 @@ namespace Pokemon_Web_API.Extensions
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtSettings = configuration.GetSection("JwtSettings");
-            var secretKey = Environment.GetEnvironmentVariable("SECRET");
+            // var secretKey = Environment.GetEnvironmentVariable("SECRET");
 
             services.AddAuthentication(opt =>
                 {
@@ -185,7 +185,7 @@ namespace Pokemon_Web_API.Extensions
                         ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
                         ValidAudience = jwtSettings.GetSection("validAudience").Value,
                         IssuerSigningKey = new SymmetricSecurityKey
-                        (Encoding.UTF8.GetBytes(secretKey!))
+                        (Encoding.UTF8.GetBytes(jwtSettings.GetSection("SECRET").Value!))
                     };
                 });
         }
