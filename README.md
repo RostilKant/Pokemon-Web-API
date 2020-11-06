@@ -5,7 +5,7 @@
 Except this some things were practiced too: EF Core & ASP.NET Core Identity for storing and managing users; Serilog;               
 Authentication using JWT; Swagger for documenting API; Deploying on Azure - currently doesn't work, trial is ended ;(                  
   
-  Previously server was working without standalone, I mean without frontend and was succesfully tested by Postman.       
+  Previously server was working standalone, I mean without frontend and was succesfully tested by Postman.       
 Later, i decided to study Angular, after few courses and reading Angular docs, I started developing frontend for my Pokemon Web API.
 
 
