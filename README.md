@@ -29,6 +29,7 @@ For registration we should click "Sign Up", that is located in the navbar and we
 ![RegistarationPage](Screenshots/RegistarationPage.png)
 
 
-There are validators for every field(form-control) of form. Below we can see different validation message of different field validators.
+There are validators for every field(form-control) of form.                                                                                       
+Below we can see different validation message of different field validators.                                                               
 ![Validation](Screenshots/Validation.png)
 
